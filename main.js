@@ -276,6 +276,14 @@ const projects = [
         image: "images/py6.jpg" 
     },
     { 
+        title: "Registro de Marca", 
+        tag: "Data & Analytics", 
+        desc: "Gestion de desarrollo y registro de marca y servicio.", 
+        result: "📊 Toma de decisiones 3x más rápida", 
+        url: "https://portaltramites.inpi.gob.ar/", 
+        image: "images/py8.jpg" 
+    },
+    { 
         title: "Desarrollo Web", 
         tag: "Marketplace", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
