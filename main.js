@@ -129,16 +129,16 @@ function loadSavedFormData() {
 
 // Inicializar Google Analytics con estado de consentimiento
 function initGoogleAnalytics() {
+    // Verificar que gtag esté disponible
+    if (typeof gtag === 'undefined') return;
     const consent = getCookie('cookie_consent');
     let analyticsState = 'denied';
     if (consent === 'accepted') {
         analyticsState = 'granted';
     }
-    if (typeof gtag !== 'undefined') {
-        gtag('consent', 'default', {
-            'analytics_storage': analyticsState
-        });
-    }
+    gtag('consent', 'default', {
+        'analytics_storage': analyticsState
+    });
 }
 
 // ============================================================
@@ -173,7 +173,8 @@ function initMobileMenu() {
             if (mobileMenu.classList.contains('active')) {
                 toggleMenu();
             }
-            openPopupFn();
+            // CORREGIDO: usar window.openPopupFn
+            window.openPopupFn();
         });
     }
 }
@@ -231,7 +232,7 @@ const projects = [
         tag: "Desarrollo Web", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
         result: "📈 Incremento del 45% en conversiones", 
-        url: "#", , 
+        url: "#", 
         image: "images/py1.jpg" 
     },
     { 
