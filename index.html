@@ -19,7 +19,7 @@
     <!-- CSS Principal - Carga diferida para no bloquear el renderizado -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Estilos adicionales para el logo en el hero -->
+    <!-- Estilos adicionales para el logo en el hero (mucho más grande) -->
     <style>
         .hero-code-wrapper {
             position: relative;
@@ -28,16 +28,15 @@
         }
         .hero-logo {
             position: absolute;
-            top: -20px;
-            right: 0;
-            width: 70px;
+            top: -40px;          /* Subimos más para que no tape el código */
+            right: -10px;        /* Ajuste fino a la derecha */
+            width: 200px;        /* ¡Ahora enorme! */
             height: auto;
             z-index: 2;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
         }
-        /* Ajuste para que el bloque de código no quede tapado */
         .hero-code-block {
-            margin-top: 20px;
+            margin-top: 30px;    /* Más margen para que no se superponga */
         }
     </style>
     
