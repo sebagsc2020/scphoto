@@ -232,7 +232,7 @@ const projects = [
         tag: "Desarrollo Web", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
         result: "📈 Incremento del 45% en conversiones", 
-        url: "#", 
+        url: "https://www.google.com", 
         image: "images/py1.jpg" 
     },
     { 
@@ -240,7 +240,7 @@ const projects = [
         tag: "Desarrollo Web", 
         desc: "Plataforma digital completa con experiencia de usuario excepcional, 3 idiomas, App Progresiva (PWA), integracion con Google Analitycs, formulario con transcripcion de audio.", 
         result: "💰 Ventas incrementadas en un 67%", 
-        url: "#", 
+        url: "https://lgtatoo.com/", 
         image: "images/py2.jpg" 
     },
     { 
@@ -248,23 +248,23 @@ const projects = [
         tag: "Diseño UX/UI", 
         desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
         result: "👥 Engagement mejorado en un 52%", 
-        url: "#", 
+        url: "https://sebagsc2020.github.io/crmfastfood/index.html", 
         image: "images/py3.jpg" 
     },
     { 
         title: "App Progresiva (PWA)", 
         tag: "Aplicación Web", 
-        desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa para reservas de excursiones, App Progresiva (PWA). .", 
+        desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa para reservas de excursiones, App Progresiva (PWA).", 
         result: "📱 Adopción móvil del 89%", 
-        url: "#", 
+        url: "https://sebagsc2020.github.io/reservacordinador1/index.html", 
         image: "images/py4.jpg" 
     },
     { 
         title: "Desarrollo de Marca", 
         tag: "Educación", 
         desc: "Gestión para el desarrollo de marca.", 
-        result: "🎓 Más de 10,000 estudiantes activos", 
-        url: "#", 
+        result: "🎓 Más visualizaciones activas", 
+        url: "https://www.instagram.com/mariadelcarmen48464/", 
         image: "images/py5.jpg" 
     },
     { 
@@ -272,7 +272,7 @@ const projects = [
         tag: "Data & Analytics", 
         desc: "Gestion de desarrollo e implantación de marca y producto.", 
         result: "📊 Toma de decisiones 3x más rápida", 
-        url: "#", 
+        url: "https://www.instagram.com/vero.gallard/", 
         image: "images/py6.jpg" 
     },
     { 
@@ -280,7 +280,7 @@ const projects = [
         tag: "Marketplace", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
         result: "🛒 Más de 500 vendedores activos", 
-        url: "#", 
+        url: "https://www.angeltourbrasil.com.br/multiparque-bc", 
         image: "images/py7.jpg" 
     }
 ];
