@@ -35,7 +35,7 @@
 
         /* Logo grande en el hero (arriba del badge) - AUMENTADO 90% */
         .hero-logo-large {
-            max-width: 532px;   /* 280px + 90% = 532px */
+            max-width: 532px;
             width: 100%;
             height: auto;
             margin-bottom: 0.5rem;
@@ -43,13 +43,23 @@
             filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
         }
 
+        /* Reducir espacio superior del hero */
+        .hero {
+            padding-top: 0.5rem !important;  /* Reducido drásticamente */
+        }
+
+        .hero-content {
+            padding-top: 0 !important;
+        }
+
         @media (max-width: 768px) {
             .hero-logo-large {
-                max-width: 380px;   /* 200px + 90% = 380px */
+                max-width: 380px;
                 margin: 0 auto 0.5rem auto;
             }
             .hero-content {
                 text-align: center;
+                padding-top: 0 !important;
             }
             .hero-content .section-badge {
                 display: inline-block;
@@ -59,6 +69,9 @@
             }
             .hero-stats {
                 justify-content: center;
+            }
+            .hero {
+                padding-top: 0.25rem !important;
             }
         }
     </style>
