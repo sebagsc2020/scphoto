@@ -230,7 +230,7 @@ const projects = [
     { 
         title: "Porto Belo Beach Day - Brasil", 
         tag: "Desarrollo Web", 
-        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
+        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
         result: "📈 Incremento del 45% en conversiones", 
         url: "#", 
         image: "images/py1.jpg" 
@@ -244,7 +244,7 @@ const projects = [
         image: "images/py2.jpg" 
     },
     { 
-        title: "Portal Comercial", 
+        title: "Portal Comercial para Servicios de Comidas", 
         tag: "Diseño UX/UI", 
         desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
         result: "👥 Engagement mejorado en un 52%", 
@@ -254,31 +254,31 @@ const projects = [
     { 
         title: "App Progresiva (PWA)", 
         tag: "Aplicación Web", 
-        desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa.", 
+        desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa para reservas de excursiones, App Progresiva (PWA). .", 
         result: "📱 Adopción móvil del 89%", 
         url: "#", 
         image: "images/py4.jpg" 
     },
     { 
-        title: "Plataforma Educativa", 
+        title: "Desarrollo de Marca", 
         tag: "Educación", 
-        desc: "Sistema de gestión de aprendizaje con recursos interactivos y seguimiento personalizado.", 
+        desc: "Gestión para el desarrollo de marca.", 
         result: "🎓 Más de 10,000 estudiantes activos", 
         url: "#", 
         image: "images/py5.jpg" 
     },
     { 
-        title: "Dashboard Analítico", 
+        title: "Desarollo de Producto", 
         tag: "Data & Analytics", 
-        desc: "Panel de control interactivo con visualización de datos en tiempo real y reportes personalizados.", 
+        desc: "Gestion de desarrollo e implantación de marca y producto.", 
         result: "📊 Toma de decisiones 3x más rápida", 
         url: "#", 
         image: "images/py6.jpg" 
     },
     { 
-        title: "Marketplace Multivendor", 
+        title: "Desarrollo Web", 
         tag: "Marketplace", 
-        desc: "Plataforma de comercio electrónico con múltiples vendedores y gestión automatizada.", 
+        desc: "lataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
         result: "🛒 Más de 500 vendedores activos", 
         url: "#", 
         image: "images/py7.jpg" 
