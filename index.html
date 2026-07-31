@@ -1,1 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCode — Agencia de Desarrollo Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-color: #0b0d10;
+            color: #eef2f6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- FONDO --- */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .bg-glow {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .bg-glow-1 { width: 700px; height: 700px; top: -200px; right: -100px; background: radial-gradient(circle, rgba(124, 77, 255, 0.40), rgba(0, 188, 212, 0.10)); opacity: 0.75; }
+        .bg-glow-2 { width: 600px; height: 600px; bottom: -150px; left: -100px; background: radial-gradient(circle, rgba(0, 188, 212, 0.35), rgba(124, 77, 255, 0.10)); opacity: 0.75; }
+        .bg-glow-3 { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(179, 136, 255, 0.20), transparent 70%); opacity: 0.75; }
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ----- TIPOGRAFÍA ----- */
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
+        .gradient-text { background: linear-gradient(135deg, #b388ff, #7c4dff, #00bcd4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .section-badge { display: inline-block; background: rgba(123, 77, 255, 0.15); color: #b388ff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.4rem 1rem; border-radius: 100px; border: 1px solid rgba(123, 77, 255, 0.2); margin-bottom: 1rem; }
+
+        /* ----- BOTONES ----- */
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c4dff, #00bcd4);
+            color: #fff;
+            font-weight: 600;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(124, 77, 255, 0.25);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124, 77, 255, 0.4); }
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #fff;
+            font-weight: 600;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.3); }
+        .btn-link {
+            display: inline-block;
+            background: rgba(0, 188, 212, 0.1);
+            color: #00bcd4;
+            padding: 0.3rem 1rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 188, 212, 0.15);
+        }
+        .btn-link:hover { background: rgba(0, 188, 212, 0.2); transform: translateY(-2px); }
+
+        /* ----- HEADER / NAV ----- */
+        header {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(11, 13, 16, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.8rem; letter-spacing: -0.03em; color: #fff; text-decoration: none; z-index: 101; }
+        .logo span { color: #7c4dff; }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-links a { color: #b0b8c5; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; cursor: pointer; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta { background: rgba(124, 77, 255, 0.15); color: #b388ff !important; padding: 0.5rem 1.5rem; border-radius: 60px; border: 1px solid rgba(124, 77, 255, 0.2); transition: all 0.2s; }
+        .nav-cta:hover { background: rgba(124, 77, 255, 0.25) !important; color: #fff !important; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        .hamburger span { display: block; width: 28px; height: 3px; background: #eef2f6; border-radius: 3px; transition: all 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(11, 13, 16, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .mobile-menu.active { display: flex; opacity: 1; pointer-events: all; }
+        .mobile-menu a { color: #eef2f6; font-size: 1.5rem; text-decoration: none; font-weight: 500; transition: color 0.2s; font-family: 'Space Grotesk', sans-serif; }
+        .mobile-menu a:hover { color: #7c4dff; }
+        .mobile-menu .mobile-cta { background: rgba(124, 77, 255, 0.15); color: #b388ff !important; padding: 0.8rem 2.5rem; border-radius: 60px; border: 1px solid rgba(124, 77, 255, 0.2); font-size: 1.2rem; }
+
+        /* ----- HERO ----- */
+        .hero { padding: 6rem 0 8rem; position: relative; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-content h1 { font-size: 4.2rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hero-content p { font-size: 1.2rem; color: #b0b8c5; max-width: 500px; margin-bottom: 2.5rem; }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+        .hero-stats div { text-align: left; }
+        .hero-stats strong { display: block; font-size: 2.2rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
+        .hero-stats span { font-size: 0.9rem; color: #8892a0; }
+        .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+        .hero-code-block {
+            background: rgba(22, 26, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+        .hero-code-block .line { display: flex; gap: 0.8rem; font-family: 'Inter', monospace; font-size: 0.9rem; color: #8892a0; padding: 0.25rem 0; }
+        .hero-code-block .line .keyword { color: #7c4dff; }
+        .hero-code-block .line .string { color: #00bcd4; }
+        .hero-code-block .line .function { color: #b388ff; }
+        .hero-code-block .line .comment { color: #4a5568; }
+
+        /* ----- CLIENTES ----- */
+        .clients { padding: 3rem 0 5rem; border-top: 1px solid rgba(255, 255, 255, 0.04); }
+        .clients p { text-align: center; color: #4a5568; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; }
+        .client-logos { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; opacity: 0.5; }
+        .client-logos span { font-size: 1.2rem; font-weight: 600; color: #8892a0; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+
+        /* ----- SERVICIOS ----- */
+        .services { padding: 6rem 0; }
+        .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 1rem; }
+        .section-header p { color: #8892a0; font-size: 1.1rem; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .service-card {
+            background: rgba(17, 22, 30, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s ease;
+        }
+        .service-card:hover { transform: translateY(-8px); border-color: rgba(124, 77, 255, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); background: rgba(17, 22, 30, 0.85); }
+        .service-card .icon { font-size: 2.5rem; color: #7c4dff; margin-bottom: 1.5rem; }
+        .service-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .service-card p { color: #8892a0; font-size: 0.95rem; }
+
+        /* ----- PORTAFOLIO ----- */
+        .portfolio { padding: 6rem 0; background: rgba(8, 10, 13, 0.6); backdrop-filter: blur(5px); }
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .portfolio-item {
+            background: rgba(17, 22, 30, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all 0.3s ease;
+        }
+        .portfolio-item:hover { border-color: rgba(124, 77, 255, 0.15); transform: scale(1.01); background: rgba(17, 22, 30, 0.85); }
+        .portfolio-item .card-body { padding: 2rem; }
+        .portfolio-item .tag { display: inline-block; background: rgba(0, 188, 212, 0.1); color: #00bcd4; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.8rem; border-radius: 100px; margin-bottom: 0.8rem; }
+        .portfolio-item h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .portfolio-item p { color: #8892a0; font-size: 0.95rem; }
+        .portfolio-item .result { margin-top: 1rem; font-weight: 600; color: #b388ff; font-size: 0.95rem; }
+        .portfolio-item .project-link { margin-top: 1rem; display: inline-block; }
+        .project-image { width: 100%; height: 220px; object-fit: cover; display: block; background: linear-gradient(135deg, #1a1f2b, #0f131a); }
+        .project-image-placeholder { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1f2b, #0f131a); color: #4a5568; font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
+        .project-image-placeholder i { font-size: 3rem; opacity: 0.3; margin-right: 0.5rem; }
+
+        /* ----- TESTIMONIALS ----- */
+        .testimonials { padding: 6rem 0; }
+        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .testimonial-card {
+            background: rgba(17, 22, 30, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .testimonial-card .stars { color: #ffb74d; margin-bottom: 1rem; letter-spacing: 2px; }
+        .testimonial-card blockquote { font-size: 1.05rem; font-weight: 400; color: #eef2f6; margin-bottom: 1.5rem; line-height: 1.7; }
+        .testimonial-card .author { display: flex; align-items: center; gap: 1rem; }
+        .testimonial-card .author .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #7c4dff, #00bcd4); flex-shrink: 0; }
+        .testimonial-card .author .name { font-weight: 600; }
+        .testimonial-card .author .role { font-size: 0.85rem; color: #8892a0; }
+
+        /* ============================================================
+           POPUP WHATSAPP CON MICRÓFONO FUERA Y TIMEOUT DE 5 SEGUNDOS
+           ============================================================ */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .popup-overlay.active { display: flex; }
+
+        .popup {
+            background: rgba(17, 22, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            max-width: 520px;
+            width: 100%;
+            max-height: 90vh;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .popup-header {
+            padding: 1.8rem 2rem 0.5rem 2rem;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            background: rgba(17, 22, 30, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 5;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 32px 32px 0 0;
+        }
+        .popup-header .popup-close { float: right; font-size: 1.5rem; color: #8892a0; cursor: pointer; transition: color 0.2s; background: none; border: none; margin-top: -0.2rem; }
+        .popup-header .popup-close:hover { color: #fff; }
+        .popup-header h2 { font-size: 1.8rem; margin-bottom: 0.3rem; clear: both; }
+        .popup-header p { color: #8892a0; font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+        .popup-body {
+            padding: 1.5rem 2rem 2rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .popup-body::-webkit-scrollbar { width: 6px; border-radius: 10px; }
+        .popup-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); border-radius: 10px; margin: 4px 0; }
+        .popup-body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7c4dff, #00bcd4); border-radius: 10px; transition: all 0.3s ease; }
+        .popup-body::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #b388ff, #7c4dff); }
+        .popup-body { scrollbar-width: thin; scrollbar-color: #7c4dff rgba(255, 255, 255, 0.04); }
+
+        .popup .form-group { margin-bottom: 1.2rem; }
+        .popup .form-group label { display: block; font-size: 0.85rem; font-weight: 600; color: #b0b8c5; margin-bottom: 0.3rem; }
+        .popup .form-group input,
+        .popup .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #0b0d10;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #eef2f6;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+        .popup .form-group input:focus,
+        .popup .form-group textarea:focus { outline: none; border-color: #7c4dff; }
+        .popup .form-group textarea { resize: vertical; min-height: 80px; }
+        .popup .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 0.5rem 0 1rem; }
+        .popup .checkbox-group label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #b0b8c5; cursor: pointer; }
+        .popup .checkbox-group input[type="checkbox"] { accent-color: #7c4dff; width: 18px; height: 18px; cursor: pointer; }
+        .popup .btn-primary { width: 100%; text-align: center; margin-top: 0.5rem; }
+
+        /* ---- CAMPO DE MENSAJE ACORTADO CON MICRÓFONO FUERA ---- */
+        .message-row {
+            display: flex;
+            align-items: stretch;
+            gap: 0.8rem;
+        }
+
+        .message-field-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .message-field-wrapper textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #0b0d10;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #eef2f6;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            min-height: 60px;
+            max-height: 80px;
+            resize: none;
+            cursor: not-allowed;
+            line-height: 1.4;
+        }
+
+        .message-field-wrapper textarea:focus {
+            outline: none;
+            border-color: #7c4dff;
+        }
+
+        .message-field-wrapper textarea:disabled {
+            opacity: 0.85;
+            cursor: not-allowed;
+        }
+
+        .message-field-wrapper textarea::placeholder {
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+
+        /* --- BOTÓN DE MICRÓFONO FUERA DEL CAMPO --- */
+        .microphone-outer-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(124, 77, 255, 0.15);
+            color: #b388ff;
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            width: 48px;
+            min-height: 60px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            position: relative;
+            gap: 0.2rem;
+        }
+
+        .microphone-outer-btn:hover {
+            background: rgba(124, 77, 255, 0.25);
+            transform: scale(1.03);
+        }
+
+        .microphone-outer-btn i {
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .microphone-outer-btn .btn-label {
+            font-size: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+        }
+
+        /* --- ONDA DE RADIO (efecto de ondas concéntricas) --- */
+        .microphone-outer-btn .radio-wave {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .microphone-outer-btn .radio-wave::before,
+        .microphone-outer-btn .radio-wave::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 23, 68, 0.5);
+            width: 100%;
+            height: 100%;
+            animation: radioPulse 1.5s ease-out infinite;
+        }
+
+        .microphone-outer-btn .radio-wave::after {
+            animation-delay: 0.75s;
+        }
+
+        @keyframes radioPulse {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+            }
+            100% {
+                width: 180%;
+                height: 180%;
+                opacity: 0;
+            }
+        }
+
+        /* Estados del botón de micrófono */
+        .microphone-outer-btn.recording {
+            background: rgba(255, 23, 68, 0.2);
+            color: #ff1744;
+            border-color: rgba(255, 23, 68, 0.3);
+        }
+
+        .microphone-outer-btn.recording .radio-wave {
+            display: block;
+        }
+
+        .microphone-outer-btn.recording i {
+            animation: micPulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes micPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .microphone-outer-btn.done {
+            background: rgba(0, 200, 83, 0.2);
+            color: #00c853;
+            border-color: rgba(0, 200, 83, 0.3);
+        }
+
+        .microphone-outer-btn.done i {
+            animation: none;
+        }
+
+        .microphone-status-text {
+            font-size: 0.75rem;
+            color: #8892a0;
+            margin-top: 0.3rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .microphone-status-text.recording { color: #ff1744; }
+        .microphone-status-text.done { color: #00c853; }
+        .microphone-status-text.error { color: #ff1744; }
+
+        /* Timer de silencio (indicador visual) */
+        .silence-timer {
+            display: none;
+            font-size: 0.7rem;
+            color: #ff1744;
+            margin-top: 0.2rem;
+            font-weight: 600;
+        }
+
+        .silence-timer.active {
+            display: block;
+        }
+
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 1rem 0.5rem;
+        }
+        .thank-you-message.active { display: block; }
+        .thank-you-message i { font-size: 4rem; color: #00c853; margin-bottom: 1rem; }
+        .thank-you-message h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .thank-you-message p { color: #8892a0; font-size: 1rem; }
+        .thank-you-message .btn-secondary { margin-top: 1.5rem; }
+
+        /* ----- CTA FINAL ----- */
+        .cta-section {
+            padding: 6rem 0;
+            text-align: center;
+            background: rgba(8, 10, 13, 0.5);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .cta-section h2 { font-size: 3.2rem; max-width: 700px; margin: 0 auto 1.5rem; }
+        .cta-section p { color: #8892a0; font-size: 1.2rem; max-width: 500px; margin: 0 auto 2.5rem; }
+
+        /* ----- FOOTER ----- */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            color: #4a5568;
+            font-size: 0.9rem;
+        }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
+        .footer-grid a { color: #8892a0; text-decoration: none; margin-left: 2rem; transition: color 0.2s; }
+        .footer-grid a:hover { color: #fff; }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 2.5rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .bg-glow-1 { width: 500px; height: 500px; }
+            .bg-glow-2 { width: 450px; height: 450px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none !important; }
+            .hamburger { display: flex; }
+            header { padding: 1rem 0; }
+            .logo { font-size: 1.5rem; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .client-logos { justify-content: center; }
+            .hero-code-block { display: none; }
+
+            .popup { max-height: 85vh; }
+            .popup-header { padding: 1.2rem 1.2rem 0.3rem 1.2rem; }
+            .popup-header h2 { font-size: 1.4rem; }
+            .popup-body { padding: 1rem 1.2rem 1.2rem 1.2rem; }
+
+            .hero-stats { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+            .hero-stats div { text-align: center; }
+            .bg-glow-1 { width: 300px; height: 300px; top: -100px; right: -50px; filter: blur(80px); }
+            .bg-glow-2 { width: 250px; height: 250px; bottom: -80px; left: -50px; filter: blur(80px); }
+            .project-image { height: 180px; }
+            .project-image-placeholder { height: 180px; }
+            .popup-body::-webkit-scrollbar { width: 4px; }
+
+            .microphone-outer-btn {
+                width: 40px;
+                min-height: 50px;
+            }
+            .microphone-outer-btn i { font-size: 1.1rem; }
+            .microphone-outer-btn .btn-label { font-size: 0.45rem; }
+            .message-field-wrapper textarea {
+                min-height: 50px;
+                max-height: 70px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            .hero { padding: 4rem 0 5rem; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .btn-primary, .btn-secondary { padding: 0.7rem 1.8rem; font-size: 0.9rem; }
+            .section-header h2 { font-size: 2.2rem; }
+
+            .popup { max-height: 80vh; }
+            .popup-header { padding: 1rem 1rem 0.2rem 1rem; }
+            .popup-header h2 { font-size: 1.2rem; }
+            .popup-body { padding: 0.8rem 1rem 1rem 1rem; }
+
+            .mobile-menu a { font-size: 1.2rem; }
+            .bg-glow-1 { width: 200px; height: 200px; filter: blur(60px); }
+            .bg-glow-2 { width: 180px; height: 180px; filter: blur(60px); }
+            .project-image { height: 150px; }
+            .project-image-placeholder { height: 150px; }
+            .popup .checkbox-group label { font-size: 0.8rem; }
+            .popup-body::-webkit-scrollbar { width: 3px; }
+
+            .message-row { gap: 0.5rem; }
+            .microphone-outer-btn {
+                width: 36px;
+                min-height: 44px;
+            }
+            .microphone-outer-btn i { font-size: 0.9rem; }
+            .microphone-outer-btn .btn-label { display: none; }
+            .message-field-wrapper textarea {
+                min-height: 44px;
+                max-height: 60px;
+                font-size: 0.85rem;
+                padding: 0.6rem 0.8rem;
+            }
+            .microphone-status-text { font-size: 0.65rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FONDO -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="bg-grid"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Nova<span>Code</span></a>
+            <ul class="nav-links">
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="crm.html" class="nav-cta" style="color:#b388ff !important;">CRM</a></li>
+                <li><a href="#" class="nav-cta" id="openPopupBtn">Contáctanos</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#services" class="mobile-link">Servicios</a>
+            <a href="#portfolio" class="mobile-link">Portafolio</a>
+            <a href="#testimonials" class="mobile-link">Testimonios</a>
+            <a href="crm.html" style="color:#b388ff;">CRM</a>
+            <a href="#" class="mobile-cta" id="mobileOpenPopupBtn">Contáctanos</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="section-badge">🚀 Agencia #1 en 2026</span>
+                <h1>Desarrollo web que <span class="gradient-text">impulsa</span> tu negocio</h1>
+                <p>Diseñamos y desarrollamos plataformas digitales de alto rendimiento, con un enfoque estratégico que convierte visitantes en clientes.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" id="heroContactBtn">Cotiza tu proyecto</a>
+                    <a href="#portfolio" class="btn-secondary">Ver portafolio</a>
+                </div>
+                <div class="hero-stats">
+                    <div><strong id="projectCount">+150</strong><span>Proyectos exitosos</span></div>
+                    <div><strong>4.9★</strong><span>Calificación promedio</span></div>
+                    <div><strong>97%</strong><span>Retención de clientes</span></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-code-block">
+                    <div class="line"><span class="comment">// Construyendo el futuro</span></div>
+                    <div class="line"><span class="keyword">function</span> <span class="function">launchSite</span>() {</div>
+                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">const</span> strategy = <span class="string">'UX + SEO + Performance'</span>;</div>
+                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">return</span> <span class="string">'resultados medibles'</span>;</div>
+                    <div class="line">}</div>
+                    <div class="line"><span class="comment">// 94% de primeras impresiones importan</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="clients">
+        <div class="container">
+            <p>Confían en nosotros empresas líderes</p>
+            <div class="client-logos">
+                <span>IBM</span><span>NASA</span><span>Microsoft</span><span>Sony</span><span>XEROX</span><span>Disney</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Lo que hacemos</span>
+                <h2>Soluciones digitales <span class="gradient-text">integrales</span></h2>
+                <p>Desde la estrategia hasta el lanzamiento, creamos experiencias web que generan negocio.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><div class="icon"><i class="fas fa-code"></i></div><h3>Desarrollo a medida</h3><p>Plataformas escalables con arquitectura moderna, optimizadas para velocidad y SEO.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-paint-brush"></i></div><h3>Diseño UX/UI premium</h3><p>Interfaces centradas en el usuario, con un enfoque en conversión y usabilidad.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-cart-plus"></i></div><h3>Ecommerce & CMS</h3><p>Tiendas online y gestores de contenido como Shopify, WordPress y Magento.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-chart-line"></i></div><h3>Marketing digital & SEO</h3><p>Posicionamiento orgánico y estrategias de contenido para atraer tráfico cualificado.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-mobile-alt"></i></div><h3>Responsive & PWA</h3><p>Experiencias fluidas en cualquier dispositivo, con tecnología PWA para rendimiento nativo.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-cloud-upload-alt"></i></div><h3>Mantenimiento & hosting</h3><p>Infraestructura segura, actualizaciones constantes y soporte técnico especializado.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAFOLIO -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Casos de éxito</span>
+                <h2>Proyectos que <span class="gradient-text">transforman</span></h2>
+                <p>Resultados medibles que hablan por sí mismos.</p>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid"></div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Testimonios</span>
+                <h2>Lo que dicen <span class="gradient-text">nuestros clientes</span></h2>
+                <p>Empresas que han confiado en nosotros para su transformación digital.</p>
+            </div>
+            <div class="testimonial-grid" id="testimonialGrid"></div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-section">
+        <div class="container">
+            <span class="section-badge">🚀 Comienza ahora</span>
+            <h2>¿Listo para <span class="gradient-text">transformar</span> tu presencia digital?</h2>
+            <p>Hablemos sobre tu proyecto y descubre cómo podemos ayudarte a crecer.</p>
+            <a href="#" class="btn-primary" id="ctaContactBtn">Solicita una consultoría gratuita</a>
+        </div>
+    </section>
+
+    <!-- POPUP WHATSAPP CON MICRÓFONO FUERA Y TIMEOUT DE 5 SEGUNDOS -->
+    <div class="popup-overlay" id="whatsappPopup">
+        <div class="popup">
+            <div class="popup-header">
+                <button class="popup-close" id="closePopup">&times;</button>
+                <h2><i class="fab fa-whatsapp" style="color:#25D366; margin-right:0.5rem;"></i> Contáctanos por WhatsApp</h2>
+                <p id="popupSubtitle">Completa el formulario y te enviaremos un mensaje con los detalles.</p>
+            </div>
+
+            <div class="popup-body" id="popupBody">
+                <div id="formContainer">
+                    <form id="whatsappForm" autocomplete="on">
+                        <div class="form-group">
+                            <label for="waName">Nombre completo</label>
+                            <input type="text" id="waName" placeholder="Tu nombre" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="waEmail">Correo electrónico</label>
+                            <input type="email" id="waEmail" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="waPhone">Teléfono</label>
+                            <input type="tel" id="waPhone" placeholder="3518692251" autocomplete="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Servicios de interés</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" value="Desarrollo a medida"> Desarrollo</label>
+                                <label><input type="checkbox" value="Diseño UX/UI"> Diseño UX/UI</label>
+                                <label><input type="checkbox" value="Ecommerce"> Ecommerce</label>
+                                <label><input type="checkbox" value="Marketing SEO"> Marketing SEO</label>
+                                <label><input type="checkbox" value="Mantenimiento"> Mantenimiento</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="waMessage">Mensaje adicional <span style="color:#8892a0; font-weight:400; font-size:0.75rem;">(solo por voz)</span></label>
+                            <div class="message-row">
+                                <div class="message-field-wrapper">
+                                    <textarea id="waMessage" placeholder="Presiona el micrófono para dictar..." disabled></textarea>
+                                </div>
+                                <button type="button" class="microphone-outer-btn" id="microphoneBtn" title="Dictar mensaje por voz">
+                                    <div class="radio-wave"></div>
+                                    <i class="fas fa-microphone"></i>
+                                    <span class="btn-label">Dictar</span>
+                                </button>
+                            </div>
+                            <span class="microphone-status-text" id="microphoneStatus">⏺️ Presiona el micrófono para dictar</span>
+                            <span class="silence-timer" id="silenceTimer">⏱️ Silencio detectado... finalizando en <span id="silenceCountdown">5</span>s</span>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+                <div class="thank-you-message" id="thankYouMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>¡Gracias por contactarnos!</h3>
+                    <p>Hemos recibido tu mensaje. En breve nos pondremos en contacto contigo para ayudarte con tu proyecto.</p>
+                    <button class="btn-secondary" id="closePopupBtn" style="margin-top:1.5rem;">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <span>© 2026 NovaCode — Agencia de desarrollo web</span>
+            <div><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Dribbble</a></div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================================
+        // MENÚ HAMBURGUESA
+        // ============================================================
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        document.getElementById('mobileOpenPopupBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            if (mobileMenu.classList.contains('active')) {
+                toggleMenu();
+            }
+            openPopupFn();
+        });
+
+        // ============================================================
+        // DATOS
+        // ============================================================
+        const testimonials = [
+            { name: "Laura Méndez", role: "CEO, Puma Energy", text: "NovaCode no solo construyó un sitio web increíble, sino que entendió nuestro negocio y nos ayudó a conectar con nuestros clientes de una manera que nunca imaginamos." },
+            { name: "Carlos Herrera", role: "Director de Marketing, BEGA", text: "El equipo de NovaCode es increíblemente profesional. Entregaron un proyecto complejo en tiempo récord y los resultados superaron todas nuestras expectativas." }
+        ];
+
+        const projects = [
+            { title: "BEGA — Liderazgo en iluminación", tag: "Rediseño", desc: "Rediseño completo con enfoque en UX y arquitectura de información.", result: "📈 Tráfico orgánico: +10,098%", url: "https://bega.com", image: "images/bega.jpg" },
+            { title: "Puma Energy — experiencia omnicanal", tag: "Estrategia digital", desc: "Diseño responsivo y optimización de la experiencia de usuario.", result: "📊 Engagement: +63%", url: "https://pumaenergy.com", image: "images/puma.jpg" },
+            { title: "Bon Chon — expansión global", tag: "Ecommerce", desc: "Web multidispositivo y campaña de marketing integrada.", result: "👥 +415k visitantes únicos", url: "https://bonchon.com", image: "images/bonchon.jpg" },
+            { title: "LA County Justice — accesibilidad", tag: "Gobierno / ONG", desc: "Transformación digital con estándares WCAG 2.1 y enfoque inclusivo.", result: "🏆 Gold MarCom Award", url: "https://lacounty.gov", image: "images/lacounty.jpg" }
+        ];
+
+        // ============================================================
+        // RENDER
+        // ============================================================
+        function renderTestimonials() {
+            const grid = document.getElementById('testimonialGrid');
+            if (!grid) return;
+            grid.innerHTML = testimonials.map((t, i) => `
+                <div class="testimonial-card" data-index="${i}">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“${t.text}”</blockquote>
+                    <div class="author">
+                        <div class="avatar"></div>
+                        <div>
+                            <div class="name">${t.name}</div>
+                            <div class="role">${t.role || 'Cliente'}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('portfolioGrid');
+            if (!grid) return;
+
+            grid.innerHTML = projects.map((p, i) => {
+                const imageHtml = p.image ? `
+                    <img src="${p.image}" alt="${p.title}" class="project-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="project-image-placeholder" style="display:none;">
+                        <i class="fas fa-image"></i> ${p.title}
+                    </div>
+                ` : `
+                    <div class="project-image-placeholder">
+                        <i class="fas fa-image"></i> ${p.title}
+                    </div>
+                `;
+
+                return `
+                    <div class="portfolio-item" data-index="${i}">
+                        ${imageHtml}
+                        <div class="card-body">
+                            <span class="tag">${p.tag}</span>
+                            <h3>${p.title}</h3>
+                            <p>${p.desc}</p>
+                            ${p.result ? `<div class="result">${p.result}</div>` : ''}
+                            ${p.url ? `<a href="${p.url}" target="_blank" class="btn-link project-link"><i class="fas fa-external-link-alt"></i> Ver proyecto</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('projectCount').textContent = `+${projects.length}`;
+        }
+
+        function renderAll() {
+            renderTestimonials();
+            renderProjects();
+        }
+
+        // ============================================================
+        // POPUP WHATSAPP
+        // ============================================================
+        const popup = document.getElementById('whatsappPopup');
+        const openBtns = document.querySelectorAll('#openPopupBtn, #heroContactBtn, #ctaContactBtn');
+        const closeBtn = document.getElementById('closePopup');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+        const formContainer = document.getElementById('formContainer');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+        const popupSubtitle = document.getElementById('popupSubtitle');
+        const waMessage = document.getElementById('waMessage');
+        const microphoneBtn = document.getElementById('microphoneBtn');
+        const microphoneStatus = document.getElementById('microphoneStatus');
+        const silenceTimer = document.getElementById('silenceTimer');
+        const silenceCountdown = document.getElementById('silenceCountdown');
+
+        let isRecording = false;
+        let recognition = null;
+        let silenceTimeout = null;
+        let countdownInterval = null;
+        let countdownValue = 5;
+
+        function openPopupFn() {
+            formContainer.style.display = 'block';
+            thankYouMessage.classList.remove('active');
+            popupSubtitle.textContent = 'Completa el formulario y te enviaremos un mensaje con los detalles.';
+            popup.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            resetMicrophone();
+        }
+
+        function resetMicrophone() {
+            if (recognition && isRecording) {
+                try { recognition.stop(); } catch(e) {}
+                isRecording = false;
+            }
+            clearTimeout(silenceTimeout);
+            clearInterval(countdownInterval);
+            silenceTimer.classList.remove('active');
+            microphoneBtn.classList.remove('recording', 'done');
+            microphoneBtn.querySelector('i').className = 'fas fa-microphone';
+            waMessage.value = '';
+            waMessage.disabled = true;
+            waMessage.placeholder = 'Presiona el micrófono para dictar...';
+            microphoneStatus.textContent = '⏺️ Presiona el micrófono para dictar';
+            microphoneStatus.className = 'microphone-status-text';
+        }
+
+        function closePopupFn() {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('whatsappForm').reset();
+            formContainer.style.display = 'block';
+            thankYouMessage.classList.remove('active');
+            popupSubtitle.textContent = 'Completa el formulario y te enviaremos un mensaje con los detalles.';
+            resetMicrophone();
+        }
+
+        openBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openPopupFn();
+            });
+        });
+
+        closeBtn.addEventListener('click', closePopupFn);
+        closePopupBtn.addEventListener('click', closePopupFn);
+        popup.addEventListener('click', function(e) {
+            if (e.target === popup) closePopupFn();
+        });
+
+        // ============================================================
+        // TRANSCRIPCIÓN DE AUDIO CON TIMEOUT DE 5 SEGUNDOS DE SILENCIO
+        // ============================================================
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (SpeechRecognition) {
+            recognition = new SpeechRecognition();
+            recognition.lang = 'es-ES';
+            recognition.continuous = true; // Para detectar silencio
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 1;
+
+            recognition.onstart = function() {
+                isRecording = true;
+                microphoneBtn.classList.add('recording');
+                microphoneBtn.querySelector('i').className = 'fas fa-stop';
+                microphoneStatus.textContent = '🎙️ Grabando... Habla ahora';
+                microphoneStatus.className = 'microphone-status-text recording';
+                waMessage.placeholder = '🎙️ Escuchando...';
+                silenceTimer.classList.remove('active');
+                clearTimeout(silenceTimeout);
+                clearInterval(countdownInterval);
+                countdownValue = 5;
+                void microphoneBtn.offsetWidth;
+            };
+
+            // Detectar silencio: cuando no hay resultados durante 5 segundos
+            recognition.onresult = function(event) {
+                // Reiniciar el timer de silencio cada vez que se recibe audio
+                clearTimeout(silenceTimeout);
+                clearInterval(countdownInterval);
+                silenceTimer.classList.remove('active');
+                countdownValue = 5;
+
+                let finalTranscript = '';
+                let interimTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript;
+                    } else {
+                        interimTranscript += transcript;
+                    }
+                }
+
+                // Mostrar texto provisional
+                if (interimTranscript) {
+                    waMessage.placeholder = '🎙️ ' + interimTranscript;
+                }
+
+                // Acumular texto final
+                if (finalTranscript) {
+                    const currentText = waMessage.value;
+                    const newText = finalTranscript.charAt(0).toUpperCase() + finalTranscript.slice(1);
+                    waMessage.value = currentText + (currentText ? ' ' : '') + newText;
+                    // No deshabilitar aún, puede haber más audio
+                }
+
+                // Iniciar timer de silencio de 5 segundos (solo si hay algo escrito)
+                if (waMessage.value.trim() !== '' || interimTranscript) {
+                    silenceTimer.classList.add('active');
+                    countdownValue = 5;
+                    silenceCountdown.textContent = countdownValue;
+                    
+                    countdownInterval = setInterval(() => {
+                        countdownValue--;
+                        silenceCountdown.textContent = countdownValue;
+                        if (countdownValue <= 0) {
+                            clearInterval(countdownInterval);
+                            // Finalizar grabación por silencio
+                            if (isRecording) {
+                                try { recognition.stop(); } catch(e) {}
+                            }
+                        }
+                    }, 1000);
+
+                    silenceTimeout = setTimeout(() => {
+                        clearInterval(countdownInterval);
+                        silenceTimer.classList.remove('active');
+                        // Solo detener si sigue grabando
+                        if (isRecording) {
+                            try { recognition.stop(); } catch(e) {}
+                        }
+                    }, 5000);
+                }
+            };
+
+            recognition.onend = function() {
+                isRecording = false;
+                clearTimeout(silenceTimeout);
+                clearInterval(countdownInterval);
+                silenceTimer.classList.remove('active');
+                
+                microphoneBtn.classList.remove('recording');
+                microphoneBtn.querySelector('i').className = 'fas fa-microphone';
+                waMessage.placeholder = 'Presiona el micrófono para dictar...';
+
+                if (waMessage.value.trim() !== '') {
+                    microphoneStatus.textContent = '✅ Mensaje transcrito correctamente';
+                    microphoneStatus.className = 'microphone-status-text done';
+                    microphoneBtn.classList.add('done');
+                    waMessage.disabled = false;
+                    waMessage.style.cursor = 'default';
+                } else {
+                    microphoneStatus.textContent = '⏺️ Presiona el micrófono para dictar';
+                    microphoneStatus.className = 'microphone-status-text';
+                }
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Error de reconocimiento:', event.error);
+                isRecording = false;
+                clearTimeout(silenceTimeout);
+                clearInterval(countdownInterval);
+                silenceTimer.classList.remove('active');
+                
+                microphoneBtn.classList.remove('recording');
+                microphoneBtn.querySelector('i').className = 'fas fa-microphone';
+                waMessage.placeholder = 'Presiona el micrófono para dictar...';
+
+                if (event.error === 'not-allowed') {
+                    microphoneStatus.textContent = '❌ Permiso denegado para usar el micrófono';
+                    microphoneStatus.className = 'microphone-status-text error';
+                } else if (event.error === 'no-speech') {
+                    microphoneStatus.textContent = '⏺️ No se detectó voz. Presiona nuevamente';
+                    microphoneStatus.className = 'microphone-status-text';
+                } else if (event.error === 'audio-capture') {
+                    microphoneStatus.textContent = '❌ No se encontró micrófono';
+                    microphoneStatus.className = 'microphone-status-text error';
+                } else {
+                    microphoneStatus.textContent = '⚠️ Error: ' + event.error;
+                    microphoneStatus.className = 'microphone-status-text error';
+                }
+            };
+
+            microphoneBtn.addEventListener('click', function() {
+                if (!recognition) return;
+
+                if (isRecording) {
+                    try { recognition.stop(); } catch(e) {}
+                    return;
+                }
+
+                if (waMessage.value.trim() !== '') {
+                    if (!confirm('¿Quieres sobrescribir el mensaje actual con uno nuevo?')) {
+                        return;
+                    }
+                    waMessage.value = '';
+                    waMessage.disabled = true;
+                    microphoneBtn.classList.remove('done');
+                    microphoneStatus.textContent = '⏺️ Presiona el micrófono para dictar';
+                    microphoneStatus.className = 'microphone-status-text';
+                }
+
+                try {
+                    recognition.start();
+                } catch (e) {
+                    try { recognition.stop(); } catch(ex) {}
+                    setTimeout(() => {
+                        try { recognition.start(); } catch(err) {}
+                    }, 300);
+                }
+            });
+        } else {
+            microphoneBtn.style.display = 'none';
+            microphoneStatus.textContent = '❌ Tu navegador no soporta dictado por voz';
+            microphoneStatus.className = 'microphone-status-text error';
+            waMessage.placeholder = 'Tu navegador no soporta dictado por voz';
+            waMessage.disabled = false;
+            waMessage.style.cursor = 'text';
+            silenceTimer.style.display = 'none';
+        }
+
+        // ============================================================
+        // WHATSAPP ENVÍO
+        // ============================================================
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('waName').value.trim();
+            const email = document.getElementById('waEmail').value.trim();
+            const phone = document.getElementById('waPhone').value.trim();
+            const message = waMessage.value.trim();
+
+            const checkboxes = document.querySelectorAll('#whatsappForm .checkbox-group input[type="checkbox"]:checked');
+            const services = Array.from(checkboxes).map(cb => cb.value).join(', ') || 'No especificado';
+
+            if (!name || !email || !phone) {
+                alert('Por favor completa nombre, email y teléfono.');
+                return;
+            }
+
+            const whatsappMsg = 
+                `Hola, soy ${name}.%0A%0A📧 Email: ${email}%0A📱 Teléfono: ${phone}%0A📋 Servicios de interés: ${services}%0A💬 Mensaje: ${message || 'Sin mensaje adicional.'}`;
+
+            const phoneNumber = '543518692251';
+            window.open(`https://wa.me/${phoneNumber}?text=${whatsappMsg}`, '_blank');
+
+            formContainer.style.display = 'none';
+            thankYouMessage.classList.add('active');
+            popupSubtitle.textContent = '¡Mensaje enviado!';
+        });
+
+        // ============================================================
+        // INICIALIZAR
+        // ============================================================
+        renderAll();
+    </script>
+
+</body>
+</html>
