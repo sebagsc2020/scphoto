@@ -19,6 +19,28 @@
     <!-- CSS Principal - Carga diferida para no bloquear el renderizado -->
     <link rel="stylesheet" href="styles.css">
     
+    <!-- Estilos adicionales para el logo en el hero -->
+    <style>
+        .hero-code-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .hero-logo {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            width: 70px;
+            height: auto;
+            z-index: 2;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+        }
+        /* Ajuste para que el bloque de código no quede tapado */
+        .hero-code-block {
+            margin-top: 20px;
+        }
+    </style>
+    
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVPEV1HRH"></script>
     <script>
@@ -27,38 +49,6 @@
         gtag('js', new Date());
         gtag('config', 'G-1HVPEV1HRH');
     </script>
-
-    <style>
-        /* Estilos adicionales para el logo en el hero */
-        .hero-code-wrapper {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
-
-        .hero-logo {
-            position: absolute;
-            top: -15px;
-            right: 0;
-            width: 70px;
-            height: auto;
-            z-index: 2;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
-        }
-
-        /* Ajuste opcional para el bloque de código */
-        .hero-code-block {
-            margin-top: 20px;
-        }
-
-        /* Asegurar que el bloque de código no se solape con el logo en móviles */
-        @media (max-width: 768px) {
-            .hero-logo {
-                width: 50px;
-                top: -10px;
-            }
-        }
-    </style>
 </head>
 <body>
 
