@@ -3,12 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaCode — Agencia de Desarrollo Web</title>
+    <title>SC Photo — Agencia de Desarrollo Web</title>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- ============================================================
+    GOOGLE ANALYTICS (GA4) - Cookie de análisis
+    ============================================================ -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        // Reemplaza G-XXXXXXXXXX con tu ID de medición de Google Analytics
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <style>
+        /* ----- RESET Y BASE ----- */
         * {
             margin: 0;
             padding: 0;
@@ -25,7 +42,7 @@
             position: relative;
         }
 
-        /* --- FONDO --- */
+        /* --- FONDO CON TEXTURA E ILUMINACIÓN --- */
         body::before {
             content: '';
             position: fixed;
@@ -34,7 +51,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+            background:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
             pointer-events: none;
         }
 
@@ -45,9 +63,31 @@
             pointer-events: none;
             z-index: -1;
         }
-        .bg-glow-1 { width: 700px; height: 700px; top: -200px; right: -100px; background: radial-gradient(circle, rgba(124, 77, 255, 0.40), rgba(0, 188, 212, 0.10)); opacity: 0.75; }
-        .bg-glow-2 { width: 600px; height: 600px; bottom: -150px; left: -100px; background: radial-gradient(circle, rgba(0, 188, 212, 0.35), rgba(124, 77, 255, 0.10)); opacity: 0.75; }
-        .bg-glow-3 { width: 500px; height: 500px; top: 50%; left: 50%; transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(179, 136, 255, 0.20), transparent 70%); opacity: 0.75; }
+        .bg-glow-1 {
+            width: 700px;
+            height: 700px;
+            top: -200px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(124, 77, 255, 0.40), rgba(0, 188, 212, 0.10));
+            opacity: 0.75;
+        }
+        .bg-glow-2 {
+            width: 600px;
+            height: 600px;
+            bottom: -150px;
+            left: -100px;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.35), rgba(124, 77, 255, 0.10));
+            opacity: 0.75;
+        }
+        .bg-glow-3 {
+            width: 500px;
+            height: 500px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(179, 136, 255, 0.20), transparent 70%);
+            opacity: 0.75;
+        }
         .bg-grid {
             position: fixed;
             top: 0;
@@ -69,9 +109,32 @@
         }
 
         /* ----- TIPOGRAFÍA ----- */
-        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.02em; }
-        .gradient-text { background: linear-gradient(135deg, #b388ff, #7c4dff, #00bcd4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .section-badge { display: inline-block; background: rgba(123, 77, 255, 0.15); color: #b388ff; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.4rem 1rem; border-radius: 100px; border: 1px solid rgba(123, 77, 255, 0.2); margin-bottom: 1rem; }
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #b388ff, #7c4dff, #00bcd4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(123, 77, 255, 0.15);
+            color: #b388ff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            border: 1px solid rgba(123, 77, 255, 0.2);
+            margin-bottom: 1rem;
+        }
 
         /* ----- BOTONES ----- */
         .btn-primary {
@@ -89,7 +152,12 @@
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124, 77, 255, 0.4); }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(124, 77, 255, 0.4);
+        }
+
         .btn-secondary {
             display: inline-block;
             background: transparent;
@@ -104,7 +172,12 @@
             font-size: 1rem;
             cursor: pointer;
         }
-        .btn-secondary:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.3); }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
         .btn-link {
             display: inline-block;
             background: rgba(0, 188, 212, 0.1);
@@ -117,7 +190,11 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 188, 212, 0.15);
         }
-        .btn-link:hover { background: rgba(0, 188, 212, 0.2); transform: translateY(-2px); }
+
+        .btn-link:hover {
+            background: rgba(0, 188, 212, 0.2);
+            transform: translateY(-2px);
+        }
 
         /* ----- HEADER / NAV ----- */
         header {
@@ -130,9 +207,28 @@
             top: 0;
             z-index: 100;
         }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
-        .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.8rem; letter-spacing: -0.03em; color: #fff; text-decoration: none; z-index: 101; }
-        .logo span { color: #7c4dff; }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: -0.03em;
+            color: #fff;
+            text-decoration: none;
+            z-index: 101;
+        }
+
+        .logo span {
+            color: #7c4dff;
+        }
+
         .nav-links {
             display: flex;
             gap: 2.5rem;
@@ -143,11 +239,35 @@
             left: 50%;
             transform: translateX(-50%);
         }
-        .nav-links a { color: #b0b8c5; text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; cursor: pointer; }
-        .nav-links a:hover { color: #fff; }
-        .nav-cta { background: rgba(124, 77, 255, 0.15); color: #b388ff !important; padding: 0.5rem 1.5rem; border-radius: 60px; border: 1px solid rgba(124, 77, 255, 0.2); transition: all 0.2s; }
-        .nav-cta:hover { background: rgba(124, 77, 255, 0.25) !important; color: #fff !important; }
 
+        .nav-links a {
+            color: #b0b8c5;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: rgba(124, 77, 255, 0.15);
+            color: #b388ff !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: rgba(124, 77, 255, 0.25) !important;
+            color: #fff !important;
+        }
+
+        /* Hamburguesa */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -158,7 +278,16 @@
             border: none;
             padding: 5px;
         }
-        .hamburger span { display: block; width: 28px; height: 3px; background: #eef2f6; border-radius: 3px; transition: all 0.3s ease; }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: #eef2f6;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
@@ -182,22 +311,100 @@
             transition: opacity 0.3s ease;
             pointer-events: none;
         }
-        .mobile-menu.active { display: flex; opacity: 1; pointer-events: all; }
-        .mobile-menu a { color: #eef2f6; font-size: 1.5rem; text-decoration: none; font-weight: 500; transition: color 0.2s; font-family: 'Space Grotesk', sans-serif; }
-        .mobile-menu a:hover { color: #7c4dff; }
-        .mobile-menu .mobile-cta { background: rgba(124, 77, 255, 0.15); color: #b388ff !important; padding: 0.8rem 2.5rem; border-radius: 60px; border: 1px solid rgba(124, 77, 255, 0.2); font-size: 1.2rem; }
+
+        .mobile-menu.active {
+            display: flex;
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu a {
+            color: #eef2f6;
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .mobile-menu a:hover {
+            color: #7c4dff;
+        }
+
+        .mobile-menu .mobile-cta {
+            background: rgba(124, 77, 255, 0.15);
+            color: #b388ff !important;
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            font-size: 1.2rem;
+        }
 
         /* ----- HERO ----- */
-        .hero { padding: 6rem 0 8rem; position: relative; overflow: hidden; }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .hero-content h1 { font-size: 4.2rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; }
-        .hero-content p { font-size: 1.2rem; color: #b0b8c5; max-width: 500px; margin-bottom: 2.5rem; }
-        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .hero-stats { display: flex; gap: 3rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255, 255, 255, 0.06); }
-        .hero-stats div { text-align: left; }
-        .hero-stats strong { display: block; font-size: 2.2rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
-        .hero-stats span { font-size: 0.9rem; color: #8892a0; }
-        .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+        .hero {
+            padding: 6rem 0 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #b0b8c5;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .hero-stats div {
+            text-align: left;
+        }
+
+        .hero-stats strong {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-stats span {
+            font-size: 0.9rem;
+            color: #8892a0;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
         .hero-code-block {
             background: rgba(22, 26, 34, 0.8);
             backdrop-filter: blur(10px);
@@ -208,24 +415,79 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
         }
-        .hero-code-block .line { display: flex; gap: 0.8rem; font-family: 'Inter', monospace; font-size: 0.9rem; color: #8892a0; padding: 0.25rem 0; }
+
+        .hero-code-block .line {
+            display: flex;
+            gap: 0.8rem;
+            font-family: 'Inter', monospace;
+            font-size: 0.9rem;
+            color: #8892a0;
+            padding: 0.25rem 0;
+        }
+
         .hero-code-block .line .keyword { color: #7c4dff; }
         .hero-code-block .line .string { color: #00bcd4; }
         .hero-code-block .line .function { color: #b388ff; }
         .hero-code-block .line .comment { color: #4a5568; }
 
         /* ----- CLIENTES ----- */
-        .clients { padding: 3rem 0 5rem; border-top: 1px solid rgba(255, 255, 255, 0.04); }
-        .clients p { text-align: center; color: #4a5568; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2rem; }
-        .client-logos { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; opacity: 0.5; }
-        .client-logos span { font-size: 1.2rem; font-weight: 600; color: #8892a0; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+        .clients {
+            padding: 3rem 0 5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .clients p {
+            text-align: center;
+            color: #4a5568;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .client-logos {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            opacity: 0.5;
+        }
+
+        .client-logos span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #8892a0;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
 
         /* ----- SERVICIOS ----- */
-        .services { padding: 6rem 0; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 1rem; }
-        .section-header p { color: #8892a0; font-size: 1.1rem; }
-        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .services {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #8892a0;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
         .service-card {
             background: rgba(17, 22, 30, 0.7);
             backdrop-filter: blur(10px);
@@ -234,14 +496,44 @@
             border: 1px solid rgba(255, 255, 255, 0.04);
             transition: all 0.3s ease;
         }
-        .service-card:hover { transform: translateY(-8px); border-color: rgba(124, 77, 255, 0.2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); background: rgba(17, 22, 30, 0.85); }
-        .service-card .icon { font-size: 2.5rem; color: #7c4dff; margin-bottom: 1.5rem; }
-        .service-card h3 { font-size: 1.3rem; margin-bottom: 0.8rem; }
-        .service-card p { color: #8892a0; font-size: 0.95rem; }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(124, 77, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            background: rgba(17, 22, 30, 0.85);
+        }
+
+        .service-card .icon {
+            font-size: 2.5rem;
+            color: #7c4dff;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            color: #8892a0;
+            font-size: 0.95rem;
+        }
 
         /* ----- PORTAFOLIO ----- */
-        .portfolio { padding: 6rem 0; background: rgba(8, 10, 13, 0.6); backdrop-filter: blur(5px); }
-        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .portfolio {
+            padding: 6rem 0;
+            background: rgba(8, 10, 13, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
         .portfolio-item {
             background: rgba(17, 22, 30, 0.7);
             backdrop-filter: blur(10px);
@@ -250,20 +542,90 @@
             border: 1px solid rgba(255, 255, 255, 0.04);
             transition: all 0.3s ease;
         }
-        .portfolio-item:hover { border-color: rgba(124, 77, 255, 0.15); transform: scale(1.01); background: rgba(17, 22, 30, 0.85); }
-        .portfolio-item .card-body { padding: 2rem; }
-        .portfolio-item .tag { display: inline-block; background: rgba(0, 188, 212, 0.1); color: #00bcd4; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.2rem 0.8rem; border-radius: 100px; margin-bottom: 0.8rem; }
-        .portfolio-item h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-        .portfolio-item p { color: #8892a0; font-size: 0.95rem; }
-        .portfolio-item .result { margin-top: 1rem; font-weight: 600; color: #b388ff; font-size: 0.95rem; }
-        .portfolio-item .project-link { margin-top: 1rem; display: inline-block; }
-        .project-image { width: 100%; height: 220px; object-fit: cover; display: block; background: linear-gradient(135deg, #1a1f2b, #0f131a); }
-        .project-image-placeholder { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1a1f2b, #0f131a); color: #4a5568; font-size: 0.9rem; border-bottom: 1px solid rgba(255, 255, 255, 0.04); }
-        .project-image-placeholder i { font-size: 3rem; opacity: 0.3; margin-right: 0.5rem; }
+
+        .portfolio-item:hover {
+            border-color: rgba(124, 77, 255, 0.15);
+            transform: scale(1.01);
+            background: rgba(17, 22, 30, 0.85);
+        }
+
+        .portfolio-item .card-body {
+            padding: 2rem;
+        }
+
+        .portfolio-item .tag {
+            display: inline-block;
+            background: rgba(0, 188, 212, 0.1);
+            color: #00bcd4;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.8rem;
+            border-radius: 100px;
+            margin-bottom: 0.8rem;
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-item p {
+            color: #8892a0;
+            font-size: 0.95rem;
+        }
+
+        .portfolio-item .result {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #b388ff;
+            font-size: 0.95rem;
+        }
+
+        .portfolio-item .project-link {
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: linear-gradient(135deg, #1a1f2b, #0f131a);
+        }
+
+        .project-image-placeholder {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1f2b, #0f131a);
+            color: #4a5568;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .project-image-placeholder i {
+            font-size: 3rem;
+            opacity: 0.3;
+            margin-right: 0.5rem;
+        }
 
         /* ----- TESTIMONIALS ----- */
-        .testimonials { padding: 6rem 0; }
-        .testimonial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+        .testimonials {
+            padding: 6rem 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
         .testimonial-card {
             background: rgba(17, 22, 30, 0.7);
             backdrop-filter: blur(10px);
@@ -271,15 +633,46 @@
             border-radius: 24px;
             border: 1px solid rgba(255, 255, 255, 0.04);
         }
-        .testimonial-card .stars { color: #ffb74d; margin-bottom: 1rem; letter-spacing: 2px; }
-        .testimonial-card blockquote { font-size: 1.05rem; font-weight: 400; color: #eef2f6; margin-bottom: 1.5rem; line-height: 1.7; }
-        .testimonial-card .author { display: flex; align-items: center; gap: 1rem; }
-        .testimonial-card .author .avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #7c4dff, #00bcd4); flex-shrink: 0; }
-        .testimonial-card .author .name { font-weight: 600; }
-        .testimonial-card .author .role { font-size: 0.85rem; color: #8892a0; }
+
+        .testimonial-card .stars {
+            color: #ffb74d;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #eef2f6;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c4dff, #00bcd4);
+            flex-shrink: 0;
+        }
+
+        .testimonial-card .author .name {
+            font-weight: 600;
+        }
+
+        .testimonial-card .author .role {
+            font-size: 0.85rem;
+            color: #8892a0;
+        }
 
         /* ============================================================
-           POPUP WHATSAPP CON MICRÓFONO FUERA Y TIMEOUT DE 5 SEGUNDOS
+           POPUP WHATSAPP
            ============================================================ */
         .popup-overlay {
             display: none;
@@ -295,6 +688,7 @@
             align-items: center;
             padding: 1rem;
         }
+
         .popup-overlay.active { display: flex; }
 
         .popup {
@@ -322,6 +716,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 32px 32px 0 0;
         }
+
         .popup-header .popup-close { float: right; font-size: 1.5rem; color: #8892a0; cursor: pointer; transition: color 0.2s; background: none; border: none; margin-top: -0.2rem; }
         .popup-header .popup-close:hover { color: #fff; }
         .popup-header h2 { font-size: 1.8rem; margin-bottom: 0.3rem; clear: both; }
@@ -361,7 +756,7 @@
         .popup .checkbox-group input[type="checkbox"] { accent-color: #7c4dff; width: 18px; height: 18px; cursor: pointer; }
         .popup .btn-primary { width: 100%; text-align: center; margin-top: 0.5rem; }
 
-        /* ---- CAMPO DE MENSAJE ACORTADO CON MICRÓFONO FUERA ---- */
+        /* ---- CAMPO DE MENSAJE CON MICRÓFONO ---- */
         .message-row {
             display: flex;
             align-items: stretch;
@@ -405,7 +800,6 @@
             font-size: 0.9rem;
         }
 
-        /* --- BOTÓN DE MICRÓFONO FUERA DEL CAMPO --- */
         .microphone-outer-btn {
             display: flex;
             flex-direction: column;
@@ -442,7 +836,6 @@
             opacity: 0.7;
         }
 
-        /* --- ONDA DE RADIO (efecto de ondas concéntricas) --- */
         .microphone-outer-btn .radio-wave {
             display: none;
             position: absolute;
@@ -474,32 +867,18 @@
         }
 
         @keyframes radioPulse {
-            0% {
-                width: 100%;
-                height: 100%;
-                opacity: 1;
-            }
-            100% {
-                width: 180%;
-                height: 180%;
-                opacity: 0;
-            }
+            0% { width: 100%; height: 100%; opacity: 1; }
+            100% { width: 180%; height: 180%; opacity: 0; }
         }
 
-        /* Estados del botón de micrófono */
         .microphone-outer-btn.recording {
             background: rgba(255, 23, 68, 0.2);
             color: #ff1744;
             border-color: rgba(255, 23, 68, 0.3);
         }
 
-        .microphone-outer-btn.recording .radio-wave {
-            display: block;
-        }
-
-        .microphone-outer-btn.recording i {
-            animation: micPulse 0.8s ease-in-out infinite;
-        }
+        .microphone-outer-btn.recording .radio-wave { display: block; }
+        .microphone-outer-btn.recording i { animation: micPulse 0.8s ease-in-out infinite; }
 
         @keyframes micPulse {
             0%, 100% { transform: scale(1); }
@@ -512,9 +891,7 @@
             border-color: rgba(0, 200, 83, 0.3);
         }
 
-        .microphone-outer-btn.done i {
-            animation: none;
-        }
+        .microphone-outer-btn.done i { animation: none; }
 
         .microphone-status-text {
             font-size: 0.75rem;
@@ -528,7 +905,6 @@
         .microphone-status-text.done { color: #00c853; }
         .microphone-status-text.error { color: #ff1744; }
 
-        /* Timer de silencio (indicador visual) */
         .silence-timer {
             display: none;
             font-size: 0.7rem;
@@ -537,9 +913,7 @@
             font-weight: 600;
         }
 
-        .silence-timer.active {
-            display: block;
-        }
+        .silence-timer.active { display: block; }
 
         .thank-you-message {
             display: none;
@@ -563,16 +937,239 @@
         .cta-section h2 { font-size: 3.2rem; max-width: 700px; margin: 0 auto 1.5rem; }
         .cta-section p { color: #8892a0; font-size: 1.2rem; max-width: 500px; margin: 0 auto 2.5rem; }
 
+        /* ============================================================
+           COOKIE BANNER
+           ============================================================ */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(17, 22, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 1.2rem 2rem;
+            z-index: 3000;
+            display: none;
+            box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .cookie-banner.active {
+            display: block;
+        }
+
+        .cookie-banner .cookie-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cookie-banner .cookie-text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .cookie-banner .cookie-text p {
+            font-size: 0.9rem;
+            color: #b0b8c5;
+            line-height: 1.6;
+        }
+
+        .cookie-banner .cookie-text a {
+            color: #b388ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .cookie-banner .cookie-text a:hover {
+            color: #7c4dff;
+            text-decoration: underline;
+        }
+
+        .cookie-banner .cookie-actions {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie {
+            padding: 0.6rem 1.8rem;
+            border-radius: 60px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie-accept {
+            background: linear-gradient(135deg, #7c4dff, #00bcd4);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(124, 77, 255, 0.25);
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie-accept:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(124, 77, 255, 0.4);
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie-decline {
+            background: transparent;
+            color: #8892a0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie-decline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie-settings {
+            background: transparent;
+            color: #b388ff;
+            border: 1px solid rgba(124, 77, 255, 0.2);
+        }
+
+        .cookie-banner .cookie-actions .btn-cookie-settings:hover {
+            background: rgba(124, 77, 255, 0.1);
+        }
+
         /* ----- FOOTER ----- */
         footer {
             padding: 3rem 0;
             border-top: 1px solid rgba(255, 255, 255, 0.04);
             color: #4a5568;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            text-align: center;
         }
-        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
-        .footer-grid a { color: #8892a0; text-decoration: none; margin-left: 2rem; transition: color 0.2s; }
-        .footer-grid a:hover { color: #fff; }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #8892a0;
+            text-decoration: none;
+            transition: color 0.2s;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .footer-links a:hover {
+            color: #b388ff;
+        }
+
+        .footer-links .separator {
+            color: #4a5568;
+        }
+
+        /* ----- POPUPS LEGALES ----- */
+        .legal-popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .legal-popup-overlay.active { display: flex; }
+
+        .legal-popup {
+            background: rgba(17, 22, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 85vh;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .legal-popup-header {
+            padding: 1.5rem 2rem 0.5rem 2rem;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            background: rgba(17, 22, 30, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 5;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 32px 32px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .legal-popup-header h2 {
+            font-size: 1.5rem;
+            color: #eef2f6;
+        }
+
+        .legal-popup-header .legal-close {
+            font-size: 1.5rem;
+            color: #8892a0;
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+        }
+
+        .legal-popup-header .legal-close:hover { color: #fff; }
+
+        .legal-popup-body {
+            padding: 1.5rem 2rem 2rem 2rem;
+            overflow-y: auto;
+            flex: 1;
+            color: #b0b8c5;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .legal-popup-body::-webkit-scrollbar { width: 6px; border-radius: 10px; }
+        .legal-popup-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.04); border-radius: 10px; margin: 4px 0; }
+        .legal-popup-body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #7c4dff, #00bcd4); border-radius: 10px; }
+        .legal-popup-body::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #b388ff, #7c4dff); }
+        .legal-popup-body { scrollbar-width: thin; scrollbar-color: #7c4dff rgba(255, 255, 255, 0.04); }
+
+        .legal-popup-body h3 {
+            color: #eef2f6;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .legal-popup-body h3:first-child { margin-top: 0; }
+
+        .legal-popup-body ul {
+            padding-left: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .legal-popup-body ul li {
+            margin-bottom: 0.3rem;
+        }
 
         /* ----- RESPONSIVE ----- */
         @media (max-width: 1024px) {
@@ -602,6 +1199,11 @@
             .popup-header h2 { font-size: 1.4rem; }
             .popup-body { padding: 1rem 1.2rem 1.2rem 1.2rem; }
 
+            .legal-popup { max-height: 80vh; }
+            .legal-popup-header { padding: 1rem 1.2rem 0.3rem 1.2rem; }
+            .legal-popup-header h2 { font-size: 1.2rem; }
+            .legal-popup-body { padding: 1rem 1.2rem 1.2rem 1.2rem; }
+
             .hero-stats { flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
             .hero-stats div { text-align: center; }
             .bg-glow-1 { width: 300px; height: 300px; top: -100px; right: -50px; filter: blur(80px); }
@@ -610,17 +1212,19 @@
             .project-image-placeholder { height: 180px; }
             .popup-body::-webkit-scrollbar { width: 4px; }
 
-            .microphone-outer-btn {
-                width: 40px;
-                min-height: 50px;
-            }
+            .microphone-outer-btn { width: 40px; min-height: 50px; }
             .microphone-outer-btn i { font-size: 1.1rem; }
             .microphone-outer-btn .btn-label { font-size: 0.45rem; }
-            .message-field-wrapper textarea {
-                min-height: 50px;
-                max-height: 70px;
-                font-size: 0.9rem;
-            }
+            .message-field-wrapper textarea { min-height: 50px; max-height: 70px; font-size: 0.9rem; }
+
+            .footer-links { gap: 0.8rem; }
+            .footer-links .separator { display: none; }
+            .footer-links a { font-size: 0.75rem; }
+
+            .cookie-banner { padding: 1rem 1.2rem; }
+            .cookie-banner .cookie-content { flex-direction: column; text-align: center; }
+            .cookie-banner .cookie-actions { justify-content: center; }
+            .cookie-banner .cookie-actions .btn-cookie { padding: 0.5rem 1.2rem; font-size: 0.8rem; }
         }
 
         @media (max-width: 480px) {
@@ -635,6 +1239,11 @@
             .popup-header h2 { font-size: 1.2rem; }
             .popup-body { padding: 0.8rem 1rem 1rem 1rem; }
 
+            .legal-popup { max-height: 75vh; }
+            .legal-popup-header { padding: 0.8rem 1rem 0.2rem 1rem; }
+            .legal-popup-header h2 { font-size: 1rem; }
+            .legal-popup-body { padding: 0.8rem 1rem 1rem 1rem; font-size: 0.85rem; }
+
             .mobile-menu a { font-size: 1.2rem; }
             .bg-glow-1 { width: 200px; height: 200px; filter: blur(60px); }
             .bg-glow-2 { width: 180px; height: 180px; filter: blur(60px); }
@@ -644,19 +1253,18 @@
             .popup-body::-webkit-scrollbar { width: 3px; }
 
             .message-row { gap: 0.5rem; }
-            .microphone-outer-btn {
-                width: 36px;
-                min-height: 44px;
-            }
+            .microphone-outer-btn { width: 36px; min-height: 44px; }
             .microphone-outer-btn i { font-size: 0.9rem; }
             .microphone-outer-btn .btn-label { display: none; }
-            .message-field-wrapper textarea {
-                min-height: 44px;
-                max-height: 60px;
-                font-size: 0.85rem;
-                padding: 0.6rem 0.8rem;
-            }
+            .message-field-wrapper textarea { min-height: 44px; max-height: 60px; font-size: 0.85rem; padding: 0.6rem 0.8rem; }
             .microphone-status-text { font-size: 0.65rem; }
+
+            .footer-links { flex-direction: column; gap: 0.4rem; align-items: center; }
+
+            .cookie-banner { padding: 0.8rem 1rem; }
+            .cookie-banner .cookie-text p { font-size: 0.8rem; }
+            .cookie-banner .cookie-actions { flex-direction: column; width: 100%; }
+            .cookie-banner .cookie-actions .btn-cookie { width: 100%; text-align: center; }
         }
     </style>
 </head>
@@ -676,7 +1284,6 @@
                 <li><a href="#services">Servicios</a></li>
                 <li><a href="#portfolio">Portafolio</a></li>
                 <li><a href="#testimonials">Testimonios</a></li>
-                <li><a href="crm.html" class="nav-cta" style="color:#b388ff !important;">CRM</a></li>
                 <li><a href="#" class="nav-cta" id="openPopupBtn">Contáctanos</a></li>
             </ul>
             <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
@@ -687,7 +1294,6 @@
             <a href="#services" class="mobile-link">Servicios</a>
             <a href="#portfolio" class="mobile-link">Portafolio</a>
             <a href="#testimonials" class="mobile-link">Testimonios</a>
-            <a href="crm.html" style="color:#b388ff;">CRM</a>
             <a href="#" class="mobile-cta" id="mobileOpenPopupBtn">Contáctanos</a>
         </div>
     </header>
@@ -785,7 +1391,7 @@
         </div>
     </section>
 
-    <!-- POPUP WHATSAPP CON MICRÓFONO FUERA Y TIMEOUT DE 5 SEGUNDOS -->
+    <!-- POPUP WHATSAPP -->
     <div class="popup-overlay" id="whatsappPopup">
         <div class="popup">
             <div class="popup-header">
@@ -852,15 +1458,245 @@
         </div>
     </div>
 
+    <!-- POPUPS LEGALES -->
+    <div class="legal-popup-overlay" id="terminosPopup">
+        <div class="legal-popup">
+            <div class="legal-popup-header">
+                <h2>Términos y Condiciones</h2>
+                <button class="legal-close" onclick="closeLegalPopup('terminosPopup')">&times;</button>
+            </div>
+            <div class="legal-popup-body">
+                <h3>1. Aceptación de los Términos</h3>
+                <p>Al utilizar los servicios de SC Photo, usted acepta cumplir con los siguientes Términos y Condiciones. Si no está de acuerdo con alguno de estos términos, no utilice nuestros servicios.</p>
+                <h3>2. Servicios Ofrecidos</h3>
+                <p>SC Photo ofrece servicios de desarrollo web, diseño UX/UI, marketing digital, SEO, ecommerce y mantenimiento de sitios web. Nos reservamos el derecho de modificar, suspender o discontinuar cualquier servicio en cualquier momento.</p>
+                <h3>3. Propiedad Intelectual</h3>
+                <p>Todo el contenido, diseño, código fuente, textos, imágenes y materiales presentes en este sitio web son propiedad de SC Photo o de sus respectivos titulares. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
+                <h3>4. Obligaciones del Usuario</h3>
+                <ul>
+                    <li>Proporcionar información veraz y actualizada al utilizar nuestros servicios.</li>
+                    <li>No utilizar nuestros servicios para actividades ilegales o fraudulentas.</li>
+                    <li>Respetar los derechos de propiedad intelectual de terceros.</li>
+                </ul>
+                <h3>5. Limitación de Responsabilidad</h3>
+                <p>SC Photo no se hace responsable por daños directos, indirectos, incidentales o consecuentes que puedan derivarse del uso de nuestros servicios o de la imposibilidad de acceder a ellos.</p>
+                <h3>6. Modificaciones</h3>
+                <p>SC Photo se reserva el derecho de actualizar o modificar estos Términos y Condiciones en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en este sitio web.</p>
+                <h3>7. Ley Aplicable</h3>
+                <p>Estos Términos y Condiciones se rigen por las leyes de la República Argentina. Cualquier disputa será resuelta por los tribunales competentes de la ciudad de Córdoba, Argentina.</p>
+                <p style="margin-top:1.5rem; color:#4a5568; font-size:0.8rem;">Última actualización: 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-popup-overlay" id="privacidadPopup">
+        <div class="legal-popup">
+            <div class="legal-popup-header">
+                <h2>Política de Privacidad</h2>
+                <button class="legal-close" onclick="closeLegalPopup('privacidadPopup')">&times;</button>
+            </div>
+            <div class="legal-popup-body">
+                <h3>1. Información que Recopilamos</h3>
+                <p>En SC Photo recopilamos información que usted nos proporciona voluntariamente a través de nuestros formularios de contacto, incluyendo:</p>
+                <ul>
+                    <li>Nombre completo</li>
+                    <li>Dirección de correo electrónico</li>
+                    <li>Número de teléfono</li>
+                    <li>Mensajes y consultas realizadas</li>
+                    <li>Servicios de interés</li>
+                </ul>
+                <h3>2. Uso de la Información</h3>
+                <p>La información recopilada se utiliza para:</p>
+                <ul>
+                    <li>Responder a sus consultas y solicitudes.</li>
+                    <li>Proporcionar información sobre nuestros servicios.</li>
+                    <li>Mejorar la experiencia del usuario en nuestro sitio web.</li>
+                    <li>Cumplir con obligaciones legales y regulatorias.</li>
+                </ul>
+                <h3>3. Protección de Datos</h3>
+                <p>SC Photo implementa medidas de seguridad técnicas y organizativas para proteger su información personal contra accesos no autorizados, pérdida o destrucción. Sin embargo, ningún sistema es completamente seguro, por lo que no podemos garantizar la seguridad absoluta de los datos transmitidos a través de internet.</p>
+                <h3>4. Cookies</h3>
+                <p>Este sitio web utiliza cookies para mejorar la experiencia de navegación y analizar el tráfico del sitio. Las cookies son pequeños archivos de texto que se almacenan en su dispositivo. Puede configurar su navegador para rechazar las cookies, aunque esto podría afectar la funcionalidad del sitio.</p>
+                <h3>5. Compartir Información</h3>
+                <p>SC Photo no vende, alquila ni comparte su información personal con terceros, excepto cuando sea necesario para cumplir con la ley o para proteger nuestros derechos legales.</p>
+                <h3>6. Sus Derechos</h3>
+                <p>Usted tiene derecho a acceder, rectificar, actualizar o eliminar su información personal en cualquier momento. Para ejercer estos derechos, puede contactarnos a través de nuestro formulario de contacto.</p>
+                <h3>7. Cambios en la Política</h3>
+                <p>SC Photo se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en este sitio web.</p>
+                <p style="margin-top:1.5rem; color:#4a5568; font-size:0.8rem;">Última actualización: 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    COOKIE BANNER
+    ============================================================ -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>
+                    <i class="fas fa-cookie-bite" style="color:#b388ff; margin-right:0.5rem;"></i>
+                    Utilizamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y personalizar contenido.
+                    Puedes aceptar todas, rechazar las no esenciales o configurar tus preferencias.
+                    <a onclick="openLegalPopup('privacidadPopup')">Más información</a>
+                </p>
+            </div>
+            <div class="cookie-actions">
+                <button class="btn-cookie btn-cookie-decline" onclick="declineCookies()">Rechazar</button>
+                <button class="btn-cookie btn-cookie-settings" onclick="openLegalPopup('privacidadPopup')">Configurar</button>
+                <button class="btn-cookie btn-cookie-accept" onclick="acceptCookies()">Aceptar todas</button>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER -->
     <footer>
-        <div class="container footer-grid">
-            <span>© 2026 NovaCode — Agencia de desarrollo web</span>
-            <div><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Dribbble</a></div>
+        <div class="container">
+            <p>© 2026 SC Photo — Agencia de desarrollo web</p>
+            <div class="footer-links">
+                <a onclick="openLegalPopup('terminosPopup')">Términos y Condiciones</a>
+                <span class="separator">|</span>
+                <a onclick="openLegalPopup('privacidadPopup')">Política de Privacidad</a>
+                <span class="separator">|</span>
+                <a onclick="showCookiePreferences()" style="color:#4a5568; font-size:0.75rem;">Preferencias de cookies</a>
+            </div>
         </div>
     </footer>
 
     <script>
+        // ============================================================
+        // FUNCIONES DE COOKIES
+        // ============================================================
+
+        // Funciones auxiliares
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        }
+
+        // ============================================================
+        // 1. COOKIE BANNER
+        // ============================================================
+
+        function acceptCookies() {
+            setCookie('cookie_consent', 'accepted', 365);
+            setCookie('analytics_consent', 'accepted', 365);
+            setCookie('functional_consent', 'accepted', 365);
+            document.getElementById('cookieBanner').classList.remove('active');
+            // Activar Google Analytics si estaba desactivado
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted'
+                });
+            }
+            // Cargar formulario guardado si existe
+            loadSavedFormData();
+        }
+
+        function declineCookies() {
+            setCookie('cookie_consent', 'declined', 365);
+            setCookie('analytics_consent', 'declined', 365);
+            setCookie('functional_consent', 'declined', 365);
+            document.getElementById('cookieBanner').classList.remove('active');
+            // Desactivar Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'update', {
+                    'analytics_storage': 'denied'
+                });
+            }
+            // Eliminar datos guardados del formulario
+            deleteCookie('saved_name');
+            deleteCookie('saved_email');
+            deleteCookie('saved_phone');
+        }
+
+        function showCookiePreferences() {
+            openLegalPopup('privacidadPopup');
+        }
+
+        // Verificar si ya hay consentimiento
+        function checkCookieConsent() {
+            const consent = getCookie('cookie_consent');
+            if (!consent) {
+                // Mostrar banner después de 1 segundo
+                setTimeout(() => {
+                    document.getElementById('cookieBanner').classList.add('active');
+                }, 1000);
+            } else if (consent === 'accepted') {
+                // Si ya aceptó, cargar datos guardados
+                loadSavedFormData();
+                // Actualizar consentimiento de GA
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted'
+                    });
+                }
+            } else {
+                // Si rechazó, desactivar GA
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied'
+                    });
+                }
+            }
+        }
+
+        // ============================================================
+        // 2. GUARDAR DATOS DEL FORMULARIO EN COOKIES
+        // ============================================================
+
+        function saveFormData(name, email, phone) {
+            // Solo guardar si el usuario aceptó cookies funcionales
+            const functionalConsent = getCookie('functional_consent');
+            if (functionalConsent === 'accepted' || getCookie('cookie_consent') === 'accepted') {
+                if (name) setCookie('saved_name', name, 30);
+                if (email) setCookie('saved_email', email, 30);
+                if (phone) setCookie('saved_phone', phone, 30);
+            }
+        }
+
+        function loadSavedFormData() {
+            const functionalConsent = getCookie('functional_consent');
+            if (functionalConsent === 'accepted' || getCookie('cookie_consent') === 'accepted') {
+                const name = getCookie('saved_name');
+                const email = getCookie('saved_email');
+                const phone = getCookie('saved_phone');
+                if (name) document.getElementById('waName').value = name;
+                if (email) document.getElementById('waEmail').value = email;
+                if (phone) document.getElementById('waPhone').value = phone;
+            }
+        }
+
+        // ============================================================
+        // 3. GOOGLE ANALYTICS - CONSENT MODE
+        // ============================================================
+
+        // Inicializar Google Analytics con estado de consentimiento
+        function initGoogleAnalytics() {
+            const consent = getCookie('cookie_consent');
+            let analyticsState = 'denied';
+            if (consent === 'accepted') {
+                analyticsState = 'granted';
+            }
+            if (typeof gtag !== 'undefined') {
+                gtag('consent', 'default', {
+                    'analytics_storage': analyticsState
+                });
+            }
+        }
+
         // ============================================================
         // MENÚ HAMBURGUESA
         // ============================================================
@@ -889,6 +1725,37 @@
                 toggleMenu();
             }
             openPopupFn();
+        });
+
+        // ============================================================
+        // POPUPS LEGALES
+        // ============================================================
+        function openLegalPopup(id) {
+            document.getElementById(id).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLegalPopup(id) {
+            document.getElementById(id).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.legal-popup-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.legal-popup-overlay.active').forEach(popup => {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            }
         });
 
         // ============================================================
@@ -976,6 +1843,9 @@
         const thankYouMessage = document.getElementById('thankYouMessage');
         const popupSubtitle = document.getElementById('popupSubtitle');
         const waMessage = document.getElementById('waMessage');
+        const waName = document.getElementById('waName');
+        const waEmail = document.getElementById('waEmail');
+        const waPhone = document.getElementById('waPhone');
         const microphoneBtn = document.getElementById('microphoneBtn');
         const microphoneStatus = document.getElementById('microphoneStatus');
         const silenceTimer = document.getElementById('silenceTimer');
@@ -994,6 +1864,8 @@
             popup.classList.add('active');
             document.body.style.overflow = 'hidden';
             resetMicrophone();
+            // Cargar datos guardados al abrir el popup
+            loadSavedFormData();
         }
 
         function resetMicrophone() {
@@ -1037,14 +1909,47 @@
         });
 
         // ============================================================
-        // TRANSCRIPCIÓN DE AUDIO CON TIMEOUT DE 5 SEGUNDOS DE SILENCIO
+        // WHATSAPP ENVÍO - Guardar datos en cookies
+        // ============================================================
+        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = waName.value.trim();
+            const email = waEmail.value.trim();
+            const phone = waPhone.value.trim();
+            const message = waMessage.value.trim();
+
+            // Guardar datos en cookies
+            saveFormData(name, email, phone);
+
+            const checkboxes = document.querySelectorAll('#whatsappForm .checkbox-group input[type="checkbox"]:checked');
+            const services = Array.from(checkboxes).map(cb => cb.value).join(', ') || 'No especificado';
+
+            if (!name || !email || !phone) {
+                alert('Por favor completa nombre, email y teléfono.');
+                return;
+            }
+
+            const whatsappMsg = 
+                `Hola, soy ${name}.%0A%0A📧 Email: ${email}%0A📱 Teléfono: ${phone}%0A📋 Servicios de interés: ${services}%0A💬 Mensaje: ${message || 'Sin mensaje adicional.'}`;
+
+            const phoneNumber = '543518692251';
+            window.open(`https://wa.me/${phoneNumber}?text=${whatsappMsg}`, '_blank');
+
+            formContainer.style.display = 'none';
+            thankYouMessage.classList.add('active');
+            popupSubtitle.textContent = '¡Mensaje enviado!';
+        });
+
+        // ============================================================
+        // TRANSCRIPCIÓN DE AUDIO
         // ============================================================
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
         if (SpeechRecognition) {
             recognition = new SpeechRecognition();
             recognition.lang = 'es-ES';
-            recognition.continuous = true; // Para detectar silencio
+            recognition.continuous = true;
             recognition.interimResults = true;
             recognition.maxAlternatives = 1;
 
@@ -1062,9 +1967,7 @@
                 void microphoneBtn.offsetWidth;
             };
 
-            // Detectar silencio: cuando no hay resultados durante 5 segundos
             recognition.onresult = function(event) {
-                // Reiniciar el timer de silencio cada vez que se recibe audio
                 clearTimeout(silenceTimeout);
                 clearInterval(countdownInterval);
                 silenceTimer.classList.remove('active');
@@ -1082,20 +1985,16 @@
                     }
                 }
 
-                // Mostrar texto provisional
                 if (interimTranscript) {
                     waMessage.placeholder = '🎙️ ' + interimTranscript;
                 }
 
-                // Acumular texto final
                 if (finalTranscript) {
                     const currentText = waMessage.value;
                     const newText = finalTranscript.charAt(0).toUpperCase() + finalTranscript.slice(1);
                     waMessage.value = currentText + (currentText ? ' ' : '') + newText;
-                    // No deshabilitar aún, puede haber más audio
                 }
 
-                // Iniciar timer de silencio de 5 segundos (solo si hay algo escrito)
                 if (waMessage.value.trim() !== '' || interimTranscript) {
                     silenceTimer.classList.add('active');
                     countdownValue = 5;
@@ -1106,7 +2005,6 @@
                         silenceCountdown.textContent = countdownValue;
                         if (countdownValue <= 0) {
                             clearInterval(countdownInterval);
-                            // Finalizar grabación por silencio
                             if (isRecording) {
                                 try { recognition.stop(); } catch(e) {}
                             }
@@ -1116,7 +2014,6 @@
                     silenceTimeout = setTimeout(() => {
                         clearInterval(countdownInterval);
                         silenceTimer.classList.remove('active');
-                        // Solo detener si sigue grabando
                         if (isRecording) {
                             try { recognition.stop(); } catch(e) {}
                         }
@@ -1211,38 +2108,16 @@
         }
 
         // ============================================================
-        // WHATSAPP ENVÍO
-        // ============================================================
-        document.getElementById('whatsappForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('waName').value.trim();
-            const email = document.getElementById('waEmail').value.trim();
-            const phone = document.getElementById('waPhone').value.trim();
-            const message = waMessage.value.trim();
-
-            const checkboxes = document.querySelectorAll('#whatsappForm .checkbox-group input[type="checkbox"]:checked');
-            const services = Array.from(checkboxes).map(cb => cb.value).join(', ') || 'No especificado';
-
-            if (!name || !email || !phone) {
-                alert('Por favor completa nombre, email y teléfono.');
-                return;
-            }
-
-            const whatsappMsg = 
-                `Hola, soy ${name}.%0A%0A📧 Email: ${email}%0A📱 Teléfono: ${phone}%0A📋 Servicios de interés: ${services}%0A💬 Mensaje: ${message || 'Sin mensaje adicional.'}`;
-
-            const phoneNumber = '543518692251';
-            window.open(`https://wa.me/${phoneNumber}?text=${whatsappMsg}`, '_blank');
-
-            formContainer.style.display = 'none';
-            thankYouMessage.classList.add('active');
-            popupSubtitle.textContent = '¡Mensaje enviado!';
-        });
-
-        // ============================================================
         // INICIALIZAR
         // ============================================================
+
+        // Inicializar Google Analytics con estado de consentimiento
+        initGoogleAnalytics();
+
+        // Verificar consentimiento de cookies
+        checkCookieConsent();
+
+        // Renderizar contenido
         renderAll();
     </script>
 
