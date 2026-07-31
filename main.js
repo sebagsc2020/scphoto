@@ -279,7 +279,7 @@ const projects = [
         title: "Registro de Marca", 
         tag: "Data & Analytics", 
         desc: "Gestion de desarrollo y registro de marca y servicio.", 
-        result: "📊 Toma de decisiones 3x más rápida", 
+        result: "📊 Prescencia Registrada", 
         url: "https://portaltramites.inpi.gob.ar/", 
         image: "images/py8.jpg" 
     },
