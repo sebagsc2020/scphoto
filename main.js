@@ -240,7 +240,7 @@ const projects = [
         tag: "Desarrollo Web", 
         desc: "Plataforma digital completa con experiencia de usuario excepcional, 3 idiomas, App Progresiva (PWA), integracion con Google Analitycs, formulario con transcripcion de audio.", 
         result: "💰 Ventas incrementadas en un 67%", 
-        url: "https://lgtatoo.com/", 
+        url: "https://www.google.com", 
         image: "images/py2.jpg" 
     },
     { 
@@ -248,7 +248,7 @@ const projects = [
         tag: "Diseño UX/UI", 
         desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
         result: "👥 Engagement mejorado en un 52%", 
-        url: "https://sebagsc2020.github.io/crmfastfood/index.html", 
+        url: "https://www.google.com", 
         image: "images/py3.jpg" 
     },
     { 
@@ -256,15 +256,15 @@ const projects = [
         tag: "Aplicación Web", 
         desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa para reservas de excursiones, App Progresiva (PWA).", 
         result: "📱 Adopción móvil del 89%", 
-        url: "https://sebagsc2020.github.io/reservacordinador1/index.html", 
+        url: "https://www.google.com", 
         image: "images/py4.jpg" 
     },
     { 
         title: "Desarrollo de Marca", 
         tag: "Educación", 
         desc: "Gestión para el desarrollo de marca.", 
-        result: "🎓 Más visualizaciones activas", 
-        url: "https://www.instagram.com/mariadelcarmen48464/", 
+        result: "🎓 Más de 10,000 estudiantes activos", 
+        url: "https://www.google.com", 
         image: "images/py5.jpg" 
     },
     { 
@@ -272,23 +272,15 @@ const projects = [
         tag: "Data & Analytics", 
         desc: "Gestion de desarrollo e implantación de marca y producto.", 
         result: "📊 Toma de decisiones 3x más rápida", 
-        url: "https://www.instagram.com/vero.gallard/", 
+        url: "https://www.google.com", 
         image: "images/py6.jpg" 
-    },
-    { 
-        title: "Registro de Marca", 
-        tag: "Registro INPI", 
-        desc: "Gestion de desarrollo y registro de marca y servicio.", 
-        result: "📊 Prescencia Registrada", 
-        url: "https://portaltramites.inpi.gob.ar/", 
-        image: "images/py8.jpg" 
     },
     { 
         title: "Desarrollo Web", 
         tag: "Marketplace", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
         result: "🛒 Más de 500 vendedores activos", 
-        url: "https://www.angeltourbrasil.com.br/multiparque-bc", 
+        url: "https://www.google.com", 
         image: "images/py7.jpg" 
     }
 ];
