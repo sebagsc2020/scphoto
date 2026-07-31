@@ -278,7 +278,7 @@ const projects = [
     { 
         title: "Desarrollo Web", 
         tag: "Marketplace", 
-        desc: "lataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
+        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
         result: "🛒 Más de 500 vendedores activos", 
         url: "#", 
         image: "images/py7.jpg" 
