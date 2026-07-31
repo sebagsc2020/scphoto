@@ -227,25 +227,25 @@ const testimonials = [
 
 const projects = [
     { 
-        title: "Proyecto Innovación Digital", 
+        title: "Porto Belo Beach Day - Brasil", 
         tag: "Desarrollo Web", 
-        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto.", 
+        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
         result: "📈 Incremento del 45% en conversiones", 
-        url: "#", 
+        url: "#", , 
         image: "images/py1.jpg" 
     },
     { 
-        title: "Ecommerce Premium", 
-        tag: "Ecommerce", 
-        desc: "Tienda online optimizada con experiencia de usuario excepcional y pasarela de pagos integrada.", 
+        title: "LG Tattoo - España", 
+        tag: "Desarrollo Web", 
+        desc: "Plataforma digital completa con experiencia de usuario excepcional, 3 idiomas, App Progresiva (PWA), integracion con Google Analitycs, formulario con transcripcion de audio.", 
         result: "💰 Ventas incrementadas en un 67%", 
         url: "#", 
         image: "images/py2.jpg" 
     },
     { 
-        title: "Portal Corporativo", 
+        title: "Portal Comercial", 
         tag: "Diseño UX/UI", 
-        desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad.", 
+        desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
         result: "👥 Engagement mejorado en un 52%", 
         url: "#", 
         image: "images/py3.jpg" 
