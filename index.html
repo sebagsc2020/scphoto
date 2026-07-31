@@ -27,6 +27,38 @@
         gtag('js', new Date());
         gtag('config', 'G-1HVPEV1HRH');
     </script>
+
+    <style>
+        /* Estilos adicionales para el logo en el hero */
+        .hero-code-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .hero-logo {
+            position: absolute;
+            top: -15px;
+            right: 0;
+            width: 70px;
+            height: auto;
+            z-index: 2;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+        }
+
+        /* Ajuste opcional para el bloque de código */
+        .hero-code-block {
+            margin-top: 20px;
+        }
+
+        /* Asegurar que el bloque de código no se solape con el logo en móviles */
+        @media (max-width: 768px) {
+            .hero-logo {
+                width: 50px;
+                top: -10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -76,13 +108,16 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-code-block">
-                    <div class="line"><span class="comment">// Construyendo el futuro</span></div>
-                    <div class="line"><span class="keyword">function</span> <span class="function">launchSite</span>() {</div>
-                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">const</span> strategy = <span class="string">'UX + SEO + Performance'</span>;</div>
-                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">return</span> <span class="string">'resultados medibles'</span>;</div>
-                    <div class="line">}</div>
-                    <div class="line"><span class="comment">// 94% de primeras impresiones importan</span></div>
+                <div class="hero-code-wrapper">
+                    <img src="images/logoscphoto.webp" alt="Logo SC Photo" class="hero-logo">
+                    <div class="hero-code-block">
+                        <div class="line"><span class="comment">// Construyendo el futuro</span></div>
+                        <div class="line"><span class="keyword">function</span> <span class="function">launchSite</span>() {</div>
+                        <div class="line" style="padding-left:1.5rem;"><span class="keyword">const</span> strategy = <span class="string">'UX + SEO + Performance'</span>;</div>
+                        <div class="line" style="padding-left:1.5rem;"><span class="keyword">return</span> <span class="string">'resultados medibles'</span>;</div>
+                        <div class="line">}</div>
+                        <div class="line"><span class="comment">// 94% de primeras impresiones importan</span></div>
+                    </div>
                 </div>
             </div>
         </div>
