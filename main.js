@@ -277,7 +277,7 @@ const projects = [
     },
     { 
         title: "Registro de Marca", 
-        tag: "Data & Analytics", 
+        tag: "Registro INPI", 
         desc: "Gestion de desarrollo y registro de marca y servicio.", 
         result: "📊 Prescencia Registrada", 
         url: "https://portaltramites.inpi.gob.ar/", 
