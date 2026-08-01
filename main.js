@@ -222,7 +222,7 @@ function initLegalPopups() {
 // DATOS
 // ============================================================
 const testimonials = [
-    { name: "Angel P.", role: "CEO, Angel Tour", text: "SC Photo no solo construyó un sitio web increíble, sino que entendió nuestro negocio y nos ayudó a conectar con nuestros clientes de una manera que nunca imaginamos." },
+    { name: "Angel P.", role: "CEO, Angel Tour", text: "SC Photo no solo construyó un sitio web increíble, sino que entendió nuestro negocio y nos ayudó a conectar con nuestros clientes del Mercosur de una manera que nunca imaginamos." },
     { name: "Lea G.", role: "Director , LG Tattoo", text: "El equipo de SC Photo es increíblemente profesional. Entregaron un proyecto complejo en tiempo récord y los resultados superaron todas nuestras expectativas." }
 ];
 
