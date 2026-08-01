@@ -267,7 +267,7 @@ const projects = [
         tag: "Marketplace", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
         result: "🛒 Conquista de Nuevos usuarios", 
-        url: "https://www.angeltourbrasil.com.br/multiparque-sc", 
+        url: "https://www.angeltourbrasil.com.br/multiparque", 
         image: "images/py7.jpg" 
     }
 ];
