@@ -227,7 +227,7 @@ const projects = [
         tag: "Desarrollo Web", 
         desc: "Plataforma digital completa con experiencia de usuario excepcional, 3 idiomas, App Progresiva (PWA), integracion con Google Analitycs, formulario con transcripcion de audio.", 
         result: "💰 Ventas incrementadas en un 67%", 
-        url: "https://www.google.com", 
+        url: "https://www.lgtatoo.com", 
         image: "images/py2.jpg" 
     },
     { 
