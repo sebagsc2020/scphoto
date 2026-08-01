@@ -269,7 +269,15 @@ const projects = [
         result: "🛒 Conquista de Nuevos usuarios", 
         url: "https://www.angeltourbrasil.com.br/multiparque", 
         image: "images/py7.jpg" 
-    }
+    },
+    { 
+        title: "Marca Registrada", 
+        tag: "Marketplace", 
+        desc: "Búsqueda y Registro de Marca o Servicio en Argentina, el precio puede variar dependiendo la cantidad de Clases.", 
+        result: "🛒 Tu Marca Registrada", 
+        url: "https://portaltramites.inpi.gob.ar/", 
+        image: "images/py8.jpg" 
+    }    
 ];
 
 // ============================================================
