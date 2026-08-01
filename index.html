@@ -110,6 +110,443 @@
             align-items: center !important;
             gap: 0.5rem !important;
         }
+    </style>
+    
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVPEV1HRH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1HVPEV1HRH');
+    </script>
+</head>
+<body>
+
+    <!-- FONDO -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+    <div class="bg-grid"></div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="images/logoscphoto.webp" alt="SC Photo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#" class="nav-cta" id="openPopupBtn">Contáctanos</a></li>
+            </ul>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#services" class="mobile-link">Servicios</a>
+            <a href="#portfolio" class="mobile-link">Portafolio</a>
+            <a href="#testimonials" class="mobile-link">Testimonios</a>
+            <a href="#" class="mobile-cta" id="mobileOpenPopupBtn">Contáctanos</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <img src="images/logoscphoto.webp" alt="SC Photo" class="hero-logo-large">
+                <h1>Desarrollo web que <span class="gradient-text">impulsa</span> tu negocio</h1>
+                <p>Diseñamos y desarrollamos plataformas digitales de alto rendimiento, con un enfoque estratégico que convierte visitantes en clientes.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary" id="heroContactBtn">Cotiza tu proyecto</a>
+                    <a href="#portfolio" class="btn-secondary">Ver portafolio</a>
+                </div>
+                <div class="hero-stats">
+                    <div><strong id="projectCount">+7</strong><span>Proyectos exitosos</span></div>
+                    <div><strong>4.9★</strong><span>Calificación promedio</span></div>
+                    <div><strong>97%</strong><span>Retención de clientes</span></div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-code-block">
+                    <div class="line"><span class="comment">// Construyendo el futuro</span></div>
+                    <div class="line"><span class="keyword">function</span> <span class="function">launchSite</span>() {</div>
+                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">const</span> strategy = <span class="string">'UX + SEO + Performance'</span>;</div>
+                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">return</span> <span class="string">'resultados medibles'</span>;</div>
+                    <div class="line">}</div>
+                    <div class="line"><span class="comment">// 94% de primeras impresiones importan</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENTES -->
+    <section class="clients">
+        <div class="container">
+            <p>Empresas que confían en nosotros</p>
+            <div class="client-logos">
+                <span>IBM</span><span>NASA</span><span>Microsoft</span><span>Sony</span><span>XEROX</span><span>Disney</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Lo que hacemos</span>
+                <h2>Soluciones digitales <span class="gradient-text">integrales</span></h2>
+                <p>Desde la estrategia hasta el lanzamiento, creamos experiencias web que generan negocio.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card"><div class="icon"><i class="fas fa-code"></i></div><h3>Desarrollo a medida</h3><p>Plataformas escalables con arquitectura moderna, optimizadas para velocidad y SEO.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-paint-brush"></i></div><h3>Diseño UX/UI premium</h3><p>Interfaces centradas en el usuario, con un enfoque en conversión y usabilidad.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-cart-plus"></i></div><h3>Ecommerce & CMS</h3><p>Tiendas online y gestores de contenido como Shopify, WordPress y Magento.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-chart-line"></i></div><h3>Marketing digital & SEO</h3><p>Posicionamiento orgánico y estrategias de contenido para atraer tráfico cualificado.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-mobile-alt"></i></div><h3>Responsive & PWA</h3><p>Experiencias fluidas en cualquier dispositivo, con tecnología PWA para rendimiento nativo.</p></div>
+                <div class="service-card"><div class="icon"><i class="fas fa-cloud-upload-alt"></i></div><h3>Mantenimiento & hosting</h3><p>Infraestructura segura, actualizaciones constantes y soporte técnico especializado.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAFOLIO -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Casos de éxito</span>
+                <h2>Proyectos que <span class="gradient-text">transforman</span></h2>
+                <p>Resultados medibles que hablan por sí mismos.</p>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid"></div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Testimonios</span>
+                <h2>Lo que dicen <span class="gradient-text">nuestros clientes</span></h2>
+                <p>Empresas que han confiado en nosotros para su transformación digital.</p>
+            </div>
+            <div class="testimonial-grid" id="testimonialGrid"></div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-section">
+        <div class="container">
+            <span class="section-badge">🚀 Comienza ahora</span>
+            <h2>¿Listo para <span class="gradient-text">transformar</span> tu presencia digital?</h2>
+            <p>Hablemos sobre tu proyecto y descubre cómo podemos ayudarte a crecer.</p>
+            <a href="#" class="btn-primary" id="ctaContactBtn">Solicita una consultoría gratuita</a>
+        </div>
+    </section>
+
+    <!-- POPUP WHATSAPP CORREGIDO -->
+    <div class="popup-overlay" id="whatsappPopup">
+        <div class="popup">
+            <div class="popup-header">
+                <button class="popup-close" id="closePopup">&times;</button>
+                <h2><i class="fab fa-whatsapp" style="color:#25D366; margin-right:0.5rem;"></i> Contáctanos por WhatsApp</h2>
+                <p id="popupSubtitle">Completa el formulario y te enviaremos un mensaje con los detalles.</p>
+            </div>
+
+            <div class="popup-body" id="popupBody">
+                <div id="formContainer">
+                    <form id="whatsappForm" autocomplete="on">
+                        <div class="form-group">
+                            <label for="waName">Nombre completo</label>
+                            <input type="text" id="waName" placeholder="Tu nombre" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="waEmail">Correo electrónico</label>
+                            <input type="email" id="waEmail" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="waPhone">Teléfono</label>
+                            <input type="tel" id="waPhone" placeholder="3518692251" autocomplete="tel" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="waServices" style="font-size: 0.85rem; font-weight: 600; color: #b0b8c5; display: block; margin-bottom: 0.3rem;">
+                                <i class="fas fa-cogs" style="margin-right:0.4rem;"></i> Servicios de interés
+                            </label>
+                            <select id="waServices" name="waServices" multiple>
+                                <option value="Desarrollo a medida">💻 Desarrollo a medida</option>
+                                <option value="Diseño UX/UI">🎨 Diseño UX/UI</option>
+                                <option value="Ecommerce">🛒 Reservas/Ventas</option>
+                                <option value="Marketing SEO">📈 Marketing SEO</option>
+                                <option value="Mantenimiento">🔧 Mantenimiento</option>
+                                <option value="Registro Marca">📝 Registro Marca</option>
+                                <option value="Otro Servicio">➕ Otro Servicio</option>
+                            </select>
+                            <span class="select-hint">
+                                <i class="fas fa-info-circle"></i> Mantén presionada la tecla <strong>Ctrl</strong> (Windows) o <strong>Cmd</strong> (Mac) para seleccionar varios servicios
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="waMessage">Mensaje adicional <span style="color:#8892a0; font-weight:400; font-size:0.75rem;">(solo por voz)</span></label>
+                            <div class="message-row">
+                                <div class="message-field-wrapper">
+                                    <textarea id="waMessage" placeholder="Presiona el micrófono para dictar..." disabled></textarea>
+                                </div>
+                                <button type="button" class="microphone-outer-btn" id="microphoneBtn" title="Dictar mensaje por voz">
+                                    <div class="radio-wave"></div>
+                                    <i class="fas fa-microphone"></i>
+                                    <span class="btn-label">Dictar</span>
+                                </button>
+                            </div>
+                            <span class="microphone-status-text" id="microphoneStatus">⏺️ Presiona el micrófono para dictar</span>
+                            <span class="silence-timer" id="silenceTimer">⏱️ Silencio detectado... finalizando en <span id="silenceCountdown">5</span>s</span>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+                        </button>
+                    </form>
+                </div>
+
+                <div class="thank-you-message" id="thankYouMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>¡Gracias por contactarnos!</h3>
+                    <p>Hemos recibido tu mensaje. En breve nos pondremos en contacto contigo para ayudarte con tu proyecto.</p>
+                    <button class="btn-secondary" id="closePopupBtn" style="margin-top:1.5rem; display:inline-flex; align-items:center; gap:0.5rem;">
+                        <i class="fas fa-times"></i> Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUPS LEGALES -->
+    <div class="legal-popup-overlay" id="terminosPopup">
+        <div class="legal-popup">
+            <div class="legal-popup-header">
+                <h2>Términos y Condiciones</h2>
+                <button class="legal-close" onclick="closeLegalPopup('terminosPopup')">&times;</button>
+            </div>
+            <div class="legal-popup-body">
+                <h3>1. Aceptación de los Términos</h3>
+                <p>Al utilizar los servicios de SC Photo, usted acepta cumplir con los siguientes Términos y Condiciones. Si no está de acuerdo con alguno de estos términos, no utilice nuestros servicios.</p>
+                <h3>2. Servicios Ofrecidos</h3>
+                <p>SC Photo ofrece servicios de desarrollo web, diseño UX/UI, marketing digital, SEO, ecommerce y mantenimiento de sitios web. Nos reservamos el derecho de modificar, suspender o discontinuar cualquier servicio en cualquier momento.</p>
+                <h3>3. Propiedad Intelectual</h3>
+                <p>Todo el contenido, diseño, código fuente, textos, imágenes y materiales presentes en este sitio web son propiedad de SC Photo o de sus respectivos titulares. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
+                <h3>4. Obligaciones del Usuario</h3>
+                <ul>
+                    <li>Proporcionar información veraz y actualizada al utilizar nuestros servicios.</li>
+                    <li>No utilizar nuestros servicios para actividades ilegales o fraudulentas.</li>
+                    <li>Respetar los derechos de propiedad intelectual de terceros.</li>
+                </ul>
+                <h3>5. Limitación de Responsabilidad</h3>
+                <p>SC Photo no se hace responsable por daños directos, indirectos, incidentales o consecuentes que puedan derivarse del uso de nuestros servicios o de la imposibilidad de acceder a ellos.</p>
+                <h3>6. Modificaciones</h3>
+                <p>SC Photo se reserva el derecho de actualizar o modificar estos Términos y Condiciones en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en este sitio web.</p>
+                <h3>7. Ley Aplicable</h3>
+                <p>Estos Términos y Condiciones se rigen por las leyes de la República Argentina. Cualquier disputa será resuelta por los tribunales competentes de la ciudad de Córdoba, Argentina.</p>
+                <p style="margin-top:1.5rem; color:#4a5568; font-size:0.8rem;">Última actualización: 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="legal-popup-overlay" id="privacidadPopup">
+        <div class="legal-popup">
+            <div class="legal-popup-header">
+                <h2>Política de Privacidad</h2>
+                <button class="legal-close" onclick="closeLegalPopup('privacidadPopup')">&times;</button>
+            </div>
+            <div class="legal-popup-body">
+                <h3>1. Información que Recopilamos</h3>
+                <p>En SC Photo recopilamos información que usted nos proporciona voluntariamente a través de nuestros formularios de contacto, incluyendo:</p>
+                <ul>
+                    <li>Nombre completo</li>
+                    <li>Dirección de correo electrónico</li>
+                    <li>Número de teléfono</li>
+                    <li>Mensajes y consultas realizadas</li>
+                    <li>Servicios de interés</li>
+                </ul>
+                <h3>2. Uso de la Información</h3>
+                <p>La información recopilada se utiliza para:</p>
+                <ul>
+                    <li>Responder a sus consultas y solicitudes.</li>
+                    <li>Proporcionar información sobre nuestros servicios.</li>
+                    <li>Mejorar la experiencia del usuario en nuestro sitio web.</li>
+                    <li>Cumplir con obligaciones legales y regulatorias.</li>
+                </ul>
+                <h3>3. Protección de Datos</h3>
+                <p>SC Photo implementa medidas de seguridad técnicas y organizativas para proteger su información personal contra accesos no autorizados, pérdida o destrucción. Sin embargo, ningún sistema es completamente seguro, por lo que no podemos garantizar la seguridad absoluta de los datos transmitidos a través de internet.</p>
+                <h3>4. Cookies</h3>
+                <p>Este sitio web utiliza cookies para mejorar la experiencia de navegación y analizar el tráfico del sitio. Las cookies son pequeños archivos de texto que se almacenan en su dispositivo. Puede configurar su navegador para rechazar las cookies, aunque esto podría afectar la funcionalidad del sitio.</p>
+                <h3>5. Compartir Información</h3>
+                <p>SC Photo no vende, alquila ni comparte su información personal con terceros, excepto cuando sea necesario para cumplir con la ley o para proteger nuestros derechos legales.</p>
+                <h3>6. Sus Derechos</h3>
+                <p>Usted tiene derecho a acceder, rectificar, actualizar o eliminar su información personal en cualquier momento. Para ejercer estos derechos, puede contactarnos a través de nuestro formulario de contacto.</p>
+                <h3>7. Cambios en la Política</h3>
+                <p>SC Photo se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en este sitio web.</p>
+                <p style="margin-top:1.5rem; color:#4a5568; font-size:0.8rem;">Última actualización: 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>
+                    <i class="fas fa-cookie-bite" style="color:#b388ff; margin-right:0.5rem;"></i>
+                    Utilizamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y personalizar contenido.
+                    Puedes aceptar todas, rechazar las no esenciales o configurar tus preferencias.
+                    <a onclick="openLegalPopup('privacidadPopup')">Más información</a>
+                </p>
+            </div>
+            <div class="cookie-actions">
+                <button class="btn-cookie btn-cookie-decline" onclick="declineCookies()">Rechazar</button>
+                <button class="btn-cookie btn-cookie-settings" onclick="openLegalPopup('privacidadPopup')">Configurar</button>
+                <button class="btn-cookie btn-cookie-accept" onclick="acceptCookies()">Aceptar todas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 SC Photo — Agencia de desarrollo web</p>
+            <div class="footer-links">
+                <a onclick="openLegalPopup('terminosPopup')">Términos y Condiciones</a>
+                <span class="separator">|</span>
+                <a onclick="openLegalPopup('privacidadPopup')">Política de Privacidad</a>
+                <span class="separator">|</span>
+                <a onclick="showCookiePreferences()" style="color:#4a5568; font-size:0.75rem;">Preferencias de cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
+</body>
+</html>
+
+aplica los cambios 2 y 9 sobre estos dos codigos que ya poseen cambios esternos
+Perfecto. Aplicaré los cambios #2 (Adjuntar archivos) y #9 (Badges de seguridad) a tu código existente, manteniendo todas tus personalizaciones actuales (logo grande, select múltiple, etc.).
+
+Aquí tienes los dos archivos completos con las mejoras integradas:
+
+📄 Archivo index.html (con cambios #2 y #9)
+html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SC Photo — Agencia de Desarrollo Web</title>
+    
+    <!-- Precargas para mejorar rendimiento -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Estilos adicionales -->
+    <style>
+        /* Logo en el header */
+        .logo-img {
+            height: 50px;
+            width: auto;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 40px;
+            }
+        }
+
+        /* Logo grande en el hero */
+        .hero-logo-large {
+            max-width: 532px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 0.5rem;
+            display: block;
+            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
+        }
+
+        .hero {
+            padding-top: 0.5rem !important;
+        }
+        .hero-content {
+            padding-top: 0 !important;
+        }
+
+        @media (max-width: 768px) {
+            .hero-logo-large {
+                max-width: 380px;
+                margin: 0 auto 0.5rem auto;
+            }
+            .hero-content {
+                text-align: center;
+                padding-top: 0 !important;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero {
+                padding-top: 0.25rem !important;
+            }
+        }
+
+        /* Estilos para el select múltiple */
+        .form-group select[multiple] {
+            width: 100%;
+            padding: 0.8rem;
+            background: #1e2a3a;
+            border: 1px solid #2d3b4f;
+            border-radius: 8px;
+            color: #ccd6f6;
+            font-size: 0.9rem;
+            min-height: 150px;
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+        .form-group select[multiple]:focus {
+            outline: none;
+            border-color: #b388ff;
+        }
+        .form-group select[multiple] option {
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .form-group select[multiple] option:checked {
+            background: #b388ff linear-gradient(0deg, #b388ff 0%, #b388ff 100%);
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+        .select-hint {
+            color: #8892a0;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+            display: block;
+        }
+
+        /* Corrección: alinear el botón cerrar */
+        #closePopupBtn {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
 
         /* ======================== */
         /* CAMBIO #2: Adjuntar archivos */
