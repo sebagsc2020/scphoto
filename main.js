@@ -235,7 +235,7 @@ const projects = [
         tag: "Diseño UX/UI", 
         desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
         result: "👥 Fidelidad de Clientes y Colaboradores", 
-        url: "https://www.google.com", 
+        url: "https://sebagsc2020.github.io/crmfastfood/index.html", 
         image: "images/py3.jpg" 
     },
     { 
@@ -243,7 +243,7 @@ const projects = [
         tag: "Aplicación Web", 
         desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa para reservas de excursiones, App Progresiva (PWA).", 
         result: "📱 Adopción móvil del 89%", 
-        url: "https://www.google.com", 
+        url: "https://sebagsc2020.github.io/reservacordinador1/crm/index.html", 
         image: "images/py4.jpg" 
     },
     { 
@@ -251,7 +251,7 @@ const projects = [
         tag: "Educación", 
         desc: "Gestión para el desarrollo de marca.", 
         result: "🎓 Prescencia Registrada", 
-        url: "https://www.google.com", 
+        url: "https://www.instagram.com/mariadelcarmen48464/", 
         image: "images/py5.jpg" 
     },
     { 
@@ -259,7 +259,7 @@ const projects = [
         tag: "Data & Analytics", 
         desc: "Gestion de desarrollo e implantación de marca y producto.", 
         result: "📊 Toma de decisiones 3x más rápida", 
-        url: "https://www.google.com", 
+        url: "https://www.instagram.com/vero.gallard/", 
         image: "images/py6.jpg" 
     },
     { 
@@ -267,7 +267,7 @@ const projects = [
         tag: "Marketplace", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
         result: "🛒 Conquista de Nuevos usuarios", 
-        url: "https://www.google.com", 
+        url: "https://www.angeltourbrasil.com.br/multiparque-sc", 
         image: "images/py7.jpg" 
     }
 ];
