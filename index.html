@@ -75,25 +75,38 @@
             }
         }
 
-        /* Ajuste para los checkboxes en el popup */
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem 1rem;
-        }
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-size: 0.85rem;
+        /* Estilos para el select múltiple */
+        .form-group select[multiple] {
+            width: 100%;
+            padding: 0.8rem;
+            background: #1e2a3a;
+            border: 1px solid #2d3b4f;
+            border-radius: 8px;
             color: #ccd6f6;
+            font-size: 0.9rem;
+            min-height: 150px;
             cursor: pointer;
+            transition: border-color 0.3s ease;
         }
-        .checkbox-group label input[type="checkbox"] {
-            accent-color: #b388ff;
-            width: 16px;
-            height: 16px;
-            cursor: pointer;
+        .form-group select[multiple]:focus {
+            outline: none;
+            border-color: #b388ff;
+        }
+        .form-group select[multiple] option {
+            padding: 0.4rem 0.6rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .form-group select[multiple] option:checked {
+            background: #b388ff linear-gradient(0deg, #b388ff 0%, #b388ff 100%);
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+        .select-hint {
+            color: #8892a0;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+            display: block;
         }
     </style>
     
@@ -258,16 +271,21 @@
                             <input type="tel" id="waPhone" placeholder="3518692251" autocomplete="tel" required>
                         </div>
                         <div class="form-group">
-                            <p class="form-label" style="font-size: 0.85rem; font-weight: 600; color: #b0b8c5; margin-bottom: 0.3rem; display: block;">Servicios de interés</p>
-                            <div class="checkbox-group">
-                                <label><input type="checkbox" value="Desarrollo a medida"> Desarrollo</label>
-                                <label><input type="checkbox" value="Diseño UX/UI"> Diseño UX/UI</label>
-                                <label><input type="checkbox" value="Ecommerce"> Reservas/Ventas</label>
-                                <label><input type="checkbox" value="Marketing SEO"> Marketing SEO</label>
-                                <label><input type="checkbox" value="Mantenimiento"> Mantenimiento</label>
-                                <!-- NUEVA OPCIÓN: Registro Marca -->
-                                <label><input type="checkbox" value="Registro Marca"> Registro Marca</label>
-                            </div>
+                            <label for="waServices" style="font-size: 0.85rem; font-weight: 600; color: #b0b8c5; display: block; margin-bottom: 0.3rem;">
+                                <i class="fas fa-cogs" style="margin-right:0.4rem;"></i> Servicios de interés
+                            </label>
+                            <select id="waServices" name="waServices" multiple>
+                                <option value="Desarrollo a medida">💻 Desarrollo a medida</option>
+                                <option value="Diseño UX/UI">🎨 Diseño UX/UI</option>
+                                <option value="Ecommerce">🛒 Reservas/Ventas</option>
+                                <option value="Marketing SEO">📈 Marketing SEO</option>
+                                <option value="Mantenimiento">🔧 Mantenimiento</option>
+                                <option value="Registro Marca">📝 Registro Marca</option>
+                                <option value="Otro Servicio">➕ Otro Servicio</option>
+                            </select>
+                            <span class="select-hint">
+                                <i class="fas fa-info-circle"></i> Mantén presionada la tecla <strong>Ctrl</strong> (Windows) o <strong>Cmd</strong> (Mac) para seleccionar varios servicios
+                            </span>
                         </div>
                         <div class="form-group">
                             <label for="waMessage">Mensaje adicional <span style="color:#8892a0; font-weight:400; font-size:0.75rem;">(solo por voz)</span></label>
