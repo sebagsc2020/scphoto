@@ -74,6 +74,27 @@
                 padding-top: 0.25rem !important;
             }
         }
+
+        /* Ajuste para los checkboxes en el popup */
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+        }
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.85rem;
+            color: #ccd6f6;
+            cursor: pointer;
+        }
+        .checkbox-group label input[type="checkbox"] {
+            accent-color: #b388ff;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
     </style>
     
     <!-- Google Analytics (GA4) -->
@@ -244,6 +265,8 @@
                                 <label><input type="checkbox" value="Ecommerce"> Reservas/Ventas</label>
                                 <label><input type="checkbox" value="Marketing SEO"> Marketing SEO</label>
                                 <label><input type="checkbox" value="Mantenimiento"> Mantenimiento</label>
+                                <!-- NUEVA OPCIÓN: Registro Marca -->
+                                <label><input type="checkbox" value="Registro Marca"> Registro Marca</label>
                             </div>
                         </div>
                         <div class="form-group">
