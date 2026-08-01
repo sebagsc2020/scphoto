@@ -29,13 +29,11 @@ function acceptCookies() {
     setCookie('analytics_consent', 'accepted', 365);
     setCookie('functional_consent', 'accepted', 365);
     document.getElementById('cookieBanner').classList.remove('active');
-    // Activar Google Analytics si estaba desactivado
     if (typeof gtag !== 'undefined') {
         gtag('consent', 'update', {
             'analytics_storage': 'granted'
         });
     }
-    // Cargar formulario guardado si existe
     loadSavedFormData();
 }
 
@@ -44,13 +42,11 @@ function declineCookies() {
     setCookie('analytics_consent', 'declined', 365);
     setCookie('functional_consent', 'declined', 365);
     document.getElementById('cookieBanner').classList.remove('active');
-    // Desactivar Google Analytics
     if (typeof gtag !== 'undefined') {
         gtag('consent', 'update', {
             'analytics_storage': 'denied'
         });
     }
-    // Eliminar datos guardados del formulario
     deleteCookie('saved_name');
     deleteCookie('saved_email');
     deleteCookie('saved_phone');
@@ -60,26 +56,21 @@ function showCookiePreferences() {
     openLegalPopup('privacidadPopup');
 }
 
-// Verificar si ya hay consentimiento
 function checkCookieConsent() {
     const consent = getCookie('cookie_consent');
     if (!consent) {
-        // Mostrar banner después de 1 segundo
         setTimeout(() => {
             const banner = document.getElementById('cookieBanner');
             if (banner) banner.classList.add('active');
         }, 1000);
     } else if (consent === 'accepted') {
-        // Si ya aceptó, cargar datos guardados
         loadSavedFormData();
-        // Actualizar consentimiento de GA
         if (typeof gtag !== 'undefined') {
             gtag('consent', 'update', {
                 'analytics_storage': 'granted'
             });
         }
     } else {
-        // Si rechazó, desactivar GA
         if (typeof gtag !== 'undefined') {
             gtag('consent', 'update', {
                 'analytics_storage': 'denied'
@@ -93,7 +84,6 @@ function checkCookieConsent() {
 // ============================================================
 
 function saveFormData(name, email, phone) {
-    // Solo guardar si el usuario aceptó cookies funcionales
     const functionalConsent = getCookie('functional_consent');
     if (functionalConsent === 'accepted' || getCookie('cookie_consent') === 'accepted') {
         if (name) setCookie('saved_name', name, 30);
@@ -127,9 +117,7 @@ function loadSavedFormData() {
 // 3. GOOGLE ANALYTICS - CONSENT MODE
 // ============================================================
 
-// Inicializar Google Analytics con estado de consentimiento
 function initGoogleAnalytics() {
-    // Verificar que gtag esté disponible
     if (typeof gtag === 'undefined') return;
     const consent = getCookie('cookie_consent');
     let analyticsState = 'denied';
@@ -173,7 +161,6 @@ function initMobileMenu() {
             if (mobileMenu.classList.contains('active')) {
                 toggleMenu();
             }
-            // CORREGIDO: usar window.openPopupFn
             window.openPopupFn();
         });
     }
@@ -223,7 +210,7 @@ function initLegalPopups() {
 // ============================================================
 const testimonials = [
     { name: "Angel P.", role: "CEO, Angel Tour", text: "SC Photo no solo construyó un sitio web increíble, sino que entendió nuestro negocio y nos ayudó a conectar con nuestros clientes del Mercosur de una manera que nunca imaginamos." },
-    { name: "Lea G.", role: "Director , LG Tattoo", text: "El equipo de SC Photo es increíblemente profesional. Entregaron un proyecto complejo en tiempo récord y los resultados superaron todas nuestras expectativas." }
+    { name: "Lea G.", role: "Director, LG Tattoo", text: "El equipo de NovaCode es increíblemente profesional. Entregaron un proyecto complejo en tiempo récord y los resultados superaron todas nuestras expectativas." }
 ];
 
 const projects = [
@@ -232,7 +219,7 @@ const projects = [
         tag: "Desarrollo Web", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
         result: "📈 Incremento del 45% en conversiones", 
-        url: "https://www.google.com", 
+        url: "https://www.antourbrasil.com.br", 
         image: "images/py1.jpg" 
     },
     { 
@@ -247,7 +234,7 @@ const projects = [
         title: "Portal Comercial para Servicios de Comidas", 
         tag: "Diseño UX/UI", 
         desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
-        result: "👥 Engagement mejorado en un 52%", 
+        result: "👥 Fidelidad de Clientes y Colaboradores", 
         url: "https://www.google.com", 
         image: "images/py3.jpg" 
     },
@@ -263,7 +250,7 @@ const projects = [
         title: "Desarrollo de Marca", 
         tag: "Educación", 
         desc: "Gestión para el desarrollo de marca.", 
-        result: "🎓 Más de 10,000 estudiantes activos", 
+        result: "🎓 Prescencia Registrada", 
         url: "https://www.google.com", 
         image: "images/py5.jpg" 
     },
@@ -279,7 +266,7 @@ const projects = [
         title: "Desarrollo Web", 
         tag: "Marketplace", 
         desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
-        result: "🛒 Más de 500 vendedores activos", 
+        result: "🛒 Conquista de Nuevos usuarios", 
         url: "https://www.google.com", 
         image: "images/py7.jpg" 
     }
@@ -366,7 +353,6 @@ function initWhatsAppPopup() {
     const popupSubtitle = document.getElementById('popupSubtitle');
     const whatsappForm = document.getElementById('whatsappForm');
     
-    // Elementos del formulario
     const waMessage = document.getElementById('waMessage');
     const waName = document.getElementById('waName');
     const waEmail = document.getElementById('waEmail');
@@ -434,7 +420,6 @@ function initWhatsAppPopup() {
         if (e.target === popup) closePopupFn();
     });
 
-    // Manejar envío del formulario
     if (whatsappForm) {
         whatsappForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -446,8 +431,10 @@ function initWhatsAppPopup() {
 
             saveFormData(name, email, phone);
 
-            const checkboxes = document.querySelectorAll('#whatsappForm .checkbox-group input[type="checkbox"]:checked');
-            const services = Array.from(checkboxes).map(cb => cb.value).join(', ') || 'No especificado';
+            // Obtener servicios seleccionados del select múltiple
+            const servicesSelect = document.getElementById('waServices');
+            const selectedServices = Array.from(servicesSelect.selectedOptions).map(opt => opt.value);
+            const services = selectedServices.length > 0 ? selectedServices.join(', ') : 'No especificado';
 
             if (!name || !email || !phone) {
                 alert('Por favor completa nombre, email y teléfono.');
@@ -466,7 +453,6 @@ function initWhatsAppPopup() {
         });
     }
 
-    // Inicializar reconocimiento de voz
     initSpeechRecognition(waMessage, microphoneBtn, microphoneStatus, silenceTimer, silenceCountdown);
 }
 
@@ -660,21 +646,10 @@ function initSpeechRecognition(waMessage, microphoneBtn, microphoneStatus, silen
 // INICIALIZAR TODO
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar Google Analytics con estado de consentimiento
     initGoogleAnalytics();
-
-    // Verificar consentimiento de cookies
     checkCookieConsent();
-
-    // Inicializar menú móvil
     initMobileMenu();
-
-    // Inicializar popups legales
     initLegalPopups();
-
-    // Inicializar popup de WhatsApp
     initWhatsAppPopup();
-
-    // Renderizar contenido
     renderAll();
 });
