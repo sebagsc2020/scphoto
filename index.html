@@ -19,9 +19,9 @@
     <!-- CSS Principal -->
     <link rel="stylesheet" href="styles.css">
     
-    <!-- Estilos adicionales para el logo -->
+    <!-- Estilos adicionales -->
     <style>
-        /* Logo en el header (pequeño) */
+        /* Logo en el header */
         .logo-img {
             height: 50px;
             width: auto;
@@ -33,7 +33,7 @@
             }
         }
 
-        /* Logo grande en el hero (arriba del badge) - AUMENTADO 90% */
+        /* Logo grande en el hero */
         .hero-logo-large {
             max-width: 532px;
             width: 100%;
@@ -43,11 +43,9 @@
             filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
         }
 
-        /* Reducir espacio superior del hero */
         .hero {
             padding-top: 0.5rem !important;
         }
-
         .hero-content {
             padding-top: 0 !important;
         }
@@ -60,9 +58,6 @@
             .hero-content {
                 text-align: center;
                 padding-top: 0 !important;
-            }
-            .hero-content .section-badge {
-                display: inline-block;
             }
             .hero-buttons {
                 justify-content: center;
@@ -107,6 +102,13 @@
             font-size: 0.7rem;
             margin-top: 0.3rem;
             display: block;
+        }
+
+        /* Corrección: alinear el botón cerrar */
+        #closePopupBtn {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
         }
     </style>
     
@@ -155,9 +157,7 @@
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-content">
-                <!-- LOGO GRANDE arriba del título (sin el badge) -->
                 <img src="images/logoscphoto.webp" alt="SC Photo" class="hero-logo-large">
-                
                 <h1>Desarrollo web que <span class="gradient-text">impulsa</span> tu negocio</h1>
                 <p>Diseñamos y desarrollamos plataformas digitales de alto rendimiento, con un enfoque estratégico que convierte visitantes en clientes.</p>
                 <div class="hero-buttons">
@@ -246,7 +246,7 @@
         </div>
     </section>
 
-    <!-- POPUP WHATSAPP -->
+    <!-- POPUP WHATSAPP CORREGIDO -->
     <div class="popup-overlay" id="whatsappPopup">
         <div class="popup">
             <div class="popup-header">
@@ -312,7 +312,7 @@
                     <i class="fas fa-check-circle"></i>
                     <h3>¡Gracias por contactarnos!</h3>
                     <p>Hemos recibido tu mensaje. En breve nos pondremos en contacto contigo para ayudarte con tu proyecto.</p>
-                    <button class="btn-secondary" id="closePopupBtn" style="margin-top:1.5rem;">
+                    <button class="btn-secondary" id="closePopupBtn" style="margin-top:1.5rem; display:inline-flex; align-items:center; gap:0.5rem;">
                         <i class="fas fa-times"></i> Cerrar
                     </button>
                 </div>
