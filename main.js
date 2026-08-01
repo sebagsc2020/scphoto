@@ -1,570 +1,659 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SC Photo — Agencia de Desarrollo Web</title>
-    
-    <!-- Precargas para mejorar rendimiento -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- CSS Principal -->
-    <link rel="stylesheet" href="styles.css">
-    
-    <!-- Estilos adicionales -->
-    <style>
-        /* Logo en el header */
-        .logo-img {
-            height: 50px;
-            width: auto;
-            display: block;
+// Funciones auxiliares
+function setCookie(name, value, days) {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return null;
+}
+
+function deleteCookie(name) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+}
+
+// ============================================================
+// 1. COOKIE BANNER
+// ============================================================
+
+function acceptCookies() {
+    setCookie('cookie_consent', 'accepted', 365);
+    setCookie('analytics_consent', 'accepted', 365);
+    setCookie('functional_consent', 'accepted', 365);
+    document.getElementById('cookieBanner').classList.remove('active');
+    if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+        });
+    }
+    loadSavedFormData();
+}
+
+function declineCookies() {
+    setCookie('cookie_consent', 'declined', 365);
+    setCookie('analytics_consent', 'declined', 365);
+    setCookie('functional_consent', 'declined', 365);
+    document.getElementById('cookieBanner').classList.remove('active');
+    if (typeof gtag !== 'undefined') {
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied'
+        });
+    }
+    deleteCookie('saved_name');
+    deleteCookie('saved_email');
+    deleteCookie('saved_phone');
+}
+
+function showCookiePreferences() {
+    openLegalPopup('privacidadPopup');
+}
+
+function checkCookieConsent() {
+    const consent = getCookie('cookie_consent');
+    if (!consent) {
+        setTimeout(() => {
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.classList.add('active');
+        }, 1000);
+    } else if (consent === 'accepted') {
+        loadSavedFormData();
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted'
+            });
         }
-        @media (max-width: 768px) {
-            .logo-img {
-                height: 40px;
+    } else {
+        if (typeof gtag !== 'undefined') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'denied'
+            });
+        }
+    }
+}
+
+// ============================================================
+// 2. GUARDAR DATOS DEL FORMULARIO EN COOKIES
+// ============================================================
+
+function saveFormData(name, email, phone) {
+    const functionalConsent = getCookie('functional_consent');
+    if (functionalConsent === 'accepted' || getCookie('cookie_consent') === 'accepted') {
+        if (name) setCookie('saved_name', name, 30);
+        if (email) setCookie('saved_email', email, 30);
+        if (phone) setCookie('saved_phone', phone, 30);
+    }
+}
+
+function loadSavedFormData() {
+    const functionalConsent = getCookie('functional_consent');
+    if (functionalConsent === 'accepted' || getCookie('cookie_consent') === 'accepted') {
+        const name = getCookie('saved_name');
+        const email = getCookie('saved_email');
+        const phone = getCookie('saved_phone');
+        if (name) {
+            const nameInput = document.getElementById('waName');
+            if (nameInput) nameInput.value = name;
+        }
+        if (email) {
+            const emailInput = document.getElementById('waEmail');
+            if (emailInput) emailInput.value = email;
+        }
+        if (phone) {
+            const phoneInput = document.getElementById('waPhone');
+            if (phoneInput) phoneInput.value = phone;
+        }
+    }
+}
+
+// ============================================================
+// 3. GOOGLE ANALYTICS - CONSENT MODE
+// ============================================================
+
+function initGoogleAnalytics() {
+    if (typeof gtag === 'undefined') return;
+    const consent = getCookie('cookie_consent');
+    let analyticsState = 'denied';
+    if (consent === 'accepted') {
+        analyticsState = 'granted';
+    }
+    gtag('consent', 'default', {
+        'analytics_storage': analyticsState
+    });
+}
+
+// ============================================================
+// MENÚ HAMBURGUESA
+// ============================================================
+function initMobileMenu() {
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (!hamburgerBtn || !mobileMenu) return;
+
+    function toggleMenu() {
+        hamburgerBtn.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+
+    hamburgerBtn.addEventListener('click', toggleMenu);
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('active')) {
+                toggleMenu();
             }
-        }
+        });
+    });
 
-        /* Logo grande en el hero */
-        .hero-logo-large {
-            max-width: 532px;
-            width: 100%;
-            height: auto;
-            margin-bottom: 0.5rem;
-            display: block;
-            filter: drop-shadow(0 4px 20px rgba(0,0,0,0.3));
-        }
-
-        .hero {
-            padding-top: 0.5rem !important;
-        }
-        .hero-content {
-            padding-top: 0 !important;
-        }
-
-        @media (max-width: 768px) {
-            .hero-logo-large {
-                max-width: 380px;
-                margin: 0 auto 0.5rem auto;
+    const mobileOpenPopupBtn = document.getElementById('mobileOpenPopupBtn');
+    if (mobileOpenPopupBtn) {
+        mobileOpenPopupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (mobileMenu.classList.contains('active')) {
+                toggleMenu();
             }
-            .hero-content {
-                text-align: center;
-                padding-top: 0 !important;
+            window.openPopupFn();
+        });
+    }
+}
+
+// ============================================================
+// POPUPS LEGALES
+// ============================================================
+function openLegalPopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLegalPopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function initLegalPopups() {
+    document.querySelectorAll('.legal-popup-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
             }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .hero {
-                padding-top: 0.25rem !important;
-            }
-        }
+        });
+    });
 
-        /* Estilos para el select múltiple */
-        .form-group select[multiple] {
-            width: 100%;
-            padding: 0.8rem;
-            background: #1e2a3a;
-            border: 1px solid #2d3b4f;
-            border-radius: 8px;
-            color: #ccd6f6;
-            font-size: 0.9rem;
-            min-height: 150px;
-            cursor: pointer;
-            transition: border-color 0.3s ease;
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.legal-popup-overlay.active').forEach(popup => {
+                popup.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         }
-        .form-group select[multiple]:focus {
-            outline: none;
-            border-color: #b388ff;
-        }
-        .form-group select[multiple] option {
-            padding: 0.4rem 0.6rem;
-            border-radius: 4px;
-            transition: background 0.2s;
-        }
-        .form-group select[multiple] option:checked {
-            background: #b388ff linear-gradient(0deg, #b388ff 0%, #b388ff 100%);
-            color: #1a1a2e;
-            font-weight: 600;
-        }
-        .select-hint {
-            color: #8892a0;
-            font-size: 0.7rem;
-            margin-top: 0.3rem;
-            display: block;
-        }
+    });
+}
 
-        /* Corrección: alinear el botón cerrar */
-        #closePopupBtn {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 0.5rem !important;
-        }
+// ============================================================
+// DATOS
+// ============================================================
+const testimonials = [
+    { name: "Angel P.", role: "CEO, Angel Tour", text: "SC Photo no solo construyó un sitio web increíble, sino que entendió nuestro negocio y nos ayudó a conectar con nuestros clientes del Mercosur de una manera que nunca imaginamos." },
+    { name: "Lea G.", role: "Director, LG Tattoo", text: "El equipo de NovaCode es increíblemente profesional. Entregaron un proyecto complejo en tiempo récord y los resultados superaron todas nuestras expectativas." }
+];
 
-        /* ======================== */
-        /* CAMBIO #2: Adjuntar archivos */
-        /* ======================== */
-        .file-upload-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .file-upload-wrapper input[type="file"] {
-            width: 100%;
-            padding: 0.8rem;
-            background: #0d1a2b;
-            border: 1px dashed #2d3b4f;
-            border-radius: 8px;
-            color: #ccd6f6;
-            cursor: pointer;
-            transition: border-color 0.3s;
-        }
-        .file-upload-wrapper input[type="file"]:hover {
-            border-color: #b388ff;
-        }
-        .file-upload-wrapper input[type="file"]::file-selector-button {
-            padding: 0.3rem 1rem;
-            background: #2d3b4f;
-            border: none;
-            border-radius: 6px;
-            color: #ccd6f6;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        .file-upload-wrapper input[type="file"]::file-selector-button:hover {
-            background: #b388ff;
-            color: #1a1a2e;
-        }
-        .file-hint {
-            color: #8892a0;
-            font-size: 0.65rem;
-            display: block;
-            margin-top: 0.2rem;
-        }
-        #fileList {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.5rem;
-        }
-        .file-tag {
-            background: #2d3b4f;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            color: #ccd6f6;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            border: 1px solid #3d4b5f;
-            animation: fileTagIn 0.3s ease;
-        }
-        @keyframes fileTagIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .file-tag .remove-file {
-            cursor: pointer;
-            color: #ff6b6b;
-            font-weight: 700;
-            transition: transform 0.2s;
-            padding: 0 0.2rem;
-        }
-        .file-tag .remove-file:hover {
-            transform: scale(1.3);
-        }
+const projects = [
+    { 
+        title: "Porto Belo Beach Day - Brasil", 
+        tag: "Desarrollo Web", 
+        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, chatbot, integracion con Google Analitycs y Google Maps.", 
+        result: "📈 Incremento del 45% en conversiones", 
+        url: "https://www.antourbrasil.com.br", 
+        image: "images/py1.jpg" 
+    },
+    { 
+        title: "LG Tattoo - España", 
+        tag: "Desarrollo Web", 
+        desc: "Plataforma digital completa con experiencia de usuario excepcional, 3 idiomas, App Progresiva (PWA), integracion con Google Analitycs, formulario con transcripcion de audio.", 
+        result: "💰 Ventas incrementadas en un 67%", 
+        url: "https://www.lgtatoo.com", 
+        image: "images/py2.jpg" 
+    },
+    { 
+        title: "Portal Comercial para Servicios de Comidas", 
+        tag: "Diseño UX/UI", 
+        desc: "Rediseño integral de portal corporativo con enfoque en usabilidad y accesibilidad, sistema de pedidos online, gestion de entregadores, CRM administrativo, relatorios de ingresos, control de stock, App Progresiva (PWA).", 
+        result: "👥 Fidelidad de Clientes y Colaboradores", 
+        url: "https://sebagsc2020.github.io/crmfastfood/index.html", 
+        image: "images/py3.jpg" 
+    },
+    { 
+        title: "App Progresiva (PWA)", 
+        tag: "Aplicación Web", 
+        desc: "Aplicación web progresiva con funcionalidad offline y experiencia nativa para reservas de excursiones, App Progresiva (PWA).", 
+        result: "📱 Adopción móvil del 89%", 
+        url: "https://sebagsc2020.github.io/reservacordinador1/crm/index.html", 
+        image: "images/py4.jpg" 
+    },
+    { 
+        title: "Desarrollo de Marca", 
+        tag: "Educación", 
+        desc: "Gestión para el desarrollo de marca.", 
+        result: "🎓 Prescencia Registrada", 
+        url: "https://www.instagram.com/mariadelcarmen48464/", 
+        image: "images/py5.jpg" 
+    },
+    { 
+        title: "Desarollo de Producto", 
+        tag: "Data & Analytics", 
+        desc: "Gestion de desarrollo e implantación de marca y producto.", 
+        result: "📊 Toma de decisiones 3x más rápida", 
+        url: "https://www.instagram.com/vero.gallard/", 
+        image: "images/py6.jpg" 
+    },
+    { 
+        title: "Desarrollo Web", 
+        tag: "Marketplace", 
+        desc: "Plataforma digital completa con arquitectura moderna y diseño responsivo de alto impacto, App Progresiva (PWA), Formulario de reservas via WhatsApp, 3 idiomas, FAQ´s, integracion con Google Analitycs y Google Maps.", 
+        result: "🛒 Conquista de Nuevos usuarios", 
+        url: "https://www.angeltourbrasil.com.br/multiparque", 
+        image: "images/py7.jpg" 
+    },
+    { 
+        title: "Marca Registrada", 
+        tag: "Marketplace", 
+        desc: "Búsqueda y Registro de Marca o Servicio en Argentina, el precio puede variar dependiendo la cantidad de Clases.", 
+        result: "🛒 Tu Marca Registrada", 
+        url: "https://portaltramites.inpi.gob.ar/", 
+        image: "images/py8.jpg" 
+    }    
+];
 
-        /* ======================== */
-        /* CAMBIO #9: Badges de seguridad */
-        /* ======================== */
-        .security-badges {
-            display: flex;
-            justify-content: center;
-            gap: 1.2rem;
-            margin: 0.8rem 0 0.5rem;
-            flex-wrap: wrap;
-        }
-        .badge {
-            color: #8892a0;
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            background: rgba(45, 59, 79, 0.3);
-            border: 1px solid rgba(45, 59, 79, 0.5);
-            transition: all 0.3s;
-        }
-        .badge:hover {
-            border-color: #b388ff;
-            color: #ccd6f6;
-            background: rgba(179, 136, 255, 0.1);
-        }
-        .badge i {
-            color: #6bcb77;
-            font-size: 0.8rem;
-        }
-        .badge i.fa-shield-alt {
-            color: #4d96ff;
-        }
-        .badge i.fa-lock {
-            color: #ffd93d;
-        }
-    </style>
-    
-    <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1HVPEV1HRH"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-1HVPEV1HRH');
-    </script>
-</head>
-<body>
-
-    <!-- FONDO -->
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
-    <div class="bg-glow bg-glow-3"></div>
-    <div class="bg-grid"></div>
-
-    <!-- HEADER -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="images/logoscphoto.webp" alt="SC Photo" class="logo-img">
-            </a>
-            <ul class="nav-links">
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#portfolio">Portafolio</a></li>
-                <li><a href="#testimonials">Testimonios</a></li>
-                <li><a href="#" class="nav-cta" id="openPopupBtn">Contáctanos</a></li>
-            </ul>
-            <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#services" class="mobile-link">Servicios</a>
-            <a href="#portfolio" class="mobile-link">Portafolio</a>
-            <a href="#testimonials" class="mobile-link">Testimonios</a>
-            <a href="#" class="mobile-cta" id="mobileOpenPopupBtn">Contáctanos</a>
-        </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <img src="images/logoscphoto.webp" alt="SC Photo" class="hero-logo-large">
-                <h1>Desarrollo web que <span class="gradient-text">impulsa</span> tu negocio</h1>
-                <p>Diseñamos y desarrollamos plataformas digitales de alto rendimiento, con un enfoque estratégico que convierte visitantes en clientes.</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn-primary" id="heroContactBtn">Cotiza tu proyecto</a>
-                    <a href="#portfolio" class="btn-secondary">Ver portafolio</a>
-                </div>
-                <div class="hero-stats">
-                    <div><strong id="projectCount">+8</strong><span>Proyectos exitosos</span></div>
-                    <div><strong>4.9★</strong><span>Calificación promedio</span></div>
-                    <div><strong>97%</strong><span>Retención de clientes</span></div>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-code-block">
-                    <div class="line"><span class="comment">// Construyendo el futuro</span></div>
-                    <div class="line"><span class="keyword">function</span> <span class="function">launchSite</span>() {</div>
-                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">const</span> strategy = <span class="string">'UX + SEO + Performance'</span>;</div>
-                    <div class="line" style="padding-left:1.5rem;"><span class="keyword">return</span> <span class="string">'resultados medibles'</span>;</div>
-                    <div class="line">}</div>
-                    <div class="line"><span class="comment">// 94% de primeras impresiones importan</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CLIENTES -->
-    <section class="clients">
-        <div class="container">
-            <p>Empresas que confían en nosotros</p>
-            <div class="client-logos">
-                <span>IBM</span><span>NASA</span><span>Microsoft</span><span>Sony</span><span>XEROX</span><span>Disney</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICIOS -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Lo que hacemos</span>
-                <h2>Soluciones digitales <span class="gradient-text">integrales</span></h2>
-                <p>Desde la estrategia hasta el lanzamiento, creamos experiencias web que generan negocio.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card"><div class="icon"><i class="fas fa-code"></i></div><h3>Desarrollo a medida</h3><p>Plataformas escalables con arquitectura moderna, optimizadas para velocidad y SEO.</p></div>
-                <div class="service-card"><div class="icon"><i class="fas fa-paint-brush"></i></div><h3>Diseño UX/UI premium</h3><p>Interfaces centradas en el usuario, con un enfoque en conversión y usabilidad.</p></div>
-                <div class="service-card"><div class="icon"><i class="fas fa-cart-plus"></i></div><h3>Ecommerce & CMS</h3><p>Tiendas online y gestores de contenido como Shopify, WordPress y Magento.</p></div>
-                <div class="service-card"><div class="icon"><i class="fas fa-chart-line"></i></div><h3>Marketing digital & SEO</h3><p>Posicionamiento orgánico y estrategias de contenido para atraer tráfico cualificado.</p></div>
-                <div class="service-card"><div class="icon"><i class="fas fa-mobile-alt"></i></div><h3>Responsive & PWA</h3><p>Experiencias fluidas en cualquier dispositivo, con tecnología PWA para rendimiento nativo.</p></div>
-                <div class="service-card"><div class="icon"><i class="fas fa-cloud-upload-alt"></i></div><h3>Mantenimiento & hosting</h3><p>Infraestructura segura, actualizaciones constantes y soporte técnico especializado.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTAFOLIO -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Casos de éxito</span>
-                <h2>Proyectos que <span class="gradient-text">transforman</span></h2>
-                <p>Resultados medibles que hablan por sí mismos.</p>
-            </div>
-            <div class="portfolio-grid" id="portfolioGrid"></div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Testimonios</span>
-                <h2>Lo que dicen <span class="gradient-text">nuestros clientes</span></h2>
-                <p>Empresas que han confiado en nosotros para su transformación digital.</p>
-            </div>
-            <div class="testimonial-grid" id="testimonialGrid"></div>
-        </div>
-    </section>
-
-    <!-- CTA FINAL -->
-    <section class="cta-section">
-        <div class="container">
-            <span class="section-badge">🚀 Comienza ahora</span>
-            <h2>¿Listo para <span class="gradient-text">transformar</span> tu presencia digital?</h2>
-            <p>Hablemos sobre tu proyecto y descubre cómo podemos ayudarte a crecer.</p>
-            <a href="#" class="btn-primary" id="ctaContactBtn">Solicita una consultoría gratuita</a>
-        </div>
-    </section>
-
-    <!-- POPUP WHATSAPP CON CAMBIOS #2 Y #9 -->
-    <div class="popup-overlay" id="whatsappPopup">
-        <div class="popup">
-            <div class="popup-header">
-                <button class="popup-close" id="closePopup">&times;</button>
-                <h2><i class="fab fa-whatsapp" style="color:#25D366; margin-right:0.5rem;"></i> Contáctanos por WhatsApp</h2>
-                <p id="popupSubtitle">Completa el formulario y te enviaremos un mensaje con los detalles.</p>
-            </div>
-
-            <div class="popup-body" id="popupBody">
-                <div id="formContainer">
-                    <form id="whatsappForm" autocomplete="on">
-                        <div class="form-group">
-                            <label for="waName">Nombre completo</label>
-                            <input type="text" id="waName" placeholder="Tu nombre" autocomplete="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="waEmail">Correo electrónico</label>
-                            <input type="email" id="waEmail" placeholder="tucorreo@ejemplo.com" autocomplete="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="waPhone">Teléfono</label>
-                            <input type="tel" id="waPhone" placeholder="3518692251" autocomplete="tel" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="waServices" style="font-size: 0.85rem; font-weight: 600; color: #b0b8c5; display: block; margin-bottom: 0.3rem;">
-                                <i class="fas fa-cogs" style="margin-right:0.4rem;"></i> Servicios de interés
-                            </label>
-                            <select id="waServices" name="waServices" multiple>
-                                <option value="Desarrollo a medida">💻 Desarrollo a medida</option>
-                                <option value="Diseño UX/UI">🎨 Diseño UX/UI</option>
-                                <option value="Ecommerce">🛒 Reservas/Ventas</option>
-                                <option value="Marketing SEO">📈 Marketing SEO</option>
-                                <option value="Mantenimiento">🔧 Mantenimiento</option>
-                                <option value="Registro Marca">📝 Registro Marca</option>
-                                <option value="Otro Servicio">➕ Otro Servicio</option>
-                            </select>
-                            <span class="select-hint">
-                                <i class="fas fa-info-circle"></i> Mantén presionada la tecla <strong>Ctrl</strong> (Windows) o <strong>Cmd</strong> (Mac) para seleccionar varios servicios
-                            </span>
-                        </div>
-
-                        <!-- ======================== -->
-                        <!-- CAMBIO #2: Adjuntar archivos -->
-                        <!-- ======================== -->
-                        <div class="form-group">
-                            <label for="waFile" style="font-size: 0.85rem; font-weight: 600; color: #b0b8c5; display: block; margin-bottom: 0.3rem;">
-                                <i class="fas fa-paperclip" style="margin-right:0.4rem;"></i> Adjuntar archivos (opcional)
-                            </label>
-                            <div class="file-upload-wrapper">
-                                <input type="file" id="waFile" accept="image/*,.pdf,.doc,.docx,.txt" multiple>
-                                <span class="file-hint">📎 Máximo 5 archivos · 10MB cada uno · Imágenes, PDF, Word, TXT</span>
-                            </div>
-                            <div id="fileList"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="waMessage">Mensaje adicional <span style="color:#8892a0; font-weight:400; font-size:0.75rem;">(solo por voz)</span></label>
-                            <div class="message-row">
-                                <div class="message-field-wrapper">
-                                    <textarea id="waMessage" placeholder="Presiona el micrófono para dictar..." disabled></textarea>
-                                </div>
-                                <button type="button" class="microphone-outer-btn" id="microphoneBtn" title="Dictar mensaje por voz">
-                                    <div class="radio-wave"></div>
-                                    <i class="fas fa-microphone"></i>
-                                    <span class="btn-label">Dictar</span>
-                                </button>
-                            </div>
-                            <span class="microphone-status-text" id="microphoneStatus">⏺️ Presiona el micrófono para dictar</span>
-                            <span class="silence-timer" id="silenceTimer">⏱️ Silencio detectado... finalizando en <span id="silenceCountdown">5</span>s</span>
-                        </div>
-
-                        <!-- ======================== -->
-                        <!-- CAMBIO #9: Badges de seguridad -->
-                        <!-- ======================== -->
-                        <div class="security-badges">
-                            <span class="badge">
-                                <i class="fas fa-lock"></i> Datos seguros
-                            </span>
-                            <span class="badge">
-                                <i class="fas fa-shield-alt"></i> SSL protegido
-                            </span>
-                            <span class="badge">
-                                <i class="fas fa-check-circle"></i> Privacidad garantizada
-                            </span>
-                        </div>
-
-                        <button type="submit" class="btn-primary">
-                            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
-                        </button>
-                    </form>
-                </div>
-
-                <div class="thank-you-message" id="thankYouMessage">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>¡Gracias por contactarnos!</h3>
-                    <p>Hemos recibido tu mensaje. En breve nos pondremos en contacto contigo para ayudarte con tu proyecto.</p>
-                    <button class="btn-secondary" id="closePopupBtn" style="margin-top:1.5rem; display:inline-flex; align-items:center; gap:0.5rem;">
-                        <i class="fas fa-times"></i> Cerrar
-                    </button>
+// ============================================================
+// RENDER
+// ============================================================
+function renderTestimonials() {
+    const grid = document.getElementById('testimonialGrid');
+    if (!grid) return;
+    grid.innerHTML = testimonials.map((t, i) => `
+        <div class="testimonial-card" data-index="${i}">
+            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <blockquote>“${t.text}”</blockquote>
+            <div class="author">
+                <div class="avatar"></div>
+                <div>
+                    <div class="name">${t.name}</div>
+                    <div class="role">${t.role || 'Cliente'}</div>
                 </div>
             </div>
         </div>
-    </div>
+    `).join('');
+}
 
-    <!-- POPUPS LEGALES -->
-    <div class="legal-popup-overlay" id="terminosPopup">
-        <div class="legal-popup">
-            <div class="legal-popup-header">
-                <h2>Términos y Condiciones</h2>
-                <button class="legal-close" onclick="closeLegalPopup('terminosPopup')">&times;</button>
-            </div>
-            <div class="legal-popup-body">
-                <h3>1. Aceptación de los Términos</h3>
-                <p>Al utilizar los servicios de SC Photo, usted acepta cumplir con los siguientes Términos y Condiciones. Si no está de acuerdo con alguno de estos términos, no utilice nuestros servicios.</p>
-                <h3>2. Servicios Ofrecidos</h3>
-                <p>SC Photo ofrece servicios de desarrollo web, diseño UX/UI, marketing digital, SEO, ecommerce y mantenimiento de sitios web. Nos reservamos el derecho de modificar, suspender o discontinuar cualquier servicio en cualquier momento.</p>
-                <h3>3. Propiedad Intelectual</h3>
-                <p>Todo el contenido, diseño, código fuente, textos, imágenes y materiales presentes en este sitio web son propiedad de SC Photo o de sus respectivos titulares. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.</p>
-                <h3>4. Obligaciones del Usuario</h3>
-                <ul>
-                    <li>Proporcionar información veraz y actualizada al utilizar nuestros servicios.</li>
-                    <li>No utilizar nuestros servicios para actividades ilegales o fraudulentas.</li>
-                    <li>Respetar los derechos de propiedad intelectual de terceros.</li>
-                </ul>
-                <h3>5. Limitación de Responsabilidad</h3>
-                <p>SC Photo no se hace responsable por daños directos, indirectos, incidentales o consecuentes que puedan derivarse del uso de nuestros servicios o de la imposibilidad de acceder a ellos.</p>
-                <h3>6. Modificaciones</h3>
-                <p>SC Photo se reserva el derecho de actualizar o modificar estos Términos y Condiciones en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en este sitio web.</p>
-                <h3>7. Ley Aplicable</h3>
-                <p>Estos Términos y Condiciones se rigen por las leyes de la República Argentina. Cualquier disputa será resuelta por los tribunales competentes de la ciudad de Córdoba, Argentina.</p>
-                <p style="margin-top:1.5rem; color:#4a5568; font-size:0.8rem;">Última actualización: 2026</p>
-            </div>
-        </div>
-    </div>
+function renderProjects() {
+    const grid = document.getElementById('portfolioGrid');
+    if (!grid) return;
 
-    <div class="legal-popup-overlay" id="privacidadPopup">
-        <div class="legal-popup">
-            <div class="legal-popup-header">
-                <h2>Política de Privacidad</h2>
-                <button class="legal-close" onclick="closeLegalPopup('privacidadPopup')">&times;</button>
+    grid.innerHTML = projects.map((p, i) => {
+        const imageHtml = p.image ? `
+            <img src="${p.image}" alt="${p.title}" class="project-image" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="project-image-placeholder" style="display:none;">
+                <i class="fas fa-image"></i> ${p.title}
             </div>
-            <div class="legal-popup-body">
-                <h3>1. Información que Recopilamos</h3>
-                <p>En SC Photo recopilamos información que usted nos proporciona voluntariamente a través de nuestros formularios de contacto, incluyendo:</p>
-                <ul>
-                    <li>Nombre completo</li>
-                    <li>Dirección de correo electrónico</li>
-                    <li>Número de teléfono</li>
-                    <li>Mensajes y consultas realizadas</li>
-                    <li>Servicios de interés</li>
-                </ul>
-                <h3>2. Uso de la Información</h3>
-                <p>La información recopilada se utiliza para:</p>
-                <ul>
-                    <li>Responder a sus consultas y solicitudes.</li>
-                    <li>Proporcionar información sobre nuestros servicios.</li>
-                    <li>Mejorar la experiencia del usuario en nuestro sitio web.</li>
-                    <li>Cumplir con obligaciones legales y regulatorias.</li>
-                </ul>
-                <h3>3. Protección de Datos</h3>
-                <p>SC Photo implementa medidas de seguridad técnicas y organizativas para proteger su información personal contra accesos no autorizados, pérdida o destrucción. Sin embargo, ningún sistema es completamente seguro, por lo que no podemos garantizar la seguridad absoluta de los datos transmitidos a través de internet.</p>
-                <h3>4. Cookies</h3>
-                <p>Este sitio web utiliza cookies para mejorar la experiencia de navegación y analizar el tráfico del sitio. Las cookies son pequeños archivos de texto que se almacenan en su dispositivo. Puede configurar su navegador para rechazar las cookies, aunque esto podría afectar la funcionalidad del sitio.</p>
-                <h3>5. Compartir Información</h3>
-                <p>SC Photo no vende, alquila ni comparte su información personal con terceros, excepto cuando sea necesario para cumplir con la ley o para proteger nuestros derechos legales.</p>
-                <h3>6. Sus Derechos</h3>
-                <p>Usted tiene derecho a acceder, rectificar, actualizar o eliminar su información personal en cualquier momento. Para ejercer estos derechos, puede contactarnos a través de nuestro formulario de contacto.</p>
-                <h3>7. Cambios en la Política</h3>
-                <p>SC Photo se reserva el derecho de actualizar esta Política de Privacidad en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en este sitio web.</p>
-                <p style="margin-top:1.5rem; color:#4a5568; font-size:0.8rem;">Última actualización: 2026</p>
+        ` : `
+            <div class="project-image-placeholder">
+                <i class="fas fa-image"></i> ${p.title}
             </div>
-        </div>
-    </div>
+        `;
 
-    <!-- COOKIE BANNER -->
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <p>
-                    <i class="fas fa-cookie-bite" style="color:#b388ff; margin-right:0.5rem;"></i>
-                    Utilizamos cookies propias y de terceros para mejorar tu experiencia, analizar el tráfico y personalizar contenido.
-                    Puedes aceptar todas, rechazar las no esenciales o configurar tus preferencias.
-                    <a onclick="openLegalPopup('privacidadPopup')">Más información</a>
-                </p>
+        return `
+            <div class="portfolio-item" data-index="${i}">
+                ${imageHtml}
+                <div class="card-body">
+                    <span class="tag">${p.tag}</span>
+                    <h3>${p.title}</h3>
+                    <p>${p.desc}</p>
+                    ${p.result ? `<div class="result">${p.result}</div>` : ''}
+                    ${p.url ? `<a href="${p.url}" target="_blank" class="btn-link project-link"><i class="fas fa-external-link-alt"></i> Ver proyecto</a>` : ''}
+                </div>
             </div>
-            <div class="cookie-actions">
-                <button class="btn-cookie btn-cookie-decline" onclick="declineCookies()">Rechazar</button>
-                <button class="btn-cookie btn-cookie-settings" onclick="openLegalPopup('privacidadPopup')">Configurar</button>
-                <button class="btn-cookie btn-cookie-accept" onclick="acceptCookies()">Aceptar todas</button>
-            </div>
-        </div>
-    </div>
+        `;
+    }).join('');
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>© 2026 SC Photo — Agencia de desarrollo web</p>
-            <div class="footer-links">
-                <a onclick="openLegalPopup('terminosPopup')">Términos y Condiciones</a>
-                <span class="separator">|</span>
-                <a onclick="openLegalPopup('privacidadPopup')">Política de Privacidad</a>
-                <span class="separator">|</span>
-                <a onclick="showCookiePreferences()" style="color:#4a5568; font-size:0.75rem;">Preferencias de cookies</a>
-            </div>
-        </div>
-    </footer>
+    const projectCount = document.getElementById('projectCount');
+    if (projectCount) projectCount.textContent = `+${projects.length}`;
+}
 
-    <!-- JavaScript -->
-    <script src="main.js"></script>
-</body>
-</html>
+function renderAll() {
+    renderTestimonials();
+    renderProjects();
+}
+
+// ============================================================
+// POPUP WHATSAPP
+// ============================================================
+let isRecording = false;
+let recognition = null;
+let silenceTimeout = null;
+let countdownInterval = null;
+let countdownValue = 5;
+
+function initWhatsAppPopup() {
+    const popup = document.getElementById('whatsappPopup');
+    if (!popup) return;
+
+    const openBtns = document.querySelectorAll('#openPopupBtn, #heroContactBtn, #ctaContactBtn');
+    const closeBtn = document.getElementById('closePopup');
+    const closePopupBtn = document.getElementById('closePopupBtn');
+    const formContainer = document.getElementById('formContainer');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const popupSubtitle = document.getElementById('popupSubtitle');
+    const whatsappForm = document.getElementById('whatsappForm');
+    
+    const waMessage = document.getElementById('waMessage');
+    const waName = document.getElementById('waName');
+    const waEmail = document.getElementById('waEmail');
+    const waPhone = document.getElementById('waPhone');
+    const microphoneBtn = document.getElementById('microphoneBtn');
+    const microphoneStatus = document.getElementById('microphoneStatus');
+    const silenceTimer = document.getElementById('silenceTimer');
+    const silenceCountdown = document.getElementById('silenceCountdown');
+
+    function resetMicrophone() {
+        if (recognition && isRecording) {
+            try { recognition.stop(); } catch(e) {}
+            isRecording = false;
+        }
+        clearTimeout(silenceTimeout);
+        clearInterval(countdownInterval);
+        if (silenceTimer) silenceTimer.classList.remove('active');
+        if (microphoneBtn) {
+            microphoneBtn.classList.remove('recording', 'done');
+            const icon = microphoneBtn.querySelector('i');
+            if (icon) icon.className = 'fas fa-microphone';
+        }
+        if (waMessage) {
+            waMessage.value = '';
+            waMessage.disabled = true;
+            waMessage.placeholder = 'Presiona el micrófono para dictar...';
+        }
+        if (microphoneStatus) {
+            microphoneStatus.textContent = '⏺️ Presiona el micrófono para dictar';
+            microphoneStatus.className = 'microphone-status-text';
+        }
+    }
+
+    window.openPopupFn = function() {
+        if (formContainer) formContainer.style.display = 'block';
+        if (thankYouMessage) thankYouMessage.classList.remove('active');
+        if (popupSubtitle) popupSubtitle.textContent = 'Completa el formulario y te enviaremos un mensaje con los detalles.';
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        resetMicrophone();
+        loadSavedFormData();
+    };
+
+    function closePopupFn() {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+        if (whatsappForm) whatsappForm.reset();
+        if (formContainer) formContainer.style.display = 'block';
+        if (thankYouMessage) thankYouMessage.classList.remove('active');
+        if (popupSubtitle) popupSubtitle.textContent = 'Completa el formulario y te enviaremos un mensaje con los detalles.';
+        resetMicrophone();
+    }
+
+    openBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.openPopupFn();
+        });
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closePopupFn);
+    if (closePopupBtn) closePopupBtn.addEventListener('click', closePopupFn);
+    
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) closePopupFn();
+    });
+
+    if (whatsappForm) {
+        whatsappForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = waName ? waName.value.trim() : '';
+            const email = waEmail ? waEmail.value.trim() : '';
+            const phone = waPhone ? waPhone.value.trim() : '';
+            const message = waMessage ? waMessage.value.trim() : '';
+
+            saveFormData(name, email, phone);
+
+            // Obtener servicios seleccionados del select múltiple
+            const servicesSelect = document.getElementById('waServices');
+            const selectedServices = Array.from(servicesSelect.selectedOptions).map(opt => opt.value);
+            const services = selectedServices.length > 0 ? selectedServices.join(', ') : 'No especificado';
+
+            if (!name || !email || !phone) {
+                alert('Por favor completa nombre, email y teléfono.');
+                return;
+            }
+
+            const whatsappMsg = 
+                `Hola, soy ${name}.%0A%0A📧 Email: ${email}%0A📱 Teléfono: ${phone}%0A📋 Servicios de interés: ${services}%0A💬 Mensaje: ${message || 'Sin mensaje adicional.'}`;
+
+            const phoneNumber = '543518692251';
+            window.open(`https://wa.me/${phoneNumber}?text=${whatsappMsg}`, '_blank');
+
+            if (formContainer) formContainer.style.display = 'none';
+            if (thankYouMessage) thankYouMessage.classList.add('active');
+            if (popupSubtitle) popupSubtitle.textContent = '¡Mensaje enviado!';
+        });
+    }
+
+    initSpeechRecognition(waMessage, microphoneBtn, microphoneStatus, silenceTimer, silenceCountdown);
+}
+
+// ============================================================
+// TRANSCRIPCIÓN DE AUDIO
+// ============================================================
+function initSpeechRecognition(waMessage, microphoneBtn, microphoneStatus, silenceTimer, silenceCountdown) {
+    if (!waMessage || !microphoneBtn) return;
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.lang = 'es-ES';
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = function() {
+            isRecording = true;
+            microphoneBtn.classList.add('recording');
+            const icon = microphoneBtn.querySelector('i');
+            if (icon) icon.className = 'fas fa-stop';
+            if (microphoneStatus) {
+                microphoneStatus.textContent = '🎙️ Grabando... Habla ahora';
+                microphoneStatus.className = 'microphone-status-text recording';
+            }
+            waMessage.placeholder = '🎙️ Escuchando...';
+            if (silenceTimer) silenceTimer.classList.remove('active');
+            clearTimeout(silenceTimeout);
+            clearInterval(countdownInterval);
+            countdownValue = 5;
+        };
+
+        recognition.onresult = function(event) {
+            clearTimeout(silenceTimeout);
+            clearInterval(countdownInterval);
+            if (silenceTimer) silenceTimer.classList.remove('active');
+            countdownValue = 5;
+
+            let finalTranscript = '';
+            let interimTranscript = '';
+
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+                if (event.results[i].isFinal) {
+                    finalTranscript += transcript;
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+
+            if (interimTranscript) {
+                waMessage.placeholder = '🎙️ ' + interimTranscript;
+            }
+
+            if (finalTranscript) {
+                const currentText = waMessage.value;
+                const newText = finalTranscript.charAt(0).toUpperCase() + finalTranscript.slice(1);
+                waMessage.value = currentText + (currentText ? ' ' : '') + newText;
+            }
+
+            if (waMessage.value.trim() !== '' || interimTranscript) {
+                if (silenceTimer) silenceTimer.classList.add('active');
+                countdownValue = 5;
+                if (silenceCountdown) silenceCountdown.textContent = countdownValue;
+                
+                countdownInterval = setInterval(() => {
+                    countdownValue--;
+                    if (silenceCountdown) silenceCountdown.textContent = countdownValue;
+                    if (countdownValue <= 0) {
+                        clearInterval(countdownInterval);
+                        if (isRecording) {
+                            try { recognition.stop(); } catch(e) {}
+                        }
+                    }
+                }, 1000);
+
+                silenceTimeout = setTimeout(() => {
+                    clearInterval(countdownInterval);
+                    if (silenceTimer) silenceTimer.classList.remove('active');
+                    if (isRecording) {
+                        try { recognition.stop(); } catch(e) {}
+                    }
+                }, 5000);
+            }
+        };
+
+        recognition.onend = function() {
+            isRecording = false;
+            clearTimeout(silenceTimeout);
+            clearInterval(countdownInterval);
+            if (silenceTimer) silenceTimer.classList.remove('active');
+            
+            microphoneBtn.classList.remove('recording');
+            const icon = microphoneBtn.querySelector('i');
+            if (icon) icon.className = 'fas fa-microphone';
+            waMessage.placeholder = 'Presiona el micrófono para dictar...';
+
+            if (waMessage.value.trim() !== '') {
+                if (microphoneStatus) {
+                    microphoneStatus.textContent = '✅ Mensaje transcrito correctamente';
+                    microphoneStatus.className = 'microphone-status-text done';
+                }
+                microphoneBtn.classList.add('done');
+                waMessage.disabled = false;
+                waMessage.style.cursor = 'default';
+            } else {
+                if (microphoneStatus) {
+                    microphoneStatus.textContent = '⏺️ Presiona el micrófono para dictar';
+                    microphoneStatus.className = 'microphone-status-text';
+                }
+            }
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Error de reconocimiento:', event.error);
+            isRecording = false;
+            clearTimeout(silenceTimeout);
+            clearInterval(countdownInterval);
+            if (silenceTimer) silenceTimer.classList.remove('active');
+            
+            microphoneBtn.classList.remove('recording');
+            const icon = microphoneBtn.querySelector('i');
+            if (icon) icon.className = 'fas fa-microphone';
+            waMessage.placeholder = 'Presiona el micrófono para dictar...';
+
+            if (microphoneStatus) {
+                if (event.error === 'not-allowed') {
+                    microphoneStatus.textContent = '❌ Permiso denegado para usar el micrófono';
+                    microphoneStatus.className = 'microphone-status-text error';
+                } else if (event.error === 'no-speech') {
+                    microphoneStatus.textContent = '⏺️ No se detectó voz. Presiona nuevamente';
+                    microphoneStatus.className = 'microphone-status-text';
+                } else if (event.error === 'audio-capture') {
+                    microphoneStatus.textContent = '❌ No se encontró micrófono';
+                    microphoneStatus.className = 'microphone-status-text error';
+                } else {
+                    microphoneStatus.textContent = '⚠️ Error: ' + event.error;
+                    microphoneStatus.className = 'microphone-status-text error';
+                }
+            }
+        };
+
+        microphoneBtn.addEventListener('click', function() {
+            if (!recognition) return;
+
+            if (isRecording) {
+                try { recognition.stop(); } catch(e) {}
+                return;
+            }
+
+            if (waMessage.value.trim() !== '') {
+                if (!confirm('¿Quieres sobrescribir el mensaje actual con uno nuevo?')) {
+                    return;
+                }
+                waMessage.value = '';
+                waMessage.disabled = true;
+                microphoneBtn.classList.remove('done');
+                if (microphoneStatus) {
+                    microphoneStatus.textContent = '⏺️ Presiona el micrófono para dictar';
+                    microphoneStatus.className = 'microphone-status-text';
+                }
+            }
+
+            try {
+                recognition.start();
+            } catch (e) {
+                try { recognition.stop(); } catch(ex) {}
+                setTimeout(() => {
+                    try { recognition.start(); } catch(err) {}
+                }, 300);
+            }
+        });
+    } else {
+        if (microphoneBtn) microphoneBtn.style.display = 'none';
+        if (microphoneStatus) {
+            microphoneStatus.textContent = '❌ Tu navegador no soporta dictado por voz';
+            microphoneStatus.className = 'microphone-status-text error';
+        }
+        if (waMessage) {
+            waMessage.placeholder = 'Tu navegador no soporta dictado por voz';
+            waMessage.disabled = false;
+            waMessage.style.cursor = 'text';
+        }
+        if (silenceTimer) silenceTimer.style.display = 'none';
+    }
+}
+
+// ============================================================
+// INICIALIZAR TODO
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    initGoogleAnalytics();
+    checkCookieConsent();
+    initMobileMenu();
+    initLegalPopups();
+    initWhatsAppPopup();
+    renderAll();
+});
