@@ -6,17 +6,17 @@
     <title>LG Tattoo | Reserva tu cita</title>
 
     <!-- ============ META DESCRIPTION Y SEO ============ -->
-    <meta name="description" content="Reserva tu cita en LG Tattoo, estudio profesional de tatuajes en Santander. Calendario en tiempo real con horarios disponibles.">
+    <meta name="description" content="Estudio profesional de tatuajes en Santander especializado en realismo y blackwork. Reserva tu cita y descubre nuestro portafolio.">
     
     <!-- ============ OPEN GRAPH ============ -->
-    <meta property="og:title" content="LG Tattoo | Reserva tu Cita">
-    <meta property="og:description" content="Tinta que trasciende, arte que permanece. Agenda tu sesión ahora.">
+    <meta property="og:title" content="LG Tattoo | Estudio Profesional">
+    <meta property="og:description" content="Tinta que trasciende, arte que permanece. Especialistas en realismo y blackwork.">
     <meta property="og:image" content="https://lgtatoo.com/images/LogoLGTatoo.png">
     <meta property="og:url" content="https://lgtatoo.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="LG Tattoo | Reserva tu Cita">
-    <meta name="twitter:description" content="Tinta que trasciende, arte que permanece. Agenda tu sesión ahora.">
+    <meta name="twitter:title" content="LG Tattoo | Estudio Profesional">
+    <meta name="twitter:description" content="Tinta que trasciende, arte que permanece. Especialistas en realismo y blackwork.">
     <meta name="twitter:image" content="https://lgtatoo.com/images/LogoLGTatoo.png">
 
     <!-- ============ GOOGLE ANALYTICS ============ -->
@@ -41,7 +41,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- ============ ESTILOS (mismo patrón de color) ============ -->
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         :root{--gold:#c8a45c;--gold-dark:#a8894a;--gold-light:#dbbf82;--bg-dark:#0d0b0a;--bg-card:#1a1614;--text-primary:#f5f0eb;--text-secondary:#c4bdb5;--text-muted:#8a827a;--border-gold:rgba(200,164,92,0.25);--shadow-gold:0 8px 32px rgba(200,164,92,0.12);--transition:0.3s cubic-bezier(0.4,0,0.2,1);--radius:16px;--radius-sm:8px}
@@ -55,33 +54,12 @@
         .divider{width:60px;height:2px;background:var(--gold);margin:16px auto;opacity:0.5}
         .section-subtitle{color:var(--text-secondary);max-width:600px;margin:0 auto;font-weight:300}
 
-        /* ----- BOTÓN INSTAGRAM ----- */
         .floating-btn-instagram{position:fixed;bottom:24px;right:24px;z-index:1000;background:linear-gradient(135deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.5);transition:var(--transition);text-decoration:none;border:2px solid rgba(255,255,255,0.15)}
-        .floating-btn-instagram:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(225,48,108,0.4)}
+        .floating-btn-instagram:hover{transform:scale(1.1)}
         .floating-btn-instagram .tooltip{position:absolute;right:70px;background:rgba(0,0,0,0.9);color:#fff;padding:6px 14px;border-radius:8px;font-size:0.75rem;white-space:nowrap;opacity:0;pointer-events:none;transition:var(--transition)}
         .floating-btn-instagram:hover .tooltip{opacity:1}
 
-        /* ----- BOTÓN IDIOMA ----- */
-        .lang-toggle-tab{position:fixed;bottom:100px;right:24px;z-index:999;background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);border:1px solid var(--border-gold);color:var(--gold);padding:10px 14px;border-radius:50px;cursor:pointer;font-size:0.7rem;font-weight:600;letter-spacing:1px;display:flex;flex-direction:column;align-items:center;transition:var(--transition);box-shadow:0 4px 20px rgba(0,0,0,0.4)}
-        .lang-toggle-tab:hover{background:rgba(200,164,92,0.15);border-color:var(--gold)}
-        .lang-overlay{position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:var(--transition)}
-        .lang-overlay.active{opacity:1;pointer-events:auto}
-        .lang-panel{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);z-index:1200;background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--radius);padding:32px;min-width:300px;box-shadow:0 24px 80px rgba(0,0,0,0.8);opacity:0;pointer-events:none;transition:all 0.35s cubic-bezier(0.4,0,0.2,1)}
-        .lang-panel.active{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
-        .lang-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-        .lang-panel-header h3{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.5rem}
-        .lang-panel-close{background:none;border:none;color:var(--text-secondary);cursor:pointer;font-size:1.2rem;padding:4px}
-        .lang-option{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;background:transparent;border:none;border-radius:var(--radius-sm);color:var(--text-primary);cursor:pointer;transition:var(--transition);font-size:0.95rem}
-        .lang-option:hover{background:rgba(200,164,92,0.08)}
-        .lang-option.active{background:rgba(200,164,92,0.12);color:var(--gold)}
-        .lang-option .lang-check{display:none;margin-left:auto;color:var(--gold)}
-        .lang-option.active .lang-check{display:block}
-        .lang-panel-footer{display:flex;justify-content:space-between;margin-top:20px;padding-top:16px;border-top:1px solid var(--border-gold);font-size:0.75rem;color:var(--text-muted)}
-        .hide-panel-btn{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:0.75rem;display:flex;align-items:center;gap:6px;transition:var(--transition)}
-        .hide-panel-btn:hover{color:var(--text-primary)}
-
-        /* ----- NAV ----- */
-        .navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 20px;background:rgba(13,11,10,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,164,92,0.08);transition:var(--transition)}
+        .navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:12px 20px;background:rgba(13,11,10,0.85);backdrop-filter:blur(16px);border-bottom:1px solid rgba(200,164,92,0.08)}
         .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:flex-end;align-items:center}
         .nav-links{display:flex;gap:28px;list-style:none;align-items:center;flex-wrap:wrap}
         .nav-links a{color:var(--text-secondary);text-decoration:none;font-size:0.8rem;font-weight:500;letter-spacing:0.5px;transition:var(--transition);text-transform:uppercase}
@@ -92,7 +70,6 @@
         .hamburger span{width:24px;height:2px;background:var(--text-primary);transition:var(--transition)}
         @media(max-width:768px){.hamburger{display:flex}.nav-links{position:fixed;top:0;right:-100%;width:70%;height:100vh;background:var(--bg-dark);flex-direction:column;padding:80px 32px;gap:20px;transition:0.4s cubic-bezier(0.4,0,0.2,1);border-left:1px solid var(--border-gold);align-items:flex-start}.nav-links.open{right:0}.nav-links a{font-size:1rem}}
 
-        /* ----- HERO ----- */
         .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;background:radial-gradient(ellipse at 50% 30%, rgba(200,164,92,0.06) 0%, transparent 70%)}
         .hero-content{max-width:800px}
         .hero-logo{max-width:280px;margin-bottom:20px;filter:drop-shadow(0 8px 32px rgba(200,164,92,0.15))}
@@ -108,7 +85,6 @@
         .btn-outline:hover{background:rgba(200,164,92,0.08);border-color:var(--gold);transform:translateY(-2px)}
         @media(max-width:600px){.hero h1{font-size:2.6rem}.hero-logo{max-width:200px}}
 
-        /* ----- GALERÍA (placeholder) ----- */
         .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:40px}
         .gallery-grid .placeholder-img{aspect-ratio:1;background:var(--bg-card);border-radius:var(--radius-sm);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:0.8rem;transition:var(--transition)}
         .gallery-grid .placeholder-img:hover{border-color:var(--gold)}
@@ -118,7 +94,6 @@
         .btn-instagram-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#405de6,#5851db,#833ab4,#c13584,#e1306c,#fd1d1d);color:#fff;padding:10px 24px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:var(--transition)}
         .btn-instagram-cta:hover{transform:scale(1.04);box-shadow:0 8px 30px rgba(225,48,108,0.3)}
 
-        /* ----- RECOMENDACIONES ----- */
         .recomendaciones-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
         .recomendacion-card{background:var(--bg-card);border-radius:var(--radius);padding:28px;border:1px solid var(--border-gold);transition:var(--transition)}
         .recomendacion-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--shadow-gold)}
@@ -129,24 +104,23 @@
         .recomendacion-card ul li:last-child{border-bottom:none}
         @media(max-width:768px){.recomendaciones-grid{grid-template-columns:1fr}}
 
-        /* ----- TESTIMONIOS ----- */
         .testimonials-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px}
         .testimonial-card{background:var(--bg-card);border-radius:var(--radius);padding:24px;border:1px solid var(--border-gold)}
         .testimonial-card .stars{color:var(--gold);margin-bottom:8px}
         .testimonial-card p{color:var(--text-secondary);font-style:italic;font-size:0.9rem}
         .testimonial-card .author{font-weight:600;margin-top:12px;color:var(--text-primary)}
 
-        /* ----- CALENDARIO DE RESERVAS ----- */
-        .booking-section{background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border-gold);padding:32px;margin-top:40px}
+        /* ===== CALENDARIO ===== */
+        .booking-section{background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border-gold);padding:32px;margin-top:0}
         .booking-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:24px}
         .booking-header h3{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.8rem}
         .booking-nav{display:flex;gap:12px;align-items:center}
         .booking-nav button{background:rgba(200,164,92,0.1);border:1px solid var(--border-gold);color:var(--text-primary);padding:8px 16px;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition);font-size:0.9rem}
         .booking-nav button:hover{background:rgba(200,164,92,0.2);border-color:var(--gold)}
         .booking-nav .month-label{font-weight:600;min-width:140px;text-align:center;color:var(--gold)}
-        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+        .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
         .calendar-grid .day-header{text-align:center;font-size:0.7rem;text-transform:uppercase;color:var(--text-muted);letter-spacing:1px;padding:8px 0;font-weight:600}
-        .calendar-grid .day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:var(--radius-sm);background:rgba(255,255,255,0.02);border:1px solid transparent;font-size:0.85rem;transition:var(--transition);cursor:default;position:relative;min-height:48px}
+        .calendar-grid .day-cell{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:var(--radius-sm);background:rgba(255,255,255,0.02);border:1px solid transparent;font-size:0.85rem;transition:var(--transition);cursor:default;position:relative;min-height:44px}
         .calendar-grid .day-cell.other-month{color:var(--text-muted);opacity:0.3}
         .calendar-grid .day-cell.has-slots{cursor:pointer;border-color:var(--border-gold);background:rgba(200,164,92,0.06)}
         .calendar-grid .day-cell.has-slots:hover{background:rgba(200,164,92,0.15);border-color:var(--gold);transform:scale(1.02)}
@@ -162,10 +136,8 @@
         .slot-list .slot-btn.booked{opacity:0.3;cursor:not-allowed;text-decoration:line-through}
         .slot-list .slot-btn.selected-slot{background:var(--gold);color:#0d0b0a;border-color:var(--gold)}
         .booking-confirm{display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;align-items:center}
-        .booking-confirm .btn{font-size:0.85rem}
         .booking-confirm .info-text{color:var(--text-muted);font-size:0.85rem}
 
-        /* ----- CONTACTO ----- */
         .contact-wrapper{display:grid;grid-template-columns:1fr 1.5fr;gap:40px;align-items:start}
         .contact-info{display:flex;flex-direction:column;gap:20px;background:var(--bg-card);padding:28px;border-radius:var(--radius);border:1px solid var(--border-gold)}
         .contact-info-item{display:flex;gap:16px;align-items:flex-start}
@@ -187,15 +159,12 @@
         .form-success-msg.show{display:block}
         @media(max-width:768px){.contact-wrapper{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
 
-        /* ----- FOOTER ----- */
         .footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border-gold);margin-top:40px}
         .footer-social{display:flex;justify-content:center;gap:20px;margin-bottom:16px}
         .footer-social a{color:var(--text-muted);transition:var(--transition)}
         .footer-social a:hover{color:var(--gold)}
         .footer-copy{font-size:0.75rem;color:var(--text-muted)}
         .footer-copy a{color:var(--gold);text-decoration:none}
-
-        /* ----- RESPONSIVE ----- */
         @media(max-width:600px){.section{padding:50px 16px}.section-title{font-size:2rem}.booking-section{padding:20px}.calendar-grid .day-cell{min-height:40px;font-size:0.75rem}}
     </style>
 </head>
@@ -203,22 +172,11 @@
 
     <!-- ============ BOTÓN FLOTANTE INSTAGRAM ============ -->
     <a href="https://www.instagram.com/lean.gonzaleztattoo/" target="_blank" rel="noopener" class="floating-btn-instagram" aria-label="Instagram">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="white"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="white"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="white"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white"/></svg>
         <span class="tooltip">Sígueme en Instagram</span>
     </a>
 
-    <!-- ============ PANEL DE IDIOMAS (simplificado) ============ -->
-    <div class="lang-overlay" id="langOverlay"></div>
-    <div class="lang-panel" id="langPanel">
-        <div class="lang-panel-header"><h3>🌐 Idioma</h3><button class="lang-panel-close" id="langPanelClose"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>
-        <button class="lang-option active" data-lang="es"><span class="lang-flag">🇪🇸</span><span class="lang-name">Español</span><span class="lang-check">✓</span></button>
-        <button class="lang-option" data-lang="ca"><span class="lang-flag">🇦🇩</span><span class="lang-name">Català</span><span class="lang-check">✓</span></button>
-        <button class="lang-option" data-lang="en"><span class="lang-flag">🇬🇧</span><span class="lang-name">English</span><span class="lang-check">✓</span></button>
-        <div class="lang-panel-footer"><span>Selecciona tu idioma</span><button class="hide-panel-btn" id="hidePanelBtn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg> Ocultar panel</button></div>
-    </div>
-    <button class="lang-toggle-tab" id="langToggleTab"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span>IDIOMA</span></button>
-
-    <!-- ============ NAV ============ -->
+    <!-- ============ NAVEGACIÓN ============ -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <ul class="nav-links" id="navLinks">
@@ -240,8 +198,8 @@
             <h1>Tinta que <span class="accent">trasciende</span><br>arte que permanece</h1>
             <p>Especialista en realismo, blackwork y diseños personalizados.</p>
             <div class="hero-buttons">
-                <a href="#contacto" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Agendar Cita</a>
-                <a href="#galeria" class="btn btn-outline"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Ver Portafolio</a>
+                <a href="#contacto" class="btn btn-primary">Agendar Cita</a>
+                <a href="#galeria" class="btn btn-outline">Ver Portafolio</a>
             </div>
         </div>
     </section>
@@ -263,10 +221,9 @@
             <div class="placeholder-img">🖤 Lettering</div>
         </div>
         <div class="instagram-cta-banner">
-            <div class="cta-icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
             <h3>Descubrí más trabajos en Instagram</h3>
             <p>Seguí el día a día del estudio, procesos y diseños exclusivos</p>
-            <a href="https://www.instagram.com/lean.gonzaleztattoo/" target="_blank" rel="noopener" class="btn-instagram-cta"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> @lean.gonzaleztattoo</a>
+            <a href="https://www.instagram.com/lean.gonzaleztattoo/" target="_blank" rel="noopener" class="btn-instagram-cta">@lean.gonzaleztattoo</a>
         </div>
     </section>
 
@@ -279,27 +236,26 @@
             <p class="section-subtitle">Para garantizar que tu tatuaje cicatrice correctamente y los colores o la tinta negra se mantengan impecables, es fundamental seguir estos cuidados.</p>
         </div>
         <div class="recomendaciones-grid">
-            <div class="recomendacion-card green">
-                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-                <h4>🟢 Recomendaciones Previas</h4>
+            <div class="recomendacion-card">
+                <div class="card-icon">🟢</div>
+                <h4>Recomendaciones Previas</h4>
                 <ul>
-                    <li><strong>Hidratación de la piel:</strong> Comienza a hidratar la zona a tatuar con crema corporal unos días antes. Una piel bien hidratada recibe mejor la tinta y facilita el trabajo del tatuador.</li>
-                    <li><strong>Evita el alcohol y drogas:</strong> No consumas bebidas alcohólicas ni sustancias estimulantes al menos 24 horas antes de la sesión, ya que fluidifican la sangre, provocan mayor sangrado y dificultan que la tinta se fije correctamente.</li>
-                    <li><strong>Descanso y alimentación:</strong> Acude a tu cita habiendo descansado bien y con el estómago lleno. Venir con energía evita mareos, bajones de presión y ayuda a tolerar mejor el dolor.</li>
-                    <li><strong>No te expongas al sol:</strong> Evita tomar sol o rayos UVA en la zona en los días previos. No se puede tatuar sobre piel quemada por el sol o irritada.</li>
-                    <li><strong>Ropa cómoda:</strong> Usa prendas holgadas y cómodas que no rocen ni presionen la zona recién tatuada al salir del estudio.</li>
+                    <li><strong>Hidratación de la piel:</strong> Comienza a hidratar la zona a tatuar con crema corporal unos días antes.</li>
+                    <li><strong>Evita el alcohol y drogas:</strong> No consumas bebidas alcohólicas ni sustancias estimulantes al menos 24 horas antes.</li>
+                    <li><strong>Descanso y alimentación:</strong> Acude a tu cita habiendo descansado bien y con el estómago lleno.</li>
+                    <li><strong>No te expongas al sol:</strong> Evita tomar sol o rayos UVA en la zona en los días previos.</li>
+                    <li><strong>Ropa cómoda:</strong> Usa prendas holgadas y cómodas que no rocen ni presionen la zona.</li>
                 </ul>
             </div>
-            <div class="recomendacion-card blue">
-                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-                <h4>🔵 Recomendaciones Posteriores</h4>
+            <div class="recomendacion-card">
+                <div class="card-icon">🔵</div>
+                <h4>Recomendaciones Posteriores</h4>
                 <ul>
-                    <li><strong>Higiene diaria:</strong> Lava el tatuaje con agua templada y un jabón neutro (o antibacteriano sin perfume) utilizando las yemas de los dedos con mucha suavidad para retirar restos de sangre, plasma o tinta. Hazlo de 2 a 3 veces al día.</li>
-                    <li><strong>Secado correcto:</strong> Seca la zona dando pequeños toques con una gasa o papel de cocina limpio. Nunca uses una toalla convencional, ya que puede acumular bacterias o irritar la piel.</li>
-                    <li><strong>Hidratación con crema específica:</strong> Aplica una capa muy fina de crema regeneradora recomendada por tu tatuador (como Bepanthol u otras cremas específicas para tatuajes). No satures la piel; el tatuaje debe "respirar".</li>
-                    <li><strong>Prohibido rascar o arrancar costras:</strong> Durante el proceso de curación es normal que aparezca picor o que comience a descamarse. Nunca arranques las pielecitas ni rasques, ya que puedes perder parte de la tinta o provocar una infección.</li>
-                    <li><strong>Cero sol, piscinas y playas:</strong> Durante las primeras 3 a 4 semanas debes evitar por completo la exposición solar directa, los baños en piscinas, el mar, saunas y jacuzzis. El agua estancada y el clor son muy perjudiciales para una herida abierta.</li>
-                    <li><strong>Evita ropa ajustada:</strong> Usa ropa de algodón y holgada para evitar la fricción constante sobre el diseño fresco.</li>
+                    <li><strong>Higiene diaria:</strong> Lava el tatuaje con agua templada y jabón neutro 2-3 veces al día.</li>
+                    <li><strong>Secado correcto:</strong> Seca con gasa o papel de cocina limpio, nunca con toalla.</li>
+                    <li><strong>Hidratación:</strong> Aplica capa fina de crema regeneradora recomendada por tu tatuador.</li>
+                    <li><strong>Prohibido rascar:</strong> Nunca arranques las costras o piel que se desprende.</li>
+                    <li><strong>Cero sol, piscinas y playas:</strong> Evita durante las primeras 3-4 semanas.</li>
                 </ul>
             </div>
         </div>
@@ -319,7 +275,7 @@
         </div>
     </section>
 
-    <!-- ============ CONTACTO + CALENDARIO DE RESERVAS ============ -->
+    <!-- ============ CONTACTO + CALENDARIO ============ -->
     <section class="section" id="contacto">
         <div class="section-header">
             <span class="section-tag">Contacto</span>
@@ -328,30 +284,28 @@
         </div>
 
         <div class="contact-wrapper">
-            <!-- info contacto -->
             <div class="contact-info">
                 <div class="contact-info-item">
-                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+                    <div class="contact-icon">📍</div>
                     <div><h4>Ubicación</h4><p>Santander, España</p></div>
                 </div>
                 <div class="contact-info-item">
-                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                    <div class="contact-icon">📞</div>
                     <div><h4>Teléfono</h4><p>+34 697 89 13 24</p></div>
                 </div>
                 <div class="contact-info-item">
-                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                    <div class="contact-icon">✉️</div>
                     <div><h4>Email</h4><p>Leangonzaleztattoo@icloud.com</p></div>
                 </div>
                 <div class="contact-info-item">
-                    <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <div class="contact-icon">🕐</div>
                     <div><p>Lun a Sáb: 9:00 – 13:00 · 16:00 – 21:00</p></div>
                 </div>
             </div>
 
-            <!-- formulario + calendario -->
-            <div class="contact-form-card" id="contactFormCard">
-                <!-- CALENDARIO DE RESERVAS (Google Sheets) -->
-                <div class="booking-section" style="margin-top:0;padding:0 0 24px 0;border:none;background:transparent">
+            <div class="contact-form-card">
+                <!-- CALENDARIO DE RESERVAS -->
+                <div class="booking-section" style="padding:0 0 24px 0;border:none;background:transparent">
                     <div class="booking-header">
                         <h3>📅 Reserva tu cita</h3>
                         <div class="booking-nav">
@@ -360,9 +314,7 @@
                             <button id="nextMonthBtn">▶</button>
                         </div>
                     </div>
-                    <div class="calendar-grid" id="calendarGrid">
-                        <!-- generado por JS -->
-                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
                     <div class="slot-list" id="slotList">
                         <h4>Horarios disponibles</h4>
                         <div class="slot-buttons" id="slotButtons">
@@ -395,35 +347,31 @@
                         <label for="message">Mensaje *</label>
                         <textarea id="message" required placeholder="Describe tu idea, estilo, tamaño, colores, etc."></textarea>
                     </div>
-                    <button type="submit" class="btn-submit"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Enviar por WhatsApp</button>
+                    <button type="submit" class="btn-submit">Enviar por WhatsApp</button>
                 </form>
-                <div class="form-success-msg" id="formSuccessMsg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><p>¡Listo! Abriremos WhatsApp...</p></div>
+                <div class="form-success-msg" id="formSuccessMsg"><p>¡Listo! Abriremos WhatsApp...</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ============ FOOTER ============ -->
     <footer class="footer">
         <div class="footer-social">
-            <a href="https://www.instagram.com/lean.gonzaleztattoo/" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="https://www.instagram.com/lean.gonzaleztattoo/" target="_blank" rel="noopener">Instagram</a>
         </div>
-        <p class="footer-copy">© 2026 LG Tattoo | <a href="#" id="scPhotoLink">SC Photo Br</a></p>
+        <p class="footer-copy">© 2026 LG Tattoo</p>
     </footer>
 
-    <!-- ============ JAVASCRIPT (CALENDARIO + GOOGLE SHEETS) ============ -->
+    <!-- ============ JAVASCRIPT ============ -->
     <script>
         (function() {
             // ============================================================
-            //  CONFIGURACIÓN
+            //  CONFIGURACIÓN - TU ID DE GOOGLE SHEETS
             // ============================================================
-            // 🟢 ID de la hoja de Google Sheets (pública)
-            //    Crear una hoja con columnas: FECHA, HORA, CLIENTE, TELEFONO, NOTAS
-            //    Publicar como CSV o JSON. Usamos el endpoint de exportación CSV.
-            const SHEET_ID = '1N63wzIzUu_z9z2CzA1kQ5z6lUtOQp25qQy2tBfBOBws'; // ← REEMPLAZAR con tu ID real
-            const SHEET_NAME = 'Reservas'; // nombre de la pestaña
+            const SHEET_ID = '1N63wzIzUu_z9z2CzA1kQ5z6lUtOQp25qQy2tBfBOBws'; // ✅ TU ID
+            const SHEET_NAME = 'Reservas';
             const CSV_URL = `https://docs.google.com/1N63wzIzUu_z9z2CzA1kQ5z6lUtOQp25qQy2tBfBOBws/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
             
-            // Horarios de atención (mismos que en el HTML)
+            // Horarios de atención
             const WORK_HOURS = [
                 '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30',
                 '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30'
@@ -433,14 +381,11 @@
             let currentDate = new Date();
             let currentMonth = currentDate.getMonth();
             let currentYear = currentDate.getFullYear();
-            let bookedSlots = {}; // { '2025-01-15': ['10:00', '11:30'] }
-            let selectedDate = null; // '2025-01-15'
-            let selectedSlot = null; // '10:00'
-            let selectedDateObj = null;
+            let bookedSlots = {};
+            let selectedDate = null;
+            let selectedSlot = null;
 
-            // ============================================================
-            //  DOM REFS
-            // ============================================================
+            // DOM
             const calendarGrid = document.getElementById('calendarGrid');
             const monthLabel = document.getElementById('monthLabel');
             const prevMonthBtn = document.getElementById('prevMonthBtn');
@@ -449,7 +394,7 @@
             const bookingConfirm = document.getElementById('bookingConfirm');
             const selectedSlotInfo = document.getElementById('selectedSlotInfo');
             const confirmBtn = document.getElementById('confirmBookingBtn');
-            
+
             // ============================================================
             //  CARGAR RESERVAS DESDE GOOGLE SHEETS
             // ============================================================
@@ -458,11 +403,9 @@
                     const response = await fetch(CSV_URL);
                     if (!response.ok) throw new Error('Error al obtener datos');
                     const csvText = await response.text();
-                    // Parsear CSV simple
                     const lines = csvText.split('\n').filter(line => line.trim() !== '');
                     if (lines.length < 2) return {};
                     
-                    // Asumimos que la primera fila es encabezado: FECHA,HORA,CLIENTE,TELEFONO,NOTAS
                     const bookings = {};
                     for (let i = 1; i < lines.length; i++) {
                         const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
@@ -476,11 +419,11 @@
                     return bookings;
                 } catch (error) {
                     console.warn('No se pudo cargar reservas desde Google Sheets:', error);
-                    // Datos de ejemplo para demostración
+                    // Datos de ejemplo
                     return {
-                        '2025-06-10': ['10:00', '11:30', '16:00'],
-                        '2025-06-12': ['09:00', '17:00'],
-                        '2025-06-15': ['10:30', '12:00', '18:30'],
+                        '2026-08-10': ['10:00', '16:00'],
+                        '2026-08-12': ['09:00', '17:00'],
+                        '2026-08-15': ['10:30', '18:30'],
                     };
                 }
             }
@@ -492,12 +435,11 @@
                 const monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
                 monthLabel.textContent = `${monthNames[currentMonth]} ${currentYear}`;
                 
-                const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0=domingo
+                const firstDay = new Date(currentYear, currentMonth, 1).getDay();
                 const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
                 const today = new Date();
                 today.setHours(0,0,0,0);
                 
-                // Limpiar grid (mantener headers)
                 calendarGrid.innerHTML = '';
                 const headers = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
                 headers.forEach(h => {
@@ -507,9 +449,8 @@
                     calendarGrid.appendChild(div);
                 });
                 
-                // Días del mes anterior
                 const prevMonthDays = new Date(currentYear, currentMonth, 0).getDate();
-                const startOffset = firstDay === 0 ? 6 : firstDay - 1; // ajuste a lunes
+                const startOffset = firstDay === 0 ? 6 : firstDay - 1;
                 for (let i = startOffset - 1; i >= 0; i--) {
                     const day = prevMonthDays - i;
                     const div = document.createElement('div');
@@ -518,7 +459,6 @@
                     calendarGrid.appendChild(div);
                 }
                 
-                // Días del mes actual
                 for (let d = 1; d <= daysInMonth; d++) {
                     const dateObj = new Date(currentYear, currentMonth, d);
                     const dateStr = dateObj.toISOString().split('T')[0];
@@ -546,25 +486,12 @@
                         div.addEventListener('click', () => {
                             if (isPast) return;
                             selectedDate = dateStr;
-                            selectedDateObj = dateObj;
                             selectedSlot = null;
                             renderCalendar(bookings);
                             renderSlots(bookings);
                         });
-                    } else {
-                        div.style.cursor = 'default';
                     }
                     
-                    calendarGrid.appendChild(div);
-                }
-                
-                // Rellenar días faltantes
-                const totalCells = 7 * 6;
-                const currentCells = calendarGrid.children.length;
-                for (let i = currentCells; i < totalCells; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'day-cell other-month';
-                    div.textContent = i - currentCells + 1;
                     calendarGrid.appendChild(div);
                 }
             }
@@ -606,7 +533,7 @@
             }
 
             // ============================================================
-            //  CONFIRMAR RESERVA (envía a Google Sheets vía formulario)
+            //  CONFIRMAR RESERVA
             // ============================================================
             confirmBtn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -614,19 +541,17 @@
                     alert('Por favor, selecciona un día y un horario.');
                     return;
                 }
-                // Rellenar campo de mensaje con la fecha y hora seleccionada
                 const msgField = document.getElementById('message');
                 const currentMsg = msgField.value || '';
                 const bookingInfo = `\n\n📅 Reserva solicitada: ${selectedDate} a las ${selectedSlot}`;
                 if (!currentMsg.includes('Reserva solicitada')) {
                     msgField.value = currentMsg + bookingInfo;
                 }
-                // Disparar submit del formulario
                 document.getElementById('contactForm').dispatchEvent(new Event('submit', { cancelable: true }));
             });
 
             // ============================================================
-            //  FORMULARIO PRINCIPAL (WhatsApp)
+            //  FORMULARIO
             // ============================================================
             const contactForm = document.getElementById('contactForm');
             const successMsg = document.getElementById('formSuccessMsg');
@@ -660,11 +585,10 @@
             });
 
             // ============================================================
-            //  NAVEGACIÓN DEL CALENDARIO
+            //  NAVEGACIÓN
             // ============================================================
             async function refreshCalendar() {
                 const bookings = await fetchBookings();
-                // Si hay reservas, actualizar bookedSlots
                 bookedSlots = bookings;
                 renderCalendar(bookings);
                 if (selectedDate && bookings[selectedDate]) {
@@ -696,44 +620,12 @@
             // ============================================================
             refreshCalendar();
 
-            // ============================================================
-            //  MENÚ HAMBURGUESA
-            // ============================================================
+            // Menú hamburguesa
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
             hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.addEventListener('click', () => navLinks.classList.remove('open'));
-            });
-
-            // ============================================================
-            //  BOTÓN IDIOMA (simple toggle)
-            // ============================================================
-            document.getElementById('langToggleTab').addEventListener('click', () => {
-                document.getElementById('langPanel').classList.toggle('active');
-                document.getElementById('langOverlay').classList.toggle('active');
-            });
-            document.getElementById('langPanelClose').addEventListener('click', () => {
-                document.getElementById('langPanel').classList.remove('active');
-                document.getElementById('langOverlay').classList.remove('active');
-            });
-            document.getElementById('hidePanelBtn').addEventListener('click', () => {
-                document.getElementById('langPanel').classList.remove('active');
-                document.getElementById('langOverlay').classList.remove('active');
-            });
-            document.querySelectorAll('.lang-option').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.lang-option').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                });
-            });
-
-            // ============================================================
-            //  SC PHOTO LINK
-            // ============================================================
-            document.getElementById('scPhotoLink').addEventListener('click', function(e) {
-                e.preventDefault();
-                window.open('https://www.instagram.com/scphotobr/', '_blank');
             });
 
         })();
